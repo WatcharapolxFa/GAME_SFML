@@ -39,7 +39,7 @@ int main()
 			}
 		}
 		// Line 32-48 input and move 
-		
+		/*
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		{
 			player.move(-0.1f, 0.0f);
@@ -56,6 +56,7 @@ int main()
 		{
 			player.move(0.0f, 0.1f);
 		}
+		*/
 		
 		window.clear();
 		window.draw(player);
