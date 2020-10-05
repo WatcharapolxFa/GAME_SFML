@@ -5,11 +5,19 @@ int main()
 {
 	
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
-	sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
-	 player.setFillColor(sf::Color::Yellow);
+	sf::RectangleShape player(sf::Vector2f(100.0f, 150.0f));
 	 player.setPosition(206.0f, 206.0f);
-	 sf::Texture playerTexture;
-	while (window.isOpen())
+	 sf::Texture princess;
+
+	 princess.loadFromFile("charecter/princess.png");
+	 player.setTexture(&princess);
+
+	 sf::Vector2u textureSize = princess.getSize();
+	 textureSize.x /= 11;
+	 textureSize.y /= 44;
+
+	 player.setTextureRect(sf::IntRect(textureSize.x * 2, textureSize.y * 2, textureSize.x, textureSize.y));
+ 	while (window.isOpen())
 	{
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
