@@ -13,10 +13,10 @@ int main()
 	 player.setTexture(&princess);
 
 	 sf::Vector2u textureSize = princess.getSize();
-	 textureSize.x /= 11;
-	 textureSize.y /= 44;
+	 textureSize.x /= 5;
+	 textureSize.y /= 8;
 
-	 player.setTextureRect(sf::IntRect(textureSize.x * 2, textureSize.y * 2, textureSize.x, textureSize.y));
+	 player.setTextureRect(sf::IntRect(textureSize.x * 4, textureSize.y * 7, textureSize.x, textureSize.y));
  	while (window.isOpen())
 	{
 		sf::Event evnt;
@@ -39,7 +39,7 @@ int main()
 			}
 		}
 		// Line 32-48 input and move 
-		/*
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		{
 			player.move(-0.1f, 0.0f);
@@ -56,7 +56,7 @@ int main()
 		{
 			player.move(0.0f, 0.1f);
 		}
-		*/
+		
 		
 		window.clear();
 		window.draw(player);
