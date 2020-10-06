@@ -44,7 +44,7 @@ int main()
 		}
 		
 		
-		animation.Update(0, deltaTime);
+		animation.Update(0, deltaTime,false);
 		player.setTextureRect(animation.uvRect);
 		window.clear();
 		window.draw(player);
