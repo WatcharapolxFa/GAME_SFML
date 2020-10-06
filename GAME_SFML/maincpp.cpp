@@ -1,24 +1,28 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
+#include"Animation.h"
 int main()
 {
 	
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
-	sf::RectangleShape player(sf::Vector2f(100.0f, 150.0f));
-	 player.setPosition(206.0f, 206.0f);
+	sf::RectangleShape player(sf::Vector2f(120.0f, 196.0f));
+	 player.setPosition(10.0f,500.0f);
 	 sf::Texture princess;
 
 	 princess.loadFromFile("charecter/princess.png");
 	 player.setTexture(&princess);
 
-	 sf::Vector2u textureSize = princess.getSize();
-	 textureSize.x /= 5;
-	 textureSize.y /= 8;
+	 Animation animation(&princess, sf::Vector2u(5, 8), 0.5f);
+	 float deltaTime = 0.0f;
+	 sf::Clock clock;
 
-	 player.setTextureRect(sf::IntRect(textureSize.x * 4, textureSize.y * 7, textureSize.x, textureSize.y));
+	
+
  	while (window.isOpen())
 	{
+		deltaTime = clock.restart().asSeconds();
+
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
@@ -38,26 +42,10 @@ int main()
 				}
 			}
 		}
-		// Line 32-48 input and move 
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-		{
-			player.move(-0.1f, 0.0f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-		{
-			player.move(0.1f, 0.0f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-		{
-			player.move(0.0f, -0.1f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-		{
-			player.move(0.0f, 0.1f);
-		}
 		
 		
+		animation.Update(0, deltaTime);
+		player.setTextureRect(animation.uvRect);
 		window.clear();
 		window.draw(player);
 		window.display();
