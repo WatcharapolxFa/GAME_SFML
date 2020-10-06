@@ -1,19 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
-#include"Animation.h"
+#include"Player.h"
 int main()
 {
 	
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
-	sf::RectangleShape player(sf::Vector2f(120.0f, 196.0f));
+	sf::Texture princess;
+	princess.loadFromFile("charecter/princess.png");
 	 player.setPosition(10.0f,500.0f);
-	 sf::Texture princess;
+	 
 
-	 princess.loadFromFile("charecter/princess.png");
+	 
 	 player.setTexture(&princess);
 
-	 Animation animation(&princess, sf::Vector2u(5, 8), 0.5f);
+	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f);
 	 float deltaTime = 0.0f;
 	 sf::Clock clock;
 
@@ -44,10 +45,10 @@ int main()
 		}
 		
 		
-		animation.Update(0, deltaTime,false);
-		player.setTextureRect(animation.uvRect);
+		player.Update(deltaTime);
+		
 		window.clear();
-		window.draw(player);
+		player.Draw(window);
 		window.display();
 	}
 	return 0;
