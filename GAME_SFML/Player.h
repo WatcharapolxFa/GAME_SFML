@@ -8,7 +8,7 @@ public :
 	~Player();
 
 	void Update(float deltaTime);
-	void Draw(sf::RenderWindow window);
+	void Draw(sf::RenderWindow& window);
 private : 
 	sf::RectangleShape body;
 	Animation animation;

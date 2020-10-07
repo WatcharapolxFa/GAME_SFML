@@ -36,13 +36,13 @@ void Animation::Update(int row, float deltaTime, bool faceRight)
 	
 	if (faceRight)
 	{
-		uvRect.left = currentImage.x * uvRect.width;
-		uvRect.width = abs(uvRect.width);
+		uvRect.left = (currentImage.x + 1) * abs(uvRect.width);
+		uvRect.width = -abs(uvRect.width);
 	}
 	else
 	{
-		uvRect.left = (currentImage.x + 1) * abs(uvRect.width);
-		uvRect.width = -abs(uvRect.width);
+		uvRect.left = currentImage.x * uvRect.width;
+		uvRect.width = abs(uvRect.width);
 	}
 
 	if (row == 0)
@@ -54,6 +54,6 @@ void Animation::Update(int row, float deltaTime, bool faceRight)
 		switchTime = 0.1f;
 	}
 	
-	uvRect.left = currentImage.x * uvRect.width;
-	uvRect.top = currentImage.y *uvRect.height;
+	//uvRect.left = currentImage.x * uvRect.width;
+	//uvRect.top = currentImage.y * uvRect.height;
 }

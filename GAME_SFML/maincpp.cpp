@@ -7,12 +7,7 @@ int main()
 	
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
 	sf::Texture princess;
-	princess.loadFromFile("charecter/princess.png");
-	 player.setPosition(10.0f,500.0f);
-	 
-
-	 
-	 player.setTexture(&princess);
+	princess.loadFromFile("charecter/princess.png");	 
 
 	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f);
 	 float deltaTime = 0.0f;
@@ -39,7 +34,7 @@ int main()
 				if (evnt.text.unicode < 128)
 				{
 					char show = evnt.text.unicode;
-					std::cout << show << std::endl;  // Show input Keyboard
+					std::cout << show << std::endl;  // Show input Keyboards
 				}
 			}
 		}
@@ -51,5 +46,4 @@ int main()
 		player.Draw(window);
 		window.display();
 	}
-	return 0;
 }
