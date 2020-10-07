@@ -2,6 +2,7 @@
 #include<iostream>
 #include<stdio.h>
 #include"Player.h"
+#include"Platform.h"
 
 static const float VIEW_HEIGHT = 512.0f;
 void ResizeView(const sf::RenderWindow& window, sf::View& view)
@@ -19,6 +20,10 @@ int main()
 	princess.loadFromFile("charecter/princess.png");	 
 
 	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f);
+	 
+	 Platform platfrom1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f));
+	 Platform platfrom2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f));
+
 	 float deltaTime = 0.0f;
 	 sf::Clock clock;
 
@@ -50,10 +55,15 @@ int main()
 		
 		
 		player.Update(deltaTime);
+		platfrom1.GetCollider().CheckCollision(player.GetCollider(),0.0f);
+		platfrom2.GetCollider().CheckCollision(player.GetCollider(),1.0f);
+
 		view.setCenter(player.GetPosition());
 		window.clear();
 		window.setView(view);
 		player.Draw(window);
+		platfrom1.Draw(window);
+		platfrom2.Draw(window);
 		window.display();
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include"Animation.h"
+#include "Collider.h"
 class Player
 {
 public : 
@@ -11,7 +12,7 @@ public :
 	void Draw(sf::RenderWindow& window);
 
 	sf::Vector2f GetPosition() { return body.getPosition(); }
-
+	Collider GetColider() { return Collider(body); }
 private : 
 	sf::RectangleShape body;
 	Animation animation;
