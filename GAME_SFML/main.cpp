@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
+#include<vector>
 #include"Player.h"
 #include"Platform.h"
 
@@ -19,10 +20,14 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
 	princess.loadFromFile("charecter/princess.png");	 
 
-	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f);
+	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f,200);
+
+	 std::vector<Platform> platfroms;
 	 
-	 Platform platfrom1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f));
-	 Platform platfrom2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f));
+	 platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
+	 platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
+	 platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+
 
 	 float deltaTime = 0.0f;
 	 sf::Clock clock;
@@ -55,15 +60,19 @@ int main()
 		
 		
 		player.Update(deltaTime);
-		platfrom1.GetCollider().CheckCollision(player.GetCollider(),0.0f);
-		platfrom2.GetCollider().CheckCollision(player.GetCollider(),1.0f);
+		sf::Vector2f direction;
+
+
+		for (Platform& platform : platforms)
+		if(platform.GetCollider().CheckCollision(player.GetCollider(),direction,1.0f))
 
 		view.setCenter(player.GetPosition());
 		window.clear();
 		window.setView(view);
 		player.Draw(window);
-		platfrom1.Draw(window);
-		platfrom2.Draw(window);
+		for (Platform& PLATFORM : platfroms)
+			platfrom.Draw(window);
+
 		window.display();
 	}
 }
