@@ -14,7 +14,7 @@ void ResizeView(const sf::RenderWindow& window, sf::View& view)
 
 int main()
 {
-	
+	//Set screen and Set title name.
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
 	sf::Texture princess;
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
