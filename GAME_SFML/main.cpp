@@ -16,9 +16,14 @@ int main()
 {
 	//Set screen and Set title name.
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);//Resize Size as you like.
+	//Declare variablees.
 	sf::Texture princess;
+	//Load File
+	princess.loadFromFile("charecter/princess.png");
+
+
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
-	princess.loadFromFile("charecter/princess.png");	 
+		 
 
 	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f,200);
 
