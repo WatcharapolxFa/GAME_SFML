@@ -15,7 +15,7 @@ void ResizeView(const sf::RenderWindow& window, sf::View& view)
 int main()
 {
 	//Set screen and Set title name.
-	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);
+	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);//Resize Size as you like.
 	sf::Texture princess;
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
 	princess.loadFromFile("charecter/princess.png");	 
@@ -33,22 +33,24 @@ int main()
 	 sf::Clock clock;
 
 	
-
+	 //OPEN WINDOW
  	while (window.isOpen())
 	{
-		deltaTime = clock.restart().asSeconds();
+		deltaTime = clock.restart().asSeconds();  
 
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
 			switch (evnt.type)
 			{
-			case sf::Event::Closed:
+			case sf::Event::Closed: // When you press close.
 				window.close();
 				break;
+
 			case sf::Event::Resized:
-				ResizeView(window, view);
+				ResizeView(window, view); // When you press resized window ;
 				break;
+
 			case sf::Event::TextEntered:
 				if (evnt.text.unicode < 128)
 				{
