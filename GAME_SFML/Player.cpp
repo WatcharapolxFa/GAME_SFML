@@ -18,7 +18,7 @@ Player :: ~Player()
 
 void Player::Update(float deltaTime)
 {
-	velocity.x *= 0.8f;
+	velocity.x *= 0.0f;
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -68,7 +68,7 @@ void Player::OnCollision(sf::Vector2f direction)
 	if (direction.x < 0.0f)
 	{
 		//Collision on the left.
-		velocity.x = 00.f;
+		velocity.x = 0.0f;
 	}
 
 	if (direction.x > 0.0f)
@@ -81,12 +81,13 @@ void Player::OnCollision(sf::Vector2f direction)
 	if (direction.y > 0.0f)
 	{
 		//Collision on the bottom.
-		velocity.x = 00.f;
+		velocity.x = 0.0f;
+		canJump = true;
 	}
 	else if (direction.y > 0.0f)
 	{
 		//Collision on the top.
-		velocity.y = 00.f;
+		velocity.y = 0.0f;
 	}
 
 }

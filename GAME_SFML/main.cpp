@@ -62,15 +62,15 @@ int main()
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 
-
-		for (Platform& platform : platforms)
-		if(platform.GetCollider().CheckCollision(player.GetCollider(),direction,1.0f))
+		for (Platform& platfrom : platfroms)
+			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+				player.OnCollision(direction);
 
 		view.setCenter(player.GetPosition());
 		window.clear();
 		window.setView(view);
 		player.Draw(window);
-		for (Platform& PLATFORM : platfroms)
+		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 
 		window.display();
