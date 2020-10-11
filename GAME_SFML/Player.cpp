@@ -23,7 +23,7 @@ Player :: ~Player()
 
 void Player::Update(float deltaTime)
 {
-	velocity.x *= 0.0f;
+	velocity.x = 0.0f;
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// Input by Keyboard.
 	{
@@ -79,7 +79,7 @@ void Player::OnCollision(sf::Vector2f direction)
 	if (direction.x > 0.0f)
 	{
 		//Collision on the right.
-		velocity.x = 00.f;
+		velocity.x = 0.0f;
 	}
 
 
