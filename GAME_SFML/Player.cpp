@@ -83,7 +83,7 @@ void Player::OnCollision(sf::Vector2f direction)
 	}
 
 
-	if (direction.y > 0.0f)
+	if (direction.y < 0.0f)
 	{
 		//Collision on the bottom.
 		velocity.x = 0.0f;
