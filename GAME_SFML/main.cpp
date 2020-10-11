@@ -42,6 +42,8 @@ int main()
  	while (window.isOpen())
 	{
 		deltaTime = clock.restart().asSeconds();  
+		if (deltaTime > 1.0f / 20.0f)
+			deltaTime = 1.0f / 20.0f;
 
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
