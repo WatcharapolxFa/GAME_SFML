@@ -1,11 +1,16 @@
 #include "Player.h"
+
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed,float jumpHeight):
 	animation(texture,imageCount,switchTime)
 {
 	this->speed = speed;
 	this->jumpHeight = jumpHeight;
+
 	row = 0;
 	faceRight = true;
+
+
+
 	body.setSize(sf::Vector2f(120.0f, 196.0f));
 	body.setOrigin(body.getSize() / 2.0f);
 	body.setPosition(10.0f, 500.0f);
@@ -20,12 +25,12 @@ void Player::Update(float deltaTime)
 {
 	velocity.x *= 0.0f;
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// Input by Keyboard.
 	{
 		velocity.x -= speed;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))// Input by Keyboard.
 	{
 		velocity.x += speed;
 
