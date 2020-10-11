@@ -69,6 +69,7 @@ int main()
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 
+
 		for (Platform& platfrom : platfroms)
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
 				player.OnCollision(direction);
