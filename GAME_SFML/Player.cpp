@@ -1,4 +1,6 @@
 #include "Player.h"
+#include<iostream>
+using namespace std;
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed,float jumpHeight):
 	animation(texture,imageCount,switchTime)
@@ -11,9 +13,9 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 
 
 
-	body.setSize(sf::Vector2f(120.0f, 196.0f));
+	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin(body.getSize() / 2.0f);
-	body.setPosition(10.0f, 500.0f);
+	body.setPosition(5.0f, 100.0f);
 	body.setTexture(texture);
 }
 Player :: ~Player()
@@ -25,6 +27,11 @@ void Player::Update(float deltaTime)
 {
 	velocity.x = 0.0f;
 	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))// Input by Keyboard.
+	{
+		velocity.y += speed;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// Input by Keyboard.
 	{
 		velocity.x -= speed;
@@ -36,13 +43,22 @@ void Player::Update(float deltaTime)
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&canJump)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)&&canJump)
 
 	{
 		canJump = false;
 
 		velocity.y = -sqrtf(2.0f * 981.0f * jumpHeight);
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	{
+		cout << "Hello E";
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		std::cout << "Hello Q";
+	}
+
 
 	velocity.y += 981.0f * deltaTime;
 
