@@ -6,6 +6,7 @@
 #include"Platform.h"
 
 static const float VIEW_HEIGHT = 512.0f;
+
 void ResizeView(const sf::RenderWindow& window, sf::View& view)
 {
 	float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
@@ -18,6 +19,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);//Resize Size as you like.
 	//Declare variablees.
 	sf::Texture princess;
+	sf::Texture prince;
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
 
