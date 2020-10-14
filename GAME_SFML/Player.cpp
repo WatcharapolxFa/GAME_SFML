@@ -29,7 +29,9 @@ void Player::Update(float deltaTime)
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))// Input by Keyboard.
 	{
-		velocity.y += speed;
+		canJump = false;
+
+		velocity.y = +sqrtf(2.0f * 500.0f * jumpHeight);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// Input by Keyboard.
@@ -48,7 +50,7 @@ void Player::Update(float deltaTime)
 	{
 		canJump = false;
 
-		velocity.y = -sqrtf(2.0f * 981.0f * jumpHeight);
+		velocity.y = -sqrtf(2.0f * 500.0f * jumpHeight);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
