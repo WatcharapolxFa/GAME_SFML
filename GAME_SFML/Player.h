@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include"Animation.h"
 #include "Collider.h"
+#include"hitboxComponent.h"
 class Player
 {
 public : 
@@ -19,10 +20,12 @@ private :
 	Animation animation;
 	unsigned int row;
 	float speed;
+
+	hitboxComponent* hitbox;
+	
 	bool faceRight;
 
 	sf::Vector2f velocity;
 	bool canJump;
 	float jumpHeight;
 };
-

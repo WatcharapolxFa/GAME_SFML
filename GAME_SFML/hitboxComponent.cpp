@@ -21,5 +21,7 @@ void hitboxComponent::move(sf::Vector2f move)
 
 void hitboxComponent::Draw(sf::RenderTarget* target)
 {
+	hitbox.setFillColor(sf::Color(300, 0, 0));
 	target->draw(hitbox);
+
 }

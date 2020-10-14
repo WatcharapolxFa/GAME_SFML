@@ -11,10 +11,11 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	row = 0;
 	faceRight = true;
 
-
+	this->hitbox = new hitboxComponent(sf::Vector2f(10, 30), sf::Vector2f(40, 50));
 
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
-	body.setOrigin(body.getSize() / 2.0f);
+	body.setOrigin({ body.getSize().x / 2.0f,body.getSize().y / 2.0f });
+	
 	body.setPosition(100.0f, 100.0f);
 	body.setTexture(texture);
 }
@@ -79,10 +80,13 @@ void Player::Update(float deltaTime)
 	}
 	animation.Update(row, deltaTime, faceRight);
 	body.setTextureRect(animation.uvRect);
-	body.move(velocity * deltaTime);
+	hitbox->move(velocity * deltaTime);
+	this->body.setPosition(this->hitbox->getPosition().x, this->hitbox->getPosition().y );
+
 }
 void Player::Draw(sf::RenderWindow& window)
 {
+	hitbox->Draw(&window);
 	window.draw(body);
 }
 
