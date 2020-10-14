@@ -77,7 +77,7 @@ int main()
 				player.OnCollision(direction);
 
 		view.setCenter(player.GetPosition());
-		window.clear();
+		window.clear(sf::Color(150,150,150));
 		window.setView(view);
 		player.Draw(window);
 		for (Platform& platfrom : platfroms)
