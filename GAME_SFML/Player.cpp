@@ -81,7 +81,7 @@ void Player::Update(float deltaTime)
 	animation.Update(row, deltaTime, faceRight);
 	body.setTextureRect(animation.uvRect);
 	hitbox->move(velocity * deltaTime);
-	this->body.setPosition(this->hitbox->getPosition().x, this->hitbox->getPosition().y );
+	this->body.setPosition(this->hitbox->getPosition().x, this->hitbox->getPosition().y+2 );
 
 }
 void Player::Draw(sf::RenderWindow& window)
