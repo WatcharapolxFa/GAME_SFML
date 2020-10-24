@@ -1,4 +1,4 @@
- #include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
 #include<vector>
@@ -25,25 +25,25 @@ int main()
 
 
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
-		 
-
-	 Player player(&princess, sf::Vector2u(5, 8), 0.5f,100.0f,200);
-
-	 std::vector<Platform> platfroms;
-	 
-	 platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
-	 platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-	 platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
 
 
-	 float deltaTime = 0.0f;
-	 sf::Clock clock;
+	Player player(&princess, sf::Vector2u(5, 8), 0.5f, 100.0f, 200);
 
-	
-	 //OPEN WINDOW
- 	while (window.isOpen())
+	std::vector<Platform> platfroms;
+
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+
+
+	float deltaTime = 0.0f;
+	sf::Clock clock;
+
+
+	//OPEN WINDOW
+	while (window.isOpen())
 	{
-		deltaTime = clock.restart().asSeconds();  
+		deltaTime = clock.restart().asSeconds();
 		if (deltaTime > 1.0f / 20.0f)
 			deltaTime = 1.0f / 20.0f;
 
@@ -68,8 +68,8 @@ int main()
 				}
 			}
 		}
-		
-		
+
+
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 
@@ -79,7 +79,7 @@ int main()
 				player.OnCollision(direction);
 
 		view.setCenter(player.GetPosition());
-		window.clear(sf::Color(150,150,150));
+		window.clear(sf::Color(150, 150, 150));
 		window.setView(view);
 		player.Draw(window);
 		for (Platform& platfrom : platfroms)

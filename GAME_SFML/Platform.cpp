@@ -7,7 +7,7 @@ Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f positio
 	body.setPosition(position);
 
 }
-Platform::~ Platform()
+Platform::~Platform()
 {
 
 }
