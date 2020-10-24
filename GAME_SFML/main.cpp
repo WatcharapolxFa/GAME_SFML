@@ -21,7 +21,7 @@ int main()
 	sf::Texture princess;
 	sf::Texture prince;
 	//Load File
-	princess.loadFromFile("charecter/princess.png");
+	princess.loadFromFile("charecter/princ.png");
 
 
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
