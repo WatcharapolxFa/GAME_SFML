@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include"Animation.h"
 #include "Collider.h"
-#include"hitboxComponent.h"
 class Player
 {
 public : 
@@ -21,7 +20,7 @@ private :
 	unsigned int row;
 	float speed;
 
-	hitboxComponent* hitbox;
+
 	
 	bool faceRight;
 
