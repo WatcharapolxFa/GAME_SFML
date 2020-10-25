@@ -22,7 +22,7 @@ private :
 
 
 	
-	bool faceRight;
+	bool faceRight, fire;
 
 	sf::Vector2f velocity;
 	bool canJump;

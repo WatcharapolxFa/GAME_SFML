@@ -10,7 +10,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 
 	row = 0;
 	faceRight = true;
-
+	fire = false;
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f,body.getSize().y / 2.0f });
 
@@ -25,7 +25,7 @@ Player :: ~Player()
 void Player::Update(float deltaTime,sf::Vector2f direction)
 {
 	velocity.x = 0.0f;
-
+	fire = false;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))// Input by Keyboard.
 	{
@@ -73,14 +73,18 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 			}
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 	{
-		std::cout << "Hello Q";
+		fire = true;		
 	}
 
-									if (velocity.x == 0.0f && velocity.y == 0)
+									if (velocity.x == 0.0f && velocity.y == 0 && fire == false)
 									{
 										row = 0;
+									}
+									if (velocity.x == 0.0f && velocity.y == 0 && fire == true)
+									{
+										row = 6;
 									}
 									if (direction.y >= 0 )
 									{
@@ -112,7 +116,7 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 	
 
 	
-	animation.Update(row, deltaTime, faceRight);
+	animation.Update(row, deltaTime, faceRight , fire);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
 	
