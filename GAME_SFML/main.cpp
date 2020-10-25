@@ -55,16 +55,20 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 330.0f), sf::Vector2f(1725.0f, 588.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(170.0f, 35.0f), sf::Vector2f(1460.0f, 363.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(170.0f, 95.0f), sf::Vector2f(1400.0f, 300.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(370.0f, 40.0f), sf::Vector2f(1220.0f, 272.0f)))  ;
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(370.0f, 40.0f), sf::Vector2f(1220.0f, 272.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(800.0f, 40.0f), sf::Vector2f(390.0f, 272.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(700.0f, 60.0f), sf::Vector2f(330.0f,20.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(700.0f, 60.0f), sf::Vector2f(1480.0f, 20.0f)));
 
-
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1500.0f), sf::Vector2f(23.0f, 600.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 1500.0f), sf::Vector2f(1820.0f, 600.0f)));
+	
 
 
 	
 
 	sf::Texture bg01;
-	bg01.loadFromFile("charecter/black01.png");
+	bg01.loadFromFile("charecter/back01.png");
 	sf::RectangleShape back01(sf::Vector2f(1830.5f, 1358.5f));
 	back01.setPosition(0.0f, 0.0f);
 	back01.setTexture(&bg01);
@@ -158,9 +162,11 @@ int main()
 		window.clear();
 		window.draw(back01);
 		window.setView(view);
-		player.Draw(window);
+		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
+		//window.draw(back01);
+		player.Draw(window);
 
 		window.display();
 	}
