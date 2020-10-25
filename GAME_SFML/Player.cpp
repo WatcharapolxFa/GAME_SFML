@@ -54,7 +54,24 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 	{
-		velocity.x = sqrtf(500.0f * 500.0f );
+		if (faceRight == true)
+		{
+			velocity.x = 2 * speed;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				velocity.x = -2 * speed;
+				faceRight = false;
+			}
+		}
+		if (faceRight == false)
+		{
+			velocity.x = -2 * speed;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			{
+				velocity.x = 2 * speed;
+				faceRight = true;
+			}
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
@@ -65,27 +82,36 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 									{
 										row = 0;
 									}
-	if (direction.y >= 0 )
-	{
-		velocity.y += 981.0f * deltaTime;
+									if (direction.y >= 0 )
+									{
+										velocity.y += 981.0f * deltaTime;
 
-	}
-	if (direction.y == -1)
-	{
-		velocity.y = 0;
-		row = 5;
-	}
-
+									}
+									if (direction.y == -1)
+									{
+										velocity.y = 0;
+									}
+									if (velocity.x != 0.0f)
+									{
+										row = 2;
+										if (velocity.x > 0.0f)
+											faceRight = true;
+										else
+											faceRight = false;
+									}
+									if (velocity.y < 0)
+									{
+										row = 5;
+										
+										if (velocity.x < 0.0f)
+											faceRight = false;
+										if (velocity.x > 0.0f) {
+											faceRight = true;
+										}
+									}
 	
 
-	if(velocity.x != 0.0f )
-	{
-		row = 2;
-		if (velocity.x > 0.0f)
-			faceRight = true;
-		else
-			faceRight = false;
-	}
+	
 	animation.Update(row, deltaTime, faceRight);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
