@@ -5,13 +5,9 @@
 #include"Player.h"
 #include"Platform.h"
 
-static const float VIEW_HEIGHT = 512.0f;
 
-void ResizeView(const sf::RenderWindow& window, sf::View& view)
-{
-	float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
-	view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
-}
+
+
 
 int main()
 {
@@ -21,19 +17,35 @@ int main()
 	sf::Texture princess;
 	sf::Texture prince;
 	//Load File
-	princess.loadFromFile("charecter/princ.png");
+	princess.loadFromFile("charecter/princess.png");
+	prince.loadFromFile("charecter/prince.png");
+	
 
 
-	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
+	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
 
-	Player player(&princess, sf::Vector2u(5, 8), 0.5f, 100.0f, 200);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 200);
 
 	std::vector<Platform> platfroms;
 
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 200.0f), sf::Vector2f(500.0f, 500.0f)));
+
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 679.25f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1408.5f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, -50.0f)));
+
+	
+
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 20.0f), sf::Vector2f(70.0f, 1330.0f)));
+	
+
+
+	sf::Texture bg01;
+	bg01.loadFromFile("charecter/black01.png");
+	sf::RectangleShape back01(sf::Vector2f(1830.5f, 1358.5f));
+	back01.setPosition(0.0f, 0.0f);
+	back01.setTexture(&bg01);
 
 
 	float deltaTime = 0.0f;
@@ -56,9 +68,7 @@ int main()
 				window.close();
 				break;
 
-			case sf::Event::Resized:
-				ResizeView(window, view); // When you press resized window ;
-				break;
+			
 
 			case sf::Event::TextEntered:
 				if (evnt.text.unicode < 128)
@@ -69,7 +79,7 @@ int main()
 			}
 		}
 
-
+		
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 
@@ -79,7 +89,8 @@ int main()
 				player.OnCollision(direction);
 
 		view.setCenter(player.GetPosition());
-		window.clear(sf::Color(150, 150, 150));
+		window.clear();
+		window.draw(back01);
 		window.setView(view);
 		player.Draw(window);
 		for (Platform& platfrom : platfroms)
