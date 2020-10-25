@@ -22,9 +22,10 @@ Player :: ~Player()
 
 }
 
-void Player::Update(float deltaTime)
+void Player::Update(float deltaTime,sf::Vector2f direction)
 {
 	velocity.x = 0.0f;
+
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))// Input by Keyboard.
 	{
@@ -51,24 +52,33 @@ void Player::Update(float deltaTime)
 
 		velocity.y = -sqrtf(2.0f * 500.0f * jumpHeight);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 	{
-		cout << "Hello E";
+		velocity.x = sqrtf(500.0f * 500.0f );
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		std::cout << "Hello Q";
 	}
 
-
-	velocity.y += 981.0f * deltaTime;
-
-	if (velocity.x == 0.0f)
+									if (velocity.x == 0.0f && velocity.y == 0)
+									{
+										row = 0;
+									}
+	if (direction.y >= 0 )
 	{
-		row = 4;
+		velocity.y += 981.0f * deltaTime;
+
+	}
+	if (direction.y == -1)
+	{
+		velocity.y = 0;
+		row = 5;
 	}
 
-	else
+	
+
+	if(velocity.x != 0.0f )
 	{
 		row = 2;
 		if (velocity.x > 0.0f)

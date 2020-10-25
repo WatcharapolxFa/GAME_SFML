@@ -25,7 +25,7 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
 
-	Player player(&princess, sf::Vector2u(5, 8), 0.5f, 300.0f, 200);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
 
 	std::vector<Platform> platfroms;
 
@@ -41,6 +41,9 @@ int main()
 	//platfroms.push_back(Platform(nullptr, sf::Vector2f(500.0f, 10.0f), sf::Vector2f(500.0f, 1200.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(860.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(190.0f, 90.0f), sf::Vector2f(1750.0f, 1281.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(70.0f, 150.0f), sf::Vector2f(1750.0f, 1170.0f)));
 
 
 	sf::Texture bg01;
@@ -57,6 +60,7 @@ int main()
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
+		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		deltaTime = clock.restart().asSeconds();
 		if (deltaTime > 1.0f / 20.0f)
 			deltaTime = 1.0f / 20.0f;
@@ -82,15 +86,58 @@ int main()
 		}
 
 		
-		player.Update(deltaTime);
+		
 		sf::Vector2f direction;
-
+		player.Update(deltaTime,direction);
 
 		for (Platform& platfrom : platfroms)
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
 				player.OnCollision(direction);
 
-		view.setCenter(player.GetPosition());
+		//set 
+		view.setCenter(sf::Vector2f(player.GetPosition()));
+		if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
+		{
+			if (view.getCenter().y - 360.0f <= 0.0f)
+			{
+				view.setCenter(540.0f, 360.0f);//window
+			}
+			if (view.getCenter().y + 360.0f >= 1358.5f)
+			{
+				view.setCenter(540.0f, 998.5f);//window
+			}
+			if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+			{
+				view.setCenter(540.0f, player.GetPosition().y);
+			}
+
+		}
+		if (view.getCenter().x + 540.0f >= 1830.5f)
+		{
+			if (view.getCenter().y - 360.0f <= 0.0f)
+			{
+				view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+			}
+			if (view.getCenter().y + 360.0f >= 1358.5f)
+			{
+				view.setCenter(1290.5f, 998.5f);//window 1248-540
+			}
+			if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+			{
+				view.setCenter(1290.5f, player.GetPosition().y);
+			}
+		}
+		if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+		{
+			if (view.getCenter().y - 360.0f <= 0.0f)
+			{
+				view.setCenter(player.GetPosition().x, 360.0f);
+			}
+			if (view.getCenter().y + 360.0f >= 1358.5f)
+			{
+				view.setCenter(player.GetPosition().x, 998.5f);
+			}
+		}
 		window.clear();
 		window.draw(back01);
 		window.setView(view);
