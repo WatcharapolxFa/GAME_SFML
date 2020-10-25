@@ -25,11 +25,11 @@ int main()
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
 
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 200);
+	Player player(&princess, sf::Vector2u(5, 8), 0.5f, 300.0f, 200);
 
 	std::vector<Platform> platfroms;
 
-
+	//cob
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1408.5f)));
@@ -37,8 +37,10 @@ int main()
 
 	
 
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 20.0f), sf::Vector2f(70.0f, 1330.0f)));
-	
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 40.0f), sf::Vector2f(140.0f, 1350.0f)));
+	//platfroms.push_back(Platform(nullptr, sf::Vector2f(500.0f, 10.0f), sf::Vector2f(500.0f, 1200.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(860.0f, 1350.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
 
 
 	sf::Texture bg01;
