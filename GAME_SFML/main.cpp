@@ -150,7 +150,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 35.0f), sf::Vector2f(480.0f, 310.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(50.0f, 35.0f), sf::Vector2f(720.0f, 300.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(50.0f, 35.0f), sf::Vector2f(930.0f, 300.0f)));
-	//platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 270.0f), sf::Vector2f(1195.0f, 420.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 270.0f), sf::Vector2f(1195.0f, 420.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(85.0f, 150.0f), sf::Vector2f(1265.0f, 505.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1350.0f), sf::Vector2f(1810.0f, 680.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1280.0f), sf::Vector2f(20.0f, 630.0f)));
