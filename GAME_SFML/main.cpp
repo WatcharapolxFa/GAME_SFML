@@ -36,9 +36,9 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, -50.0f)));
 
 	
-
+	//back01
+	/*
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 40.0f), sf::Vector2f(140.0f, 1350.0f)));
-
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(860.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
@@ -62,16 +62,28 @@ int main()
 
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1500.0f), sf::Vector2f(23.0f, 600.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 1500.0f), sf::Vector2f(1820.0f, 600.0f)));
+	*/
+	//bg01
+
+	//bg02
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 1225.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 30.0f), sf::Vector2f(600.0f, 1330.0f)));
+
+
+
 	
-
-
-	
-
+	//bg01
 	sf::Texture bg01;
 	bg01.loadFromFile("charecter/back01.png");
 	sf::RectangleShape back01(sf::Vector2f(1830.5f, 1358.5f));
 	back01.setPosition(0.0f, 0.0f);
 	back01.setTexture(&bg01);
+	//bg02
+	sf::Texture bg02;
+	bg02.loadFromFile("charecter/back02.png");
+	sf::RectangleShape back02(sf::Vector2f(1830.5f, 1358.5f));
+	back02.setPosition(0.0f, 0.0f);
+	back02.setTexture(&bg02);
 
 
 	float deltaTime = 0.0f;
@@ -160,7 +172,8 @@ int main()
 			}
 		}
 		window.clear();
-		window.draw(back01);
+		//window.draw(back01);
+		window.draw(back02);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
