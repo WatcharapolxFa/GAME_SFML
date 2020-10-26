@@ -68,10 +68,48 @@ int main()
 	//bg02
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 1225.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 30.0f), sf::Vector2f(600.0f, 1330.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(915.0f, 1290.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 150.0f), sf::Vector2f(1000.0f, 1230.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 150.0f), sf::Vector2f(1150.0f, 1205.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(330.0f, 150.0f), sf::Vector2f(1430.0f, 1185.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(330.0f, 150.0f), sf::Vector2f(1430.0f, 1300.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(330.0f, 150.0f), sf::Vector2f(1730.0f, 1325.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(1613.0f, 1233.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(95.0f, 30.0f), sf::Vector2f(1549.0f, 1100.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(95.0f, 45.0f), sf::Vector2f(1183.0f, 1105.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(95.0f, 45.0f), sf::Vector2f(1220.0f, 1133.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(40.0f, 30.0f), sf::Vector2f(1770.0f, 1233.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1400.0f), sf::Vector2f(1812.0f, 600.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1500.0f), sf::Vector2f(20.0f, 800.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(620.0f, 30.0f), sf::Vector2f(1485.0f, 863.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(145.0f, 30.0f), sf::Vector2f(1585.0f,675.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(325.0f, 30.0f), sf::Vector2f(1300.0f, 528.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(370.0f, 5.0f), sf::Vector2f(1630.0f, 545.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(120.0f, 30.0f), sf::Vector2f(1740.0f, 532.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 120.0f), sf::Vector2f(1150.0f, 584.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(390.0f, 5.0f), sf::Vector2f(1381.0f, 304.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 30.0f), sf::Vector2f(1620.0f, 298.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(440.0f, 30.0f), sf::Vector2f(965.0f, 296.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(450.0f, 5.0f), sf::Vector2f(520.0f, 304.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(240.0f, 30.0f), sf::Vector2f(257.0f, 296.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(250.0f, 5.0f), sf::Vector2f(160.0f, 545.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(55.0f, 530.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 80.0f), sf::Vector2f(310.0f, 560.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(130.0f, 45.0f), sf::Vector2f(350.0f, 580.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 420.0f), sf::Vector2f(400.0f, 810.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 30.0f), sf::Vector2f(313.0f, 955.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 550.0f), sf::Vector2f(963.0f, 555.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(250.0f, 30.0f), sf::Vector2f(835.0f, 720.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 40.0f), sf::Vector2f(680.0f, 625.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(80.0f, 80.0f), sf::Vector2f(750.0f, 680.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(135.0f, 120.0f), sf::Vector2f(445.0f, 955.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 330.0f), sf::Vector2f(585.0f, 985.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 200.0f), sf::Vector2f(496.0f, 1000.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(542.0f, 910.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 45.0f), sf::Vector2f(625.0f, 1145.0f)));
 
 
 
-	
 	//bg01
 	sf::Texture bg01;
 	bg01.loadFromFile("charecter/back01.png");
@@ -173,12 +211,13 @@ int main()
 		}
 		window.clear();
 		//window.draw(back01);
-		window.draw(back02);
+		//window.draw(back02);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 		//window.draw(back01);
+		window.draw(back02);
 		player.Draw(window);
 
 		window.display();
