@@ -24,11 +24,9 @@ int main()
 	heart.loadFromFile("charecter/heart.png");
 
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
-
+	//heart
 	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
-	
-	
-	data.top = 0;
+	data.top = 300;
 	data.left = 0;
 	data.width = 900;
 	data.height = 300; 
@@ -287,18 +285,18 @@ int main()
 			}
 		}
 		window.clear();
-		window.draw(back01);
+		//window.draw(back01);
 		//window.draw(back02);
 		//window.draw(back03);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
-		//window.draw(back01);
+		window.draw(back01);
 		//window.draw(back02);
 
 		player.Draw(window);
-		heartt.setPosition(player.GetPosition().x-80, player.GetPosition().y-60);
+		heartt.setPosition(player.GetPosition().x-50, player.GetPosition().y-60);
 		window.draw(heartt);
 
 
