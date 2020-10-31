@@ -7,8 +7,6 @@
 
 
 
-
-
 int main()
 {
 	//Set screen and Set title name.
@@ -16,16 +14,36 @@ int main()
 	//Declare variablees.
 	sf::Texture princess;
 	sf::Texture prince;
+	sf::Texture firee;
+	sf::Texture heart;
+	sf::IntRect data;
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
 	prince.loadFromFile("charecter/prince.png");
+	firee.loadFromFile("charecter/frie.png");
+	heart.loadFromFile("charecter/heart.png");
+
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
+
+	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
+	
+	
+	data.top = 0;
+	data.left = 0;
+	data.width = 900;
+	data.height = 300; 
+
+	heartt.setTextureRect(data);
+	heartt.setTexture(&heart);
+
 	
 
 
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
 
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
+	
+
 
 	std::vector<Platform> platfroms;
 
@@ -37,7 +55,7 @@ int main()
 
 	
 	//back01
-	/*
+	
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 40.0f), sf::Vector2f(140.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(860.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
@@ -62,7 +80,7 @@ int main()
 
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1500.0f), sf::Vector2f(23.0f, 600.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 1500.0f), sf::Vector2f(1820.0f, 600.0f)));
-	*/
+	
 	//bg01
 
 	//bg02
@@ -111,6 +129,7 @@ int main()
 	*/
 	//bg2
 	//bg3
+	/*
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(130.0f, 130.0f), sf::Vector2f(60.0f, 1300.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(172.0f, 1340.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(130.0f, 5.0f), sf::Vector2f(283.0f, 1355.0f)));
@@ -157,7 +176,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 80.0f), sf::Vector2f(1730.0f, 1080.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1555.0f, 730.0f)));
 
-
+	*/
 
 
 	//bg01
@@ -179,6 +198,7 @@ int main()
 	back03.setPosition(0.0f, 0.0f);
 	back03.setTexture(&bg03);
 
+	
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -216,6 +236,7 @@ int main()
 		
 		sf::Vector2f direction;
 		player.Update(deltaTime,direction);
+		
 
 		for (Platform& platfrom : platfroms)
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
@@ -266,16 +287,20 @@ int main()
 			}
 		}
 		window.clear();
-		//window.draw(back01);
+		window.draw(back01);
 		//window.draw(back02);
-		window.draw(back03);
+		//window.draw(back03);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 		//window.draw(back01);
 		//window.draw(back02);
+
 		player.Draw(window);
+		heartt.setPosition(player.GetPosition().x-80, player.GetPosition().y-60);
+		window.draw(heartt);
+
 
 		window.display();
 	}

@@ -77,6 +77,10 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 	{
 		fire = true;		
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+	{
+		fire = true;
+	}
 
 									if (velocity.x == 0.0f && velocity.y == 0 && fire == false)
 									{
