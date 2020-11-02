@@ -41,7 +41,7 @@ void Bullet::attackR(sf::Vector2f pos)
 {
     if (isAva == true)
     {
-        body.setPosition(pos.x + 50.0f, pos.y);
+        body.setPosition(pos.x + 50.0f, pos.y); //position bullet R
         isAva = false;
     }
 }
@@ -50,12 +50,12 @@ void Bullet::attackL(sf::Vector2f pos)
 {
     if (isAva == true)
     {
-        body.setPosition(pos.x - 50.0f, pos.y);
+        body.setPosition(pos.x - 50.0f, pos.y);//position bullet L
         isAva = false;
     }
 }
 
-bool Bullet::isAvaliable()
+bool Bullet::isAvaliable() // status bullet
 {
     isAva = true;
     return isAva;
@@ -99,13 +99,13 @@ void Bullet::OnCollision(sf::Vector2f direction)
 
 float Bullet::cooldown(float deltaTime, int check)
 {
-    if (cooling < cool)
+    if (cooling < cool) // cooling begin is time //cool 
     {
         cooling += deltaTime;
     }
     if (cooling >= cool)
     {
-        if (check != 0)
+        if (check != 0)// cheek bullet 
         {
             cooling = 0.0f;
         }

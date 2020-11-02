@@ -64,7 +64,10 @@ int main()
 
 
 	std::vector<Platform> platfroms;
-
+	// Warp
+	sf::RectangleShape waroPoint(sf::Vector2f(100, 200));
+	waroPoint.setPosition(sf::Vector2f(1850, 900));
+	//waroPoint.setTexture(&doorwarp);
 	//cob
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 679.25f)));
