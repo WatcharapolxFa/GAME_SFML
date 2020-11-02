@@ -11,7 +11,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     body.setPosition(pos);
     body.setTexture(texture);
     bool faceleft = false;
-    cooling = 5.0f;
+    cooling = 10.0f; //time is cooldown
 }
 Bullet::~Bullet()
 {

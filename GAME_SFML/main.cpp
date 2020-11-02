@@ -5,6 +5,7 @@
 #include"Player.h"
 #include"Platform.h"
 #include"Bullet.h"
+using namespace std;
 
 
 int main()
@@ -50,8 +51,8 @@ int main()
 	
 	sf::Vector2f pos ;
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 0.2f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 0.2f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -227,7 +228,9 @@ int main()
 		pos = player.GetPosition();
 
 		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
-		std::cout << Bul << std::endl;
+		//std::cout << Bul << std::endl;
+		std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
+		std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
 		if (deltaTime > 1.0f / 20.0f)
 			deltaTime = 1.0f / 20.0f;
@@ -315,7 +318,7 @@ int main()
 		{
 			faceright = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
 		{
 			if (faceright == true)
 			{
@@ -328,7 +331,7 @@ int main()
 				bullet1.attackL(pos);
 			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
 		{
 			if (faceright == true)
 			{
