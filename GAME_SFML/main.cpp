@@ -373,6 +373,7 @@ int main()
 			bullet1.isAvaliable();
 			bullet1.SetPosition(pos);
 		}
+
 		if (Bul2 == 1)
 		{
 			bullet2.updateR(deltaTime);
