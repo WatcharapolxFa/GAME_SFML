@@ -7,6 +7,7 @@ public:
 	~Animation();
 
 	void Update(int row, float deltaTime, bool faceRight, bool fire);
+	void updateBu(int row, float deltaTime, bool faceleft);
 
 public:
 	sf::IntRect uvRect;

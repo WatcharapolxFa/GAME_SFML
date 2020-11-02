@@ -4,7 +4,7 @@
 #include<vector>
 #include"Player.h"
 #include"Platform.h"
-
+#include"Bullet.h"
 
 
 int main()
@@ -17,11 +17,16 @@ int main()
 	sf::Texture firee;
 	sf::Texture heart;
 	sf::IntRect data;
+	sf::Texture mana;
+	sf::IntRect datamana;
+	sf::Texture thunderbolt;
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
 	prince.loadFromFile("charecter/prince.png");
 	firee.loadFromFile("charecter/frie.png");
 	heart.loadFromFile("charecter/heart.png");
+	mana.loadFromFile("charecter/mana.png");
+	thunderbolt.loadFromFile("charecter/thunderbolt.png");
 
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
 	//heart
@@ -33,9 +38,23 @@ int main()
 
 	heartt.setTextureRect(data);
 	heartt.setTexture(&heart);
-
+	//mana
+	sf::RectangleShape manaa(sf::Vector2f(120.0f, 40.0f));
+	datamana.top = 0;
+	datamana.left = 0;
+	datamana.width = 900;
+	datamana.height = 300;
 	
+	manaa.setTextureRect(datamana);
+	manaa.setTexture(&mana);
+	
+	sf::Vector2f pos ;
 
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 0.2f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 0.2f);
+
+	int Bul = 0;
+	int Bul2 = 0;
 
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
@@ -197,15 +216,18 @@ int main()
 	back03.setTexture(&bg03);
 
 	
-
+	bool faceright;
 	float deltaTime = 0.0f;
 	sf::Clock clock;
-
+	faceright = true;
 
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
-		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		pos = player.GetPosition();
+
+		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		std::cout << Bul << std::endl;
 		deltaTime = clock.restart().asSeconds();
 		if (deltaTime > 1.0f / 20.0f)
 			deltaTime = 1.0f / 20.0f;
@@ -284,6 +306,41 @@ int main()
 				view.setCenter(player.GetPosition().x, 998.5f);
 			}
 		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			faceright = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			faceright = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0)
+		{
+			if (faceright == true)
+			{
+				Bul = 1;
+				bullet1.attackR(pos);
+			}
+			if (faceright == false)
+			{
+				Bul = -1;
+				bullet1.attackL(pos);
+			}
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0)
+		{
+			if (faceright == true)
+			{
+				Bul2 = 1;
+				bullet2.attackR(pos);
+			}
+			if (faceright == false)
+			{
+				Bul2 = -1;
+				bullet2.attackL(pos);
+			}
+		}
 		window.clear();
 		//window.draw(back01);
 		//window.draw(back02);
@@ -292,14 +349,46 @@ int main()
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
-		window.draw(back01);
+		window.draw(back01); 
 		//window.draw(back02);
 
 		player.Draw(window);
 		heartt.setPosition(player.GetPosition().x-50, player.GetPosition().y-60);
 		window.draw(heartt);
-
-
+		manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
+		window.draw(manaa);
+		if (Bul == 1)
+		{
+			bullet1.updateR(deltaTime);
+			bullet1.draw(window);
+		}
+		if (Bul == -1)
+		{
+			bullet1.updateL(deltaTime);
+			bullet1.draw(window);
+		}
+		if (abs(bullet1.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+		{
+			Bul = 0;
+			bullet1.isAvaliable();
+			bullet1.SetPosition(pos);
+		}
+		if (Bul2 == 1)
+		{
+			bullet2.updateR(deltaTime);
+			bullet2.draw(window);
+		}
+		if (Bul2 == -1)
+		{
+			bullet2.updateL(deltaTime);
+			bullet2.draw(window);
+		}
+		if (abs(bullet2.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+		{
+			Bul2 = 0;
+			bullet2.isAvaliable();
+			bullet2.SetPosition(pos);
+		}
 		window.display();
 	}
 }

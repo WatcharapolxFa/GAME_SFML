@@ -30,6 +30,13 @@ void Animation::Update(int row, float deltaTime, bool faceRight, bool fire)
 		{
 			row = 6;		
 		}
+		if (row == 6)
+		{
+			if (currentImage.x >= 3)
+			{
+				currentImage.x = 1;
+			}
+		}
 		if (currentImage.x >= imageCount.x)
 		{
 			currentImage.x = 0;
@@ -47,5 +54,31 @@ void Animation::Update(int row, float deltaTime, bool faceRight, bool fire)
 	{
 		uvRect.left = currentImage.x * uvRect.width;
 		uvRect.width = abs(uvRect.width);
+	}
+}
+
+void Animation::updateBu(int row, float deltaTime, bool faceleft)
+{
+	currentImage.y = row;
+	totalTime += deltaTime;
+	if (totalTime >= switchTime)
+	{
+		totalTime -= switchTime;
+		currentImage.x++;
+		if (currentImage.x >= imageCount.x)
+		{
+			currentImage.x = 0;
+		}
+	}
+	uvRect.top = currentImage.y * uvRect.height;
+	if (faceleft)
+	{
+		uvRect.left = currentImage.x * uvRect.width;
+		uvRect.width = abs(uvRect.width);
+	}
+	else
+	{
+		uvRect.left = (currentImage.x + 1) * abs(uvRect.width);
+		uvRect.width = -abs(uvRect.width);
 	}
 }
