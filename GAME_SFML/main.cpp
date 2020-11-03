@@ -5,6 +5,7 @@
 #include"Player.h"
 #include"Platform.h"
 #include"Bullet.h"
+#include"HitboxComponent.h"
 using namespace std;
 
 
@@ -21,6 +22,7 @@ int main()
 	sf::Texture mana;
 	sf::IntRect datamana;
 	sf::Texture thunderbolt;
+	sf::Texture firebg;
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
 	prince.loadFromFile("charecter/prince.png");
@@ -28,8 +30,10 @@ int main()
 	heart.loadFromFile("charecter/heart.png");
 	mana.loadFromFile("charecter/mana.png");
 	thunderbolt.loadFromFile("charecter/thunderbolt.png");
+	firebg.loadFromFile("charecter/friebg.png");
 
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
+
 	//heart
 	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
 	data.top = 300;
@@ -59,7 +63,8 @@ int main()
 
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
-
+	//hitbox
+	HitboxComponent hitboxPlayer(0, 0, sf::Vector2f(30.0f, 52.0f), player.GetPosition());
 	
 
 
@@ -262,6 +267,10 @@ int main()
 		
 		sf::Vector2f direction;
 		player.Update(deltaTime,direction);
+		//hitbox
+		hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);
+
+		
 		
 
 		for (Platform& platfrom : platfroms)
@@ -360,9 +369,11 @@ int main()
 
 		player.Draw(window);
 		heartt.setPosition(player.GetPosition().x-50, player.GetPosition().y-60);
-		window.draw(heartt);
+		//window.draw(heartt);
 		manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
-		window.draw(manaa);
+		//window.draw(manaa);
+		//hitbox
+		hitboxPlayer.Draw(window);
 		if (Bul == 1)
 		{
 			bullet1.updateR(deltaTime);
