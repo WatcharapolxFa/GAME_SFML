@@ -11,7 +11,7 @@ public :
 	void Update(float deltaTime, sf::Vector2f direction);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
-
+	void Warped(sf::RenderWindow& window);
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 private : 

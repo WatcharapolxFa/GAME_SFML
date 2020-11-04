@@ -15,7 +15,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f,body.getSize().y / 2.0f });
 
-	body.setPosition(100.0f, 1100.0f);
+	body.setPosition(91.0f, 1218.0f);
 	body.setTexture(texture);
 }
 Player :: ~Player()
@@ -161,4 +161,8 @@ void Player::OnCollision(sf::Vector2f direction)
 	}
 	
 
+}
+void Player::Warped(sf::RenderWindow& window)
+{
+	body.setPosition(0.0f, 2500.0f);
 }
