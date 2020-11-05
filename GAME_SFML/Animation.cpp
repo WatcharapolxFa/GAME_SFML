@@ -99,4 +99,5 @@ void Animation::Updatefrie(int row, float deltaTime)
 	}
 
 	uvRect.top = currentImage.y * uvRect.height;
+	uvRect.left = currentImage.x * uvRect.width;
 }

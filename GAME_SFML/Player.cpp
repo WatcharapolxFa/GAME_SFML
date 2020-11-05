@@ -164,5 +164,10 @@ void Player::OnCollision(sf::Vector2f direction)
 }
 void Player::Warped(sf::RenderWindow& window)
 {
-	body.setPosition(0.0f, 1601.0f);
+	body.setPosition(450.0f, 2000.0f);
+}
+
+void Player::Warped2(sf::RenderWindow& window)
+{
+	body.setPosition(450.0f, 5000.0f);
 }

@@ -7,21 +7,16 @@ public:
 	friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 	~friebg();
 
-	void Update(int row, float deltaTime);
+	void Update(float deltaTime, sf::Vector2f direction);
 	void draw(sf::RenderWindow& window);
-	void position(sf::Vector2f fireposition);
-
-public:
-	sf::IntRect uvRect;
+	//void position(sf::Vector2f fireposition);
 
 private:
 	Animation animation;
-	sf::Vector2u imageCount;
-	sf::Vector2u currentImage;
 	sf::RectangleShape body;
 
 	float totalTime;
 	float switchTime;
 
-
+	unsigned int row;
 };

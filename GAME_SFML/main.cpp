@@ -1,4 +1,5 @@
-﻿#include <SFML/Graphics.hpp>
+﻿#pragma warning(disable : 26812)
+#include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
 #include<vector>
@@ -9,6 +10,8 @@
 #include<SFML/Audio.hpp>
 #include<sstream>
 #include"friebg.h"
+#include<SFML/System.hpp>
+#include<cstdlib>
 using namespace std;
 
 
@@ -49,7 +52,7 @@ int main()
 
 
 
-	friebg friebg(&firebgg, sf::Vector2u(1, 3), 0.3f);
+	friebg friebggg(&firebgg, sf::Vector2u(2,1), 0.5f);
 	
 
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
@@ -94,6 +97,11 @@ int main()
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
 	waroPoint.setPosition(sf::Vector2f(75, 204));
+
+	//Warp2
+	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
+	waroPoint2.setPosition(sf::Vector2f(180, 3284));
+
 	
 	//cob01
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
@@ -134,10 +142,10 @@ int main()
 	//cob02
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 2679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 2679.25f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 21408.5f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 33.5f), sf::Vector2f(915.25f, 3350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1950.0f)));
 	//bg02
-	
+	/*
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 3225.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 30.0f), sf::Vector2f(600.0f, 3330.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(915.0f, 3290.0f)));
@@ -179,7 +187,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 200.0f), sf::Vector2f(496.0f, 3000.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(542.0f, 2910.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 45.0f), sf::Vector2f(625.0f, 3145.0f)));
-	
+	*/
 	//bg2
 	//cob03
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 6679.25f)));
@@ -268,19 +276,25 @@ int main()
 	sf::Font font;
 	font.loadFromFile("charecter/FC.ttf");
 	sf::Text lbltime;
-	lbltime.setCharacterSize(30);
+	lbltime.setString(showtime.str());
+	lbltime.setCharacterSize(45);
 	lbltime.setFont(font);
 	//==================================================================
 
 
 
+	int u=0;
 
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
+		
 		pos = player.GetPosition();
 		time = clocks.getElapsedTime();
-		showtime << time.asMilliseconds();
+		showtime << time.asSeconds();
+		
+
+	
 
 		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
@@ -309,13 +323,16 @@ int main()
 				}
 			}
 		}
-
-		
-		
 		sf::Vector2f direction;
+		friebggg.Update(deltaTime, direction);
+		
+		
 		player.Update(deltaTime,direction);
 		//hitbox
 		hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);
+
+		
+
 
 		
 		
@@ -326,9 +343,7 @@ int main()
 
 		//set Viw
 
-		if (player.GetPosition().y <= 1600)//เช็คตำแหน่ง
-		{
-			view.setCenter(sf::Vector2f(player.GetPosition()));
+		view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//เช็คค่า x มุมซ้ายสุด ขนาดครึ่งจอ 0.0 ขนาดของรูป ซ้าย
 			{
 				if (view.getCenter().y - 360.0f <= 0.0f)
@@ -406,54 +421,12 @@ int main()
 					bullet2.attackL(pos);
 				}
 			}
-		}
+		
 
 		///// viw 02
 		if (player.GetPosition().y <=1600&& player.GetPosition().y<= 4000)
 		{
-			view.setCenter(sf::Vector2f(player.GetPosition()));
-			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
-			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
-				{
-					view.setCenter(540.0f, 360.0f);//window
-				}
-				if (view.getCenter().y + 360.0f >= 2717.0f)
-				{
-					view.setCenter(540.0f, 2357.0f);//window
-				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2717.0f)
-				{
-					view.setCenter(540.0f, player.GetPosition().y);
-				}
-
-			}
-			if (view.getCenter().x + 540.0f >= 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
-				{
-					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
-				}
-				if (view.getCenter().y + 360.0f >= 2717.0f)
-				{
-					view.setCenter(1290.5f, 2357.0f);//window 1248-540
-				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2717.0f)
-				{
-					view.setCenter(1290.5f, player.GetPosition().y);
-				}
-			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
-				{
-					view.setCenter(player.GetPosition().x, 360.0f);
-				}
-				if (view.getCenter().y + 360.0f >= 2717.0f)
-				{
-					view.setCenter(player.GetPosition().x, 2357.0f);
-				}
-			}
+			u = 1;
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
@@ -489,10 +462,7 @@ int main()
 					bullet2.attackL(pos);
 				}
 			}
-		}
-		// viw 03 
-		/*
-		if (player.GetPosition().y > 4000)
+		}if (u == 1)
 		{
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
@@ -501,11 +471,11 @@ int main()
 				{
 					view.setCenter(540.0f, 360.0f);//window
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
-					view.setCenter(540.0f, 998.5f);//window
+					view.setCenter(540.0f, 2998.5f);//window
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 3358.5f)
 				{
 					view.setCenter(540.0f, player.GetPosition().y);
 				}
@@ -517,11 +487,11 @@ int main()
 				{
 					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
-					view.setCenter(1290.5f, 998.5f);//window 1248-540
+					view.setCenter(1290.5f, 2998.5f);//window 1248-540
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 3358.5f)
 				{
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
@@ -532,11 +502,16 @@ int main()
 				{
 					view.setCenter(player.GetPosition().x, 360.0f);
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
-					view.setCenter(player.GetPosition().x, 998.5f);
+					view.setCenter(player.GetPosition().x,2998.5f);
 				}
 			}
+		}
+		// viw 03 
+		if (player.GetPosition().y > 4000)
+		{
+			u = 2;
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
@@ -572,28 +547,76 @@ int main()
 					bullet2.attackL(pos);
 				}
 			}
-		}
-		*/
+		}if (u==2)
+		{
+			view.setCenter(sf::Vector2f(player.GetPosition()));
+			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
+			{
+				if (view.getCenter().y - 360.0f <= 0.0f)
+				{
+					view.setCenter(540.0f, 360.0f);//window
+				}
+				if (view.getCenter().y + 360.0f >= 5358.5f)
+				{
+					view.setCenter(540.0f, 4998.5f);//window
+				}
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+				{
+					view.setCenter(540.0f, player.GetPosition().y);
+				}
 
+			}
+			if (view.getCenter().x + 540.0f >= 1830.5f)
+			{
+				if (view.getCenter().y - 360.0f <= 0.0f)
+				{
+					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+				}
+				if (view.getCenter().y + 360.0f >= 5358.5f)
+				{
+					view.setCenter(1290.5f, 4998.5f);//window 1248-540
+				}
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+				{
+					view.setCenter(1290.5f, player.GetPosition().y);
+				}
+			}
+			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+			{
+				if (view.getCenter().y - 360.0f <= 0.0f)
+				{
+					view.setCenter(player.GetPosition().x, 360.0f);
+				}
+				if (view.getCenter().y + 360.0f >= 5358.5f)
+				{
+					view.setCenter(player.GetPosition().x, 4998.5f);
+				}
+			}
+		}
+		
+		// Time
 
 		lbltime.setString(showtime.str());
-		showtime.str("");
+		
+		showtime.str(" ");
+		showtime << "Time : ";
+		lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
 
-		friebg.Update(1, deltaTime);
+		
 		
 		
 		
 		window.clear();
-		//window.draw(back01);
-		//window.draw(back02);
-		//window.draw(back03);
+		window.draw(back01);
+		window.draw(back02);
+		window.draw(back03);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 
-		window.draw(back01); 
-		window.draw(back02);
+		//window.draw(back01); 
+		//window.draw(back02);
 		//window.draw(back03);
 
 
@@ -604,6 +627,12 @@ int main()
 		}
 		window.draw(waroPoint);
 
+		//warp2
+		if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
+		{
+			player.Warped2(window);
+
+		}window.draw(waroPoint2);
 
 
 
@@ -622,9 +651,9 @@ int main()
 		hitboxPlayer.Draw(window);
 
 		//time
-		lbltime.setPosition(player.GetPosition().x - 30, player.GetPosition().y + 40);
 		window.draw(lbltime);
 
+		friebggg.draw(window);
 
 		//Draw bullet
 		if (Bul == 1)
@@ -660,7 +689,7 @@ int main()
 			bullet2.isAvaliable();
 			bullet2.SetPosition(pos);
 		}
-		friebg.draw(window);
+		
 	
 		window.display();
 	}
