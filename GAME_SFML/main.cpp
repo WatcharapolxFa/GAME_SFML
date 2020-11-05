@@ -6,7 +6,7 @@
 #include"Platform.h"
 #include"Bullet.h"
 #include"HitboxComponent.h"
-
+#include<SFML/Audio.hpp>
 using namespace std;
 
 
@@ -25,6 +25,7 @@ int main()
 	sf::Texture thunderbolt;
 	sf::Texture waterbg;
 	sf::Texture firebg;
+	sf::Music music;
 
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -35,6 +36,18 @@ int main()
 	thunderbolt.loadFromFile("charecter/thunderbolt.png");
 	firebg.loadFromFile("charecter/friebg.png");
 	waterbg.loadFromFile("charecter/waterbg.png");
+
+	//Music
+	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
+	{
+		std::cout << "ERROR" << std::endl;
+	}
+	music.play();
+
+
+
+
+
 
 
 
@@ -255,7 +268,7 @@ int main()
 	{
 		pos = player.GetPosition();
 
-		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 		std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
@@ -387,15 +400,15 @@ int main()
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 2000.0f)
 				{
 					view.setCenter(540.0f, 360.0f);//window
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 2000.0f)
 				{
-					view.setCenter(540.0f, 998.5f);//window
+					view.setCenter(540.0f, 1640.0f);//window
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2000.0f)
 				{
 					view.setCenter(540.0f, player.GetPosition().y);
 				}
@@ -403,28 +416,28 @@ int main()
 			}
 			if (view.getCenter().x + 540.0f >= 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 2000.0f)
 				{
 					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 2000.0f)
 				{
-					view.setCenter(1290.5f, 998.5f);//window 1248-540
+					view.setCenter(1290.5f,1640.0f);//window 1248-540
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2000.0f)
 				{
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
 			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 2000.0f)
 			{
 				if (view.getCenter().y - 360.0f <= 0.0f)
 				{
 					view.setCenter(player.GetPosition().x, 360.0f);
 				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
+				if (view.getCenter().y + 360.0f >= 2000.0f)
 				{
-					view.setCenter(player.GetPosition().x, 998.5f);
+					view.setCenter(player.GetPosition().x, 1640.0f);
 				}
 			}
 
@@ -464,7 +477,7 @@ int main()
 			}
 		}
 		// viw 03 
-
+		/*
 		if (player.GetPosition().y > 4000)
 		{
 			view.setCenter(sf::Vector2f(player.GetPosition()));
@@ -546,13 +559,13 @@ int main()
 				}
 			}
 		}
-
+		*/
 
 
 
 		
 		window.clear();
-		window.draw(back01);
+		//window.draw(back01);
 		//window.draw(back02);
 		//window.draw(back03);
 		window.setView(view);
@@ -560,8 +573,8 @@ int main()
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 
-		//window.draw(back01); 
-		//window.draw(back02);
+		window.draw(back01); 
+		window.draw(back02);
 		//window.draw(back03);
 
 
