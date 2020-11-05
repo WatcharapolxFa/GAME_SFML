@@ -53,9 +53,9 @@ int main()
 
 	//Vector ไฟ ===============================================================================================================================================
 	std::vector<friebg>FireVector;
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 409.0f, 1300.0f));
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 600.0f, 1300.0f));
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 800.0f, 1300.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 495.0f, 1330.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
+	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 800.0f, 1300.0f));
 	//=========================================================================================================================================================
 
 
@@ -303,6 +303,7 @@ int main()
 	lbltime.setString(showtime.str());
 	lbltime.setCharacterSize(45);
 	lbltime.setFont(font);
+	lbltime.setFillColor(sf::Color::Yellow);
 
 	//==================================================================//
 
@@ -642,15 +643,15 @@ int main()
 		
 		
 		window.clear();
-		window.draw(back01);
-		window.draw(back02);
-		window.draw(back03);
+		//window.draw(back01);
+		//window.draw(back02);
+		//window.draw(back03);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 
-		//window.draw(back01); 
+		window.draw(back01); 
 		//window.draw(back02);
 		//window.draw(back03);
 
