@@ -7,6 +7,7 @@
 #include"Bullet.h"
 #include"HitboxComponent.h"
 #include<SFML/Audio.hpp>
+#include<sstream>
 using namespace std;
 
 
@@ -253,12 +254,21 @@ int main()
 	back03.setPosition(0.0f, 4000.0f);
 	back03.setTexture(&bg03);
 
-	
+	//==================================================================
 	bool faceright;
 	float deltaTime = 0.0f;
 	sf::Clock clock;
+	sf::Clock clocks;
+	sf::Time time;
 	faceright = true;
 
+	std::ostringstream showtime;
+	sf::Font font;
+	font.loadFromFile("charecter/FC.ttf");
+	sf::Text lbltime;
+	lbltime.setCharacterSize(30);
+	lbltime.setFont(font);
+	//==================================================================
 
 
 
@@ -267,11 +277,13 @@ int main()
 	while (window.isOpen())
 	{
 		pos = player.GetPosition();
+		time = clocks.getElapsedTime();
+		showtime << time.asMilliseconds();
 
 		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
-		std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
-		std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
+		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
+		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
 		if (deltaTime > 1.0f / 20.0f)
 			deltaTime = 1.0f / 20.0f;
@@ -312,7 +324,7 @@ int main()
 
 		//set Viw
 
-		if (player.GetPosition().y <= 2000)
+		if (player.GetPosition().y <= 1600)
 		{
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
@@ -395,20 +407,20 @@ int main()
 		}
 
 		///// viw 02
-		if (player.GetPosition().y >= 2000 && player.GetPosition().y <= 4000)
+		if (player.GetPosition().y >= 1601 && player.GetPosition().y <= 4000)
 		{
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
 			{
-				if (view.getCenter().y - 360.0f <= 2000.0f)
-				{
-					view.setCenter(540.0f, 360.0f);//window
-				}
-				if (view.getCenter().y + 360.0f >= 2000.0f)
+				if (view.getCenter().y - 1640.0 <= 2000.0f)
 				{
 					view.setCenter(540.0f, 1640.0f);//window
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2000.0f)
+				if (view.getCenter().y + 1640.0 >= 2000.0f)
+				{
+					view.setCenter(540.0f, 1640.0f);//window
+				}
+				if (view.getCenter().y - 1640.0 > 0.0f && view.getCenter().y + 1640.0f < 2000.0f)
 				{
 					view.setCenter(540.0f, player.GetPosition().y);
 				}
@@ -416,26 +428,26 @@ int main()
 			}
 			if (view.getCenter().x + 540.0f >= 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 2000.0f)
+				if (view.getCenter().y - 1640.0f <= 2000.0f)
 				{
-					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+					view.setCenter(1290.5f, 1640.0f);//window 1248-540 collision right 
 				}
-				if (view.getCenter().y + 360.0f >= 2000.0f)
+				if (view.getCenter().y + 1640.0f >= 2000.0f)
 				{
 					view.setCenter(1290.5f,1640.0f);//window 1248-540
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 2000.0f)
+				if (view.getCenter().y - 1640.0f > 0.0f && view.getCenter().y + 360.0f < 2000.0f)
 				{
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
 			}
 			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 2000.0f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 1640.0f <= 0.0f)
 				{
 					view.setCenter(player.GetPosition().x, 360.0f);
 				}
-				if (view.getCenter().y + 360.0f >= 2000.0f)
+				if (view.getCenter().y + 1640.0f >= 2000.0f)
 				{
 					view.setCenter(player.GetPosition().x, 1640.0f);
 				}
@@ -562,7 +574,8 @@ int main()
 		*/
 
 
-
+		lbltime.setString(showtime.str());
+		showtime.str("");
 		
 		window.clear();
 		//window.draw(back01);
@@ -601,6 +614,10 @@ int main()
 
 		//hitbox
 		hitboxPlayer.Draw(window);
+
+		//time
+		lbltime.setPosition(player.GetPosition().x - 30, player.GetPosition().y + 40);
+		window.draw(lbltime);
 
 
 		//Draw bullet
