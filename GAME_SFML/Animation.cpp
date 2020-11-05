@@ -82,3 +82,21 @@ void Animation::updateBu(int row, float deltaTime, bool faceleft)
 		uvRect.width = -abs(uvRect.width);
 	}
 }
+
+void Animation::Updatefrie(int row, float deltaTime)
+{
+	currentImage.y = row;
+	totalTime += deltaTime;
+
+	if (totalTime >= switchTime)
+	{
+		totalTime -= switchTime;
+		currentImage.x++;
+		if (currentImage.x >= imageCount.x)
+		{
+			currentImage.x = 0;
+		}
+	}
+
+	uvRect.top = currentImage.y * uvRect.height;
+}
