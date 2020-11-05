@@ -13,6 +13,7 @@ public :
 	void OnCollision(sf::Vector2f direction);
 	void Warped(sf::RenderWindow& window);
 	void Warped2(sf::RenderWindow& window);
+	void setPosition(float x, float y);
 	sf::Vector2f GetPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 private : 

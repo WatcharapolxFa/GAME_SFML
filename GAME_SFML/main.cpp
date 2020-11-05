@@ -17,7 +17,7 @@ using namespace std;
 
 int main()
 {
-	//Set screen and Set title name.
+	//Set screen and Set title name. ========================================================================================================================
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);//Resize Size as you like.
 	//Declare variablees.
 	sf::Texture princess;
@@ -31,7 +31,7 @@ int main()
 	sf::Texture waterbg;
 	sf::Music music;
 	sf::Texture firebgg;
-
+	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
 	prince.loadFromFile("charecter/prince.png");
@@ -41,59 +41,75 @@ int main()
 	thunderbolt.loadFromFile("charecter/thunderbolt.png");
 	firebgg.loadFromFile("charecter/friebg.png");
 	waterbg.loadFromFile("charecter/waterbg.png");
-
+	//=========================================================================================================================================================
 	//Music
-	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
+	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
 	{
 		std::cout << "ERROR" << std::endl;
 	}
+	music.setVolume(25.0f);
 	music.play();
-	*/
+	//=========================================================================================================================================================
+
+	//Vector ไฟ ===============================================================================================================================================
+	std::vector<friebg>FireVector;
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 409.0f, 1300.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 600.0f, 1300.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 800.0f, 1300.0f));
+	//=========================================================================================================================================================
 
 
-
-	friebg friebggg(&firebgg, sf::Vector2u(2,1), 0.5f);
-	
-
+	//Player **************************************************************************************************************************************************
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
+	//*********************************************************************************************************************************************************
 
-
-
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//heart
 	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
 	data.top = 300;
 	data.left = 0;
 	data.width = 900;
 	data.height = 300; 
-
 	heartt.setTextureRect(data);
 	heartt.setTexture(&heart);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//mana
 	sf::RectangleShape manaa(sf::Vector2f(120.0f, 40.0f));
 	datamana.top = 0;
 	datamana.left = 0;
 	datamana.width = 900;
 	datamana.height = 300;
-	
 	manaa.setTextureRect(datamana);
 	manaa.setTexture(&mana);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+
+	// ตำแหน่ง ตัวละคร
 	sf::Vector2f pos ;
+
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Bullet
+
 	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
 	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//hitbox
 	HitboxComponent hitboxPlayer(0, 0, sf::Vector2f(30.0f, 52.0f), player.GetPosition());
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-
-
+	
 	std::vector<Platform> platfroms;
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
 	waroPoint.setPosition(sf::Vector2f(75, 204));
@@ -101,8 +117,10 @@ int main()
 	//Warp2
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
 	waroPoint2.setPosition(sf::Vector2f(180, 3284));
-
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//cob01
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 679.25f)));
@@ -137,8 +155,9 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 1500.0f), sf::Vector2f(1820.0f, 600.0f)));
 	
 	//bg01
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	//cob02
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 2679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 2679.25f)));
@@ -189,6 +208,9 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 45.0f), sf::Vector2f(625.0f, 3145.0f)));
 	*/
 	//bg2
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	//cob03
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 6679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 6679.25f)));
@@ -241,10 +263,10 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1280.0f), sf::Vector2f(20.0f, 4630.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 80.0f), sf::Vector2f(1730.0f, 41080.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1555.0f, 4730.0f)));
-
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	
 
-
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	//bg01
 	sf::Texture bg01;
 	bg01.loadFromFile("charecter/back01.png");
@@ -263,8 +285,10 @@ int main()
 	sf::RectangleShape back03(sf::Vector2f(1830.5f, 1358.5f));
 	back03.setPosition(0.0f, 4000.0f);
 	back03.setTexture(&bg03);
+	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-	//==================================================================
+	//==================================================================//
+
 	bool faceright;
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -279,7 +303,8 @@ int main()
 	lbltime.setString(showtime.str());
 	lbltime.setCharacterSize(45);
 	lbltime.setFont(font);
-	//==================================================================
+
+	//==================================================================//
 
 
 
@@ -288,7 +313,7 @@ int main()
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
-		
+		//time
 		pos = player.GetPosition();
 		time = clocks.getElapsedTime();
 		showtime << time.asSeconds();
@@ -324,13 +349,20 @@ int main()
 			}
 		}
 		sf::Vector2f direction;
-		friebggg.Update(deltaTime, direction);
-		
+		// Update ด่านไฟ //==================================================================//
+		for (int i = 0; i < FireVector.size(); i++)
+		{
+			FireVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
 		
 		player.Update(deltaTime,direction);
+
+
+		//==================================================================//
 		//hitbox
 		hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);
-
+		//==================================================================//
 		
 
 
@@ -508,6 +540,8 @@ int main()
 				}
 			}
 		}
+
+
 		// viw 03 
 		if (player.GetPosition().y > 4000)
 		{
@@ -594,7 +628,7 @@ int main()
 			}
 		}
 		
-		// Time
+		// Time //==================================================================//
 
 		lbltime.setString(showtime.str());
 		
@@ -602,6 +636,7 @@ int main()
 		showtime << "Time : ";
 		lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
 
+		//==================================================================//
 		
 		
 		
@@ -619,7 +654,7 @@ int main()
 		//window.draw(back02);
 		//window.draw(back03);
 
-
+		//==================================================================//
 		//wrab
 		if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
 		{
@@ -633,7 +668,7 @@ int main()
 			player.Warped2(window);
 
 		}window.draw(waroPoint2);
-
+		//==================================================================//
 
 
 		//player
@@ -653,7 +688,11 @@ int main()
 		//time
 		window.draw(lbltime);
 
-		friebggg.draw(window);
+		//ด่านไฟ
+		for (int i = 0; i < FireVector.size(); i++)
+		{
+			FireVector[i].draw(window);
+		}
 
 		//Draw bullet
 		if (Bul == 1)

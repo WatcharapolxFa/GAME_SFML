@@ -171,3 +171,8 @@ void Player::Warped2(sf::RenderWindow& window)
 {
 	body.setPosition(450.0f, 5000.0f);
 }
+
+void Player::setPosition(float x, float y)
+{
+	body.setPosition(x, y);
+}
