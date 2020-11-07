@@ -43,19 +43,19 @@ int main()
 	waterbg.loadFromFile("charecter/waterbg.png");
 	//=========================================================================================================================================================
 	//Music
-	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
+	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
 	{
 		std::cout << "ERROR" << std::endl;
 	}
 	music.setVolume(25.0f);
-	music.play();
+	music.play();*/
 	//=========================================================================================================================================================
 
 	//Vector ไฟ ===============================================================================================================================================
 	std::vector<friebg>FireVector;
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 495.0f, 1330.0f));
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
-	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 800.0f, 1300.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 583.0f, 720.0f));
 	//=========================================================================================================================================================
 
 
