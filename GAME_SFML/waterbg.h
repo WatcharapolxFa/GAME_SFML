@@ -12,7 +12,6 @@ public:
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
 	void setPosition(float x, float y);
-	//void position(sf::Vector2f fireposition);
 
 private:
 	Animation animation;

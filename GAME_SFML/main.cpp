@@ -12,6 +12,7 @@
 #include"friebg.h"
 #include<SFML/System.hpp>
 #include<cstdlib>
+#include"waterbg.h"
 using namespace std;
 
 
@@ -60,9 +61,8 @@ int main()
 
 	//Vector น้ำ ===============================================================================================================================================
 	std::vector<waterbg>WaterVector;
-	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 495.0f, 1330.0f));
-	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
-	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 583.0f, 720.0f));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f,1250.0f, 730.0f));
+	
 	//=========================================================================================================================================================
 
 
@@ -169,12 +169,12 @@ int main()
 	//cob02
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 2679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 2679.25f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 33.5f), sf::Vector2f(915.25f, 3350.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 33.5f), sf::Vector2f(915.25f, 3365.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1950.0f)));
 	//bg02
+	
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 89.0f), sf::Vector2f(60.0f, 3300.0f)));
 	/*
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 3225.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 30.0f), sf::Vector2f(600.0f, 3330.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(915.0f, 3290.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 150.0f), sf::Vector2f(1000.0f, 3230.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 150.0f), sf::Vector2f(1150.0f, 3205.0f)));
@@ -660,7 +660,7 @@ int main()
 		
 		window.clear();
 		//window.draw(back01);
-		//window.draw(back02);
+		window.draw(back02);
 		//window.draw(back03);
 		window.setView(view);
 		
