@@ -9,6 +9,7 @@ public:
 	void Update(int row, float deltaTime, bool faceRight, bool fire);
 	void updateBu(int row, float deltaTime, bool faceleft);
 	void Updatefrie(int row, float deltaTime);
+	void Updatewater(int row, float deltaTime);
 
 public:
 	sf::IntRect uvRect;

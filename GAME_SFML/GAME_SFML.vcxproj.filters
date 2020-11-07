@@ -39,6 +39,9 @@
     <ClCompile Include="friebg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="waterbg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="friebg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="waterbg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -28,9 +28,9 @@ int main()
 	sf::Texture mana;
 	sf::IntRect datamana;
 	sf::Texture thunderbolt;
-	sf::Texture waterbg;
 	sf::Music music;
 	sf::Texture firebgg;
+	sf::Texture waterbgg;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -40,7 +40,7 @@ int main()
 	mana.loadFromFile("charecter/mana.png");
 	thunderbolt.loadFromFile("charecter/thunderbolt.png");
 	firebgg.loadFromFile("charecter/friebg.png");
-	waterbg.loadFromFile("charecter/waterbg.png");
+	waterbgg.loadFromFile("charecter/waterbg.png");
 	//=========================================================================================================================================================
 	//Music
 	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
@@ -57,6 +57,14 @@ int main()
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 583.0f, 720.0f));
 	//=========================================================================================================================================================
+
+	//Vector น้ำ ===============================================================================================================================================
+	std::vector<waterbg>WaterVector;
+	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 495.0f, 1330.0f));
+	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
+	//FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 583.0f, 720.0f));
+	//=========================================================================================================================================================
+
 
 
 	//Player **************************************************************************************************************************************************
@@ -356,7 +364,15 @@ int main()
 			FireVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
-		
+
+		// Update ด่านน้ำ //==================================================================//
+		for (int i = 0; i < WaterVector.size(); i++)
+		{
+			WaterVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+
 		player.Update(deltaTime,direction);
 
 
@@ -693,6 +709,11 @@ int main()
 		for (int i = 0; i < FireVector.size(); i++)
 		{
 			FireVector[i].draw(window);
+		}
+		//ด่านน้ำ
+		for (int i = 0; i < WaterVector.size(); i++)
+		{
+			WaterVector[i].draw(window);
 		}
 
 		//Draw bullet
