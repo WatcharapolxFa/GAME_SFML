@@ -54,14 +54,23 @@ int main()
 
 	//Vector ไฟ ===============================================================================================================================================
 	std::vector<friebg>FireVector;
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 495.0f, 1330.0f));
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 1245.0f, 1330.0f));
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, 583.0f, 720.0f));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f),sf::Vector2f(495.0f, 1330.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f), sf::Vector2f(1245.0f, 1330.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f), sf::Vector2f(583.0f, 720.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(330.f, 170.0f), sf::Vector2f(560.0f, 2280.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(330.f, 170.0f), sf::Vector2f(1362.0f, 2280.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(280.f, 170.0f), sf::Vector2f(466.0f, 5085.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(220.f, 170.0f), sf::Vector2f(578.0f, 4286.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(220.f, 170.0f), sf::Vector2f(1061.0f, 4286.0f)));
 	//=========================================================================================================================================================
 
 	//Vector น้ำ ===============================================================================================================================================
 	std::vector<waterbg>WaterVector;
-	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f,1250.0f, 730.0f));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(320.f, 140.0f),sf::Vector2f(1250.0f, 723.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(200.f, 150.0f),sf::Vector2f(155.0f, 2515.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f,  sf::Vector2f(200.f, 150.0f),sf::Vector2f(1577.3f, 2520.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(239.f, 150.0f),sf::Vector2f(1365.3f, 3080.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(130.f, 150.0f), sf::Vector2f(1136.3f, 5138.0f)));
 	
 	//=========================================================================================================================================================
 
@@ -116,7 +125,7 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	std::vector<Platform> platfroms;
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
@@ -124,12 +133,13 @@ int main()
 
 	//Warp2
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
-	waroPoint2.setPosition(sf::Vector2f(180, 3284));
+	waroPoint2.setPosition(sf::Vector2f(220, 3284));
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//cob01
+	std::vector<Platform> platfroms;
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1408.5f)));
@@ -660,16 +670,28 @@ int main()
 		
 		window.clear();
 		//window.draw(back01);
-		window.draw(back02);
+		//window.draw(back02);
 		//window.draw(back03);
 		window.setView(view);
 		
 		for (Platform& platfrom : platfroms)
 			platfrom.Draw(window);
 
+
 		window.draw(back01); 
-		//window.draw(back02);
-		//window.draw(back03);
+		window.draw(back02);
+		window.draw(back03);
+
+		//ด่านไฟ
+		for (int i = 0; i < FireVector.size(); i++)
+		{
+			FireVector[i].draw(window);
+		}
+		//ด่านน้ำ
+		for (int i = 0; i < WaterVector.size(); i++)
+		{
+			WaterVector[i].draw(window);
+		}
 
 		//==================================================================//
 		//wrab
@@ -705,16 +727,6 @@ int main()
 		//time
 		window.draw(lbltime);
 
-		//ด่านไฟ
-		for (int i = 0; i < FireVector.size(); i++)
-		{
-			FireVector[i].draw(window);
-		}
-		//ด่านน้ำ
-		for (int i = 0; i < WaterVector.size(); i++)
-		{
-			WaterVector[i].draw(window);
-		}
 
 		//Draw bullet
 		if (Bul == 1)

@@ -6,12 +6,12 @@
 class waterbg
 {
 public:
-	waterbg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y);
+	waterbg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position);
 	~waterbg();
 
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
-	void setPosition(float x, float y);
+	
 
 private:
 	Animation animation;

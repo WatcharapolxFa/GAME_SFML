@@ -2,12 +2,12 @@
 #include "Animation.h"
 
 #include <math.h>
-friebg::friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime,float x,float y) :
+friebg::friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position) :
 	animation(texture, imageCount, switchTime)
-{
+{	
+	body.setSize(size);
 	body.setTexture(texture);
-	body.setPosition(x, y);
-	body.setSize(sf::Vector2f(400.f, 150.0f));
+	body.setPosition(position);
 	body.setOrigin(body.getSize().x / 2.0f, body.getSize().y / 2.0f);
 
 	row = 0;
