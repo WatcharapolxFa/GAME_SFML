@@ -1,10 +1,10 @@
-#include "friebg.h"
+#include "dimon.h"
 #include "Animation.h"
 
 #include <math.h>
-friebg::friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position) :
+dimon::dimon(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position) :
 	animation(texture, imageCount, switchTime)
-{	
+{
 	body.setSize(size);
 	body.setTexture(texture);
 	body.setPosition(position);
@@ -13,22 +13,20 @@ friebg::friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	row = 0;
 }
 
-friebg::~friebg()
+dimon::~dimon()
 {
 }
 
-void friebg::Update(float deltaTime,Player player)
+void dimon::Update(float deltaTime, Player player)
 {
-	animation.Updatefrie(row, deltaTime);
+	animation.Updatewater(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
 }
 
-void friebg::draw(sf::RenderWindow& window)
+void dimon::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
 }
-
-sf::RectangleShape friebg::getBody() {
+sf::RectangleShape dimon::getBody() {
 	return this->body;
 }
-

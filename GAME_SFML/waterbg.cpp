@@ -27,4 +27,7 @@ void waterbg::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
 }
+sf::RectangleShape waterbg::getBody() {
+	return this->body;
+}
 

@@ -3,17 +3,17 @@
 #include "Animation.h"
 #include"Player.h"
 #include"Collider.h"
-class friebg
+class dimon
 {
 public:
-	friebg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position);
-	~friebg();
+	dimon(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position);
+	~dimon();
 
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
-	
-	
+
+
 private:
 	Animation animation;
 	sf::RectangleShape body;
@@ -23,3 +23,4 @@ private:
 
 	unsigned int row;
 };
+

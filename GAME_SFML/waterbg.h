@@ -11,6 +11,7 @@ public:
 
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
+	sf::RectangleShape getBody();
 	
 
 private:

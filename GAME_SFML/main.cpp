@@ -13,6 +13,7 @@
 #include<SFML/System.hpp>
 #include<cstdlib>
 #include"waterbg.h"
+#include"dimon.h"
 using namespace std;
 
 
@@ -32,6 +33,7 @@ int main()
 	sf::Music music;
 	sf::Texture firebgg;
 	sf::Texture waterbgg;
+	sf::Texture daimonn;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -42,6 +44,7 @@ int main()
 	thunderbolt.loadFromFile("charecter/thunderbolt.png");
 	firebgg.loadFromFile("charecter/friebg.png");
 	waterbgg.loadFromFile("charecter/waterbg.png");
+	daimonn.loadFromFile("charecter/dimon.png");
 	//=========================================================================================================================================================
 	//Music
 	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
@@ -74,7 +77,10 @@ int main()
 	
 	//=========================================================================================================================================================
 
-
+	//Vector เพชร ===============================================================================================================================================
+	std::vector<dimon>DimonVector;
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(495.0f, 1200.0f)));
+	//===========================================================================================================================================================
 
 	//Player **************************************************************************************************************************************************
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 300.0f, 300);
@@ -341,7 +347,7 @@ int main()
 	
 
 		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
-		//std::cout << Bul << std::endl;
+		std::cout << Bul << std::endl;
 		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
@@ -381,6 +387,13 @@ int main()
 			WaterVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
+		// Update เพชร //==================================================================//
+		for (int i = 0; i < DimonVector.size(); i++)
+		{
+			DimonVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
 
 
 		player.Update(deltaTime,direction);
@@ -401,8 +414,8 @@ int main()
 				player.OnCollision(direction);
 
 		//set Viw
-
-		view.setCenter(sf::Vector2f(player.GetPosition()));
+		if (player.GetPosition().y <= 2000) {
+			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//เช็คค่า x มุมซ้ายสุด ขนาดครึ่งจอ 0.0 ขนาดของรูป ซ้าย
 			{
 				if (view.getCenter().y - 360.0f <= 0.0f)
@@ -480,10 +493,10 @@ int main()
 					bullet2.attackL(pos);
 				}
 			}
-		
 
+		}
 		///// viw 02
-		if (player.GetPosition().y <=1600&& player.GetPosition().y<= 4000)
+		if (player.GetPosition().y >=2000 && player.GetPosition().y< 4000)
 		{
 			u = 1;
 
@@ -692,7 +705,11 @@ int main()
 		{
 			WaterVector[i].draw(window);
 		}
-
+		//เพชร
+		for (int i = 0; i < DimonVector.size(); i++)
+		{
+			DimonVector[i].draw(window);
+		}
 		//==================================================================//
 		//wrab
 		if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
@@ -721,8 +738,22 @@ int main()
 		manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
 		//window.draw(manaa);
 
+
+
+
 		//hitbox
 		hitboxPlayer.Draw(window);
+		for (int i = 0; i < FireVector.size(); i++) {
+			if (hitboxPlayer.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
+				cout << "Hit!!!!!";
+			}
+		}
+		for (int i = 0; i < WaterVector.size(); i++) {
+			if (hitboxPlayer.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
+				cout << "Hit!!!!!";
+			}
+		}
+		
 
 		//time
 		window.draw(lbltime);
