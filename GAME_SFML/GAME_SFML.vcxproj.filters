@@ -45,6 +45,12 @@
     <ClCompile Include="dimon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dimonfah.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dimongreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -72,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dimon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dimonfah.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dimongreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

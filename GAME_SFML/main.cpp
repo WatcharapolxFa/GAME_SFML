@@ -14,6 +14,10 @@
 #include<cstdlib>
 #include"waterbg.h"
 #include"dimon.h"
+#include"dimonfah.h"
+#include"dimongreen.h"
+#include<time.h> 
+#include <stdlib.h>
 using namespace std;
 
 
@@ -34,6 +38,8 @@ int main()
 	sf::Texture firebgg;
 	sf::Texture waterbgg;
 	sf::Texture daimonn;
+	sf::Texture daimonfah;
+	sf::Texture daimongreen;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -45,6 +51,8 @@ int main()
 	firebgg.loadFromFile("charecter/friebg.png");
 	waterbgg.loadFromFile("charecter/waterbg.png");
 	daimonn.loadFromFile("charecter/dimon.png");
+	daimonfah.loadFromFile("charecter/dimonfah.png");
+	daimongreen.loadFromFile("charecter/dimongr.png");
 	//=========================================================================================================================================================
 	//Music
 	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
@@ -54,6 +62,87 @@ int main()
 	music.setVolume(25.0f);
 	music.play();*/
 	//=========================================================================================================================================================
+	srand(time(NULL));
+	int cheeck=rand()%6;
+	float positionrand_x[3], positionrand_y[3];
+	
+	if (cheeck == 0)
+	{
+		positionrand_x[0] = 943.0f;
+		positionrand_y[0] = 65.0f;
+
+		positionrand_x[1] = 840.0f;
+		positionrand_y[1] = 1150.0f;
+
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 480.0f;
+
+	}
+	else if (cheeck == 1)
+	{
+		positionrand_x[0] = 943.0f;
+		positionrand_y[0] = 65.0f;
+
+		positionrand_x[2] = 840.0f;
+		positionrand_y[2] = 1150.0f;
+
+		positionrand_x[1] = 943.0f;
+		positionrand_y[1] = 480.0f;
+	}
+	else if(cheeck == 2)
+	{
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 65.0f;
+
+		positionrand_x[1] = 840.0f;
+		positionrand_y[1] = 1150.0f;
+
+		positionrand_x[0] = 943.0f;
+		positionrand_y[0] = 480.0f;
+	}
+	else if (cheeck == 3)
+	{
+		positionrand_x[1] = 943.0f;
+		positionrand_y[1] = 65.0f;
+
+		positionrand_x[0] = 840.0f;
+		positionrand_y[0] = 1150.0f;
+
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 480.0f;
+	}
+	else if (cheeck == 4)
+	{
+		positionrand_x[1] = 943.0f;
+		positionrand_y[1] = 65.0f;
+
+		positionrand_x[2] = 840.0f;
+		positionrand_y[2] = 1150.0f;
+
+		positionrand_x[0] = 943.0f;
+		positionrand_y[0] = 480.0f;
+	}
+	else if (cheeck == 5)
+	{
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 65.0f;
+
+		positionrand_x[0] = 840.0f;
+		positionrand_y[0] = 1150.0f;
+
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 480.0f;
+	}
+	
+
+
+	
+
+
+
+
+
+
 
 	//Vector ไฟ ===============================================================================================================================================
 	std::vector<friebg>FireVector;
@@ -77,11 +166,23 @@ int main()
 	
 	//=========================================================================================================================================================
 
-	//Vector เพชร ===============================================================================================================================================
+	//Vector เพชรเทา ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(875.0f, 1200.0f)));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0], positionrand_y[0])));
+	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 480.0f)));
+	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 50.0f)));
 	//===========================================================================================================================================================
 
+	//Vector เพชรฟ้า ===============================================================================================================================================
+	std::vector<dimonfah>DimonfahVector;
+	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[1], positionrand_y[1])));
+	//=============================================================================================================================================================
+
+	//Vector เพชรเขียว ===============================================================================================================================================
+	std::vector<dimonfah>DimongreenVector;
+	DimongreenVector.push_back(dimonfah(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
+
+	//=============================================================================================================================================================
 	//Player **************************************************************************************************************************************************
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 300);
 	//*********************************************************************************************************************************************************
@@ -135,7 +236,7 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
-	waroPoint.setPosition(sf::Vector2f(75, 204));
+	waroPoint.setPosition(sf::Vector2f(138, 204));
 
 	//Warp2
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
@@ -394,6 +495,19 @@ int main()
 		}
 		//==================================================================//
 
+		// Update เพชรฟ้า //==================================================================//
+		for (int i = 0; i < DimonfahVector.size(); i++)
+		{
+			DimonfahVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+		// Update เพชรเขียว //==================================================================//
+		for (int i = 0; i < DimongreenVector.size(); i++)
+		{
+			DimongreenVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
 
 
 		player.Update(deltaTime,direction);
@@ -709,6 +823,18 @@ int main()
 		for (int i = 0; i < DimonVector.size(); i++)
 		{
 			DimonVector[i].draw(window);
+		}
+
+		//เพชรฟ้า
+		for (int i = 0; i < DimonfahVector.size(); i++)
+		{
+			DimonfahVector[i].draw(window);
+		}
+
+		//เพชรเขียว
+		for (int i = 0; i < DimongreenVector.size(); i++)
+		{
+			DimongreenVector[i].draw(window);
 		}
 		//==================================================================//
 		//wrab

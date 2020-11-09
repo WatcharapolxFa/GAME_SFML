@@ -149,6 +149,8 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="dimon.cpp" />
+    <ClCompile Include="dimonfah.cpp" />
+    <ClCompile Include="dimongreen.cpp" />
     <ClCompile Include="friebg.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="main.cpp">
@@ -163,6 +165,8 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="dimon.h" />
+    <ClInclude Include="dimonfah.h" />
+    <ClInclude Include="dimongreen.h" />
     <ClInclude Include="friebg.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="Platform.h" />
