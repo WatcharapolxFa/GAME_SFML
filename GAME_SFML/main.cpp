@@ -19,6 +19,7 @@
 #include<time.h> 
 #include <stdlib.h>
 #include"Menu.h"
+#include"stop.h"
 using namespace std;
 
 
@@ -217,6 +218,10 @@ int main()
 	// Menu
 	Menu menu(window.getSize().x, window.getSize().y);
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Stop
+	stop Stop(window.getSize().x, window.getSize().y);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	//Bullet
 
 	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
@@ -488,6 +493,26 @@ int main()
 				
 
 			}
+			case sf::Keyboard::Up:
+				Stop.MoveUp();
+				break;
+			case sf::Keyboard::Down:
+				Stop.MoveDown();
+				break;
+			case sf::Keyboard::Escape:
+				switch (Stop.GetPressedItem())
+				{
+				case 0:
+					cheeckongame = true;
+					break;
+				case 1:
+					std::cout << "2" << std::endl;
+					break;
+				case 2:
+					window.close();
+					break;
+				}
+
 			break;
 			case sf::Event::Closed: // When you press close.
 				window.close();
@@ -828,6 +853,8 @@ int main()
 			// Menu
 			window.draw(background);
 			menu.draw(window);
+			//Stop.draw(window);
+			
 		}
 		else if (cheeckongame == true)
 		{
