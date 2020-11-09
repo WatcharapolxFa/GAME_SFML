@@ -156,6 +156,7 @@
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\007xFaa\source\repos\GAME_SFML\GAME_SFML\sfml\include\SFML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="waterbg.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="dimongreen.h" />
     <ClInclude Include="friebg.h" />
     <ClInclude Include="HitboxComponent.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="waterbg.h" />

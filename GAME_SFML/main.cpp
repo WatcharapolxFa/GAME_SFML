@@ -18,6 +18,7 @@
 #include"dimongreen.h"
 #include<time.h> 
 #include <stdlib.h>
+#include"Menu.h"
 using namespace std;
 
 
@@ -40,6 +41,7 @@ int main()
 	sf::Texture daimonn;
 	sf::Texture daimonfah;
 	sf::Texture daimongreen;
+	sf::Texture menustr;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -53,6 +55,10 @@ int main()
 	daimonn.loadFromFile("charecter/dimon.png");
 	daimonfah.loadFromFile("charecter/dimonfah.png");
 	daimongreen.loadFromFile("charecter/dimongr.png");
+
+	menustr.loadFromFile("charecter/menu.png");
+	sf::Sprite background;
+	background.setTexture(menustr);
 	//=========================================================================================================================================================
 	//Music
 	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
@@ -62,6 +68,10 @@ int main()
 	music.setVolume(25.0f);
 	music.play();*/
 	//=========================================================================================================================================================
+	
+	
+	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+	//check การสุ่มเกิดดาว
 	srand(time(NULL));
 	int cheeck=rand()%6;
 	float positionrand_x[3], positionrand_y[3];
@@ -133,17 +143,10 @@ int main()
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 480.0f;
 	}
+	//???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+
 	
-
-
-	
-
-
-
-
-
-
-
+	//////////////////////////////////////////////////////
 	//Vector ไฟ ===============================================================================================================================================
 	std::vector<friebg>FireVector;
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f),sf::Vector2f(495.0f, 1330.0f)));
@@ -211,7 +214,8 @@ int main()
 	// ตำแหน่ง ตัวละคร
 	sf::Vector2f pos ;
 
-
+	// Menu
+	Menu menu(window.getSize().x, window.getSize().y);
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Bullet
 
@@ -423,7 +427,7 @@ int main()
 
 	std::ostringstream showtime;
 	sf::Font font;
-	font.loadFromFile("charecter/FC.ttf");
+	font.loadFromFile("charecter/Pifont.ttf");
 	sf::Text lbltime;
 	lbltime.setString(showtime.str());
 	lbltime.setCharacterSize(45);
@@ -435,7 +439,7 @@ int main()
 
 
 	int u=0;
-
+	bool cheeckongame = false;
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
@@ -460,6 +464,31 @@ int main()
 		{
 			switch (evnt.type)
 			{
+			case sf::Event::KeyReleased:
+				switch (evnt.key.code){
+				case sf::Keyboard::Up:
+					menu.MoveUp();
+					break;
+				case sf::Keyboard::Down:
+					menu.MoveDown();
+					break;
+				case sf::Keyboard::Return:
+					switch (menu.GetPressedItem())
+					{
+					case 0 :
+						cheeckongame = true;
+						break;
+					case 1 :
+						std::cout << "2" << std::endl;
+						break;
+					case 2 :
+						window.close();
+						break;
+					}
+				
+
+			}
+			break;
 			case sf::Event::Closed: // When you press close.
 				window.close();
 				break;
@@ -792,140 +821,149 @@ int main()
 
 		//==================================================================//
 		
-		
-		
-		
+
 		window.clear();
-		//window.draw(back01);
-		//window.draw(back02);
-		//window.draw(back03);
-		window.setView(view);
-		
-		for (Platform& platfrom : platfroms)
-			platfrom.Draw(window);
-
-
-		window.draw(back01); 
-		window.draw(back02);
-		window.draw(back03);
-
-		//ด่านไฟ
-		for (int i = 0; i < FireVector.size(); i++)
+		if (cheeckongame == false)
 		{
-			FireVector[i].draw(window);
+			// Menu
+			window.draw(background);
+			menu.draw(window);
 		}
-		//ด่านน้ำ
-		for (int i = 0; i < WaterVector.size(); i++)
+		else if (cheeckongame == true)
 		{
-			WaterVector[i].draw(window);
-		}
-		//เพชร
-		for (int i = 0; i < DimonVector.size(); i++)
-		{
-			DimonVector[i].draw(window);
-		}
-
-		//เพชรฟ้า
-		for (int i = 0; i < DimonfahVector.size(); i++)
-		{
-			DimonfahVector[i].draw(window);
-		}
-
-		//เพชรเขียว
-		for (int i = 0; i < DimongreenVector.size(); i++)
-		{
-			DimongreenVector[i].draw(window);
-		}
-		//==================================================================//
-		//wrab
-		if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
-		{
-			player.Warped(window);
-		}
-		window.draw(waroPoint);
-
-		//warp2
-		if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
-		{
-			player.Warped2(window);
-
-		}window.draw(waroPoint2);
-		//==================================================================//
-
-
-		//player
-		player.Draw(window);
-
-		//heartt
-		heartt.setPosition(player.GetPosition().x-50, player.GetPosition().y-60);
-		//window.draw(heartt);
-
-		//manaa
-		manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
-		//window.draw(manaa);
 
 
 
 
-		//hitbox
-		hitboxPlayer.Draw(window);
-		for (int i = 0; i < FireVector.size(); i++) {
-			if (hitboxPlayer.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
-				cout << "Hit!!!!!";
+			//window.draw(back01);
+			//window.draw(back02);
+			//window.draw(back03);
+			window.setView(view);
+
+			for (Platform& platfrom : platfroms)
+				platfrom.Draw(window);
+
+
+			window.draw(back01);
+			window.draw(back02);
+			window.draw(back03);
+
+			//ด่านไฟ
+			for (int i = 0; i < FireVector.size(); i++)
+			{
+				FireVector[i].draw(window);
+			}
+			//ด่านน้ำ
+			for (int i = 0; i < WaterVector.size(); i++)
+			{
+				WaterVector[i].draw(window);
+			}
+			//เพชร
+			for (int i = 0; i < DimonVector.size(); i++)
+			{
+				DimonVector[i].draw(window);
+			}
+
+			//เพชรฟ้า
+			for (int i = 0; i < DimonfahVector.size(); i++)
+			{
+				DimonfahVector[i].draw(window);
+			}
+
+			//เพชรเขียว
+			for (int i = 0; i < DimongreenVector.size(); i++)
+			{
+				DimongreenVector[i].draw(window);
+			}
+			//==================================================================//
+			//wrab
+			if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
+			{
+				player.Warped(window);
+			}
+			window.draw(waroPoint);
+
+			//warp2
+			if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
+			{
+				player.Warped2(window);
+
+			}window.draw(waroPoint2);
+			//==================================================================//
+
+
+			//player
+			player.Draw(window);
+
+			//heartt
+			heartt.setPosition(player.GetPosition().x - 50, player.GetPosition().y - 60);
+			//window.draw(heartt);
+
+			//manaa
+			manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
+			//window.draw(manaa);
+
+
+
+
+			//hitbox
+			hitboxPlayer.Draw(window);
+			for (int i = 0; i < FireVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < WaterVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < DimonVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
+					cout << "Wow";
+				}
+			}
+
+
+			//time
+			window.draw(lbltime);
+
+
+			//Draw bullet
+			if (Bul == 1)
+			{
+				bullet1.updateR(deltaTime);
+				bullet1.draw(window);
+			}
+			if (Bul == -1)
+			{
+				bullet1.updateL(deltaTime);
+				bullet1.draw(window);
+			}
+			if (abs(bullet1.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+			{
+				Bul = 0;
+				bullet1.isAvaliable();
+				bullet1.SetPosition(pos);
+			}
+
+			if (Bul2 == 1)
+			{
+				bullet2.updateR(deltaTime);
+				bullet2.draw(window);
+			}
+			if (Bul2 == -1)
+			{
+				bullet2.updateL(deltaTime);
+				bullet2.draw(window);
+			}
+			if (abs(bullet2.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+			{
+				Bul2 = 0;
+				bullet2.isAvaliable();
+				bullet2.SetPosition(pos);
 			}
 		}
-		for (int i = 0; i < WaterVector.size(); i++) {
-			if (hitboxPlayer.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
-				cout << "Hit!!!!!";
-			}
-		}
-		for (int i = 0; i < DimonVector.size(); i++) {
-			if (hitboxPlayer.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
-				cout << "Wow";
-			}
-		}
-		
-
-		//time
-		window.draw(lbltime);
-
-
-		//Draw bullet
-		if (Bul == 1)
-		{
-			bullet1.updateR(deltaTime);
-			bullet1.draw(window);
-		}
-		if (Bul == -1)
-		{
-			bullet1.updateL(deltaTime);
-			bullet1.draw(window);
-		}
-		if (abs(bullet1.GetPosition().x - player.GetPosition().x) >= 1000.0f)
-		{
-			Bul = 0;
-			bullet1.isAvaliable();
-			bullet1.SetPosition(pos);
-		}
-
-		if (Bul2 == 1)
-		{
-			bullet2.updateR(deltaTime);
-			bullet2.draw(window);
-		}
-		if (Bul2 == -1)
-		{
-			bullet2.updateL(deltaTime);
-			bullet2.draw(window);
-		}
-		if (abs(bullet2.GetPosition().x - player.GetPosition().x) >= 1000.0f)
-		{
-			Bul2 = 0;
-			bullet2.isAvaliable();
-			bullet2.SetPosition(pos);
-		}
-		
-	
 		window.display();
 	}
 }
