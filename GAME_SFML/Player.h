@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include"Animation.h"
+#include "Animation.h"
 #include "Collider.h"
+#include "HitboxComponent.h"
+
 class Player
 {
 public : 
@@ -14,10 +16,16 @@ public :
 	void Warped(sf::RenderWindow& window);
 	void Warped2(sf::RenderWindow& window);
 	void setPosition(float x, float y);
-	sf::Vector2f GetPosition() { return body.getPosition(); }
-	Collider GetCollider() { return Collider(body); }
+	sf::Vector2f GetPosition() { return hitbox.getPosition(); }
+	Collider GetCollider() { return Collider(hitbox); }
+
+	bool checkIntersect(const sf::FloatRect& frect) {
+		return hitbox.getGlobalBounds().intersects(frect);
+	}
+
 private : 
 	sf::RectangleShape body;
+	sf::RectangleShape hitbox;
 	Animation animation;
 	unsigned int row;
 	float speed;

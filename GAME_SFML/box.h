@@ -1,9 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
-#include"Player.h"
-#include"Collider.h"
-#include "Platform.h"
+#include "Player.h"
+#include "Collider.h"
+#include "HitboxComponent.h"
 
 class box
 {
@@ -15,17 +15,16 @@ public:
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
 
-	Collider GetCollider() {
-		Body = body.getBody();
-		return Collider(Body);
-	}
+	Collider GetCollider() {  return Collider(body);	}
+	
+
 
 
 private:
 	Animation animation;
-	sf::RectangleShape Body;
-	Platform body;
-
+	sf::RectangleShape body;
+	sf::Vector2f velocity;
+	sf::RectangleShape hitbox;
 	float totalTime;
 	float switchTime;
 

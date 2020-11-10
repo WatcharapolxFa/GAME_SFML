@@ -12,6 +12,9 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     body.setTexture(texture);
     bool faceleft = false;
     cooling = 10.0f; //time is cooldown
+
+    body.setOutlineThickness(1.f);
+    body.setOutlineColor(sf::Color::Green);
 }
 Bullet::~Bullet()
 {
@@ -41,7 +44,7 @@ void Bullet::attackR(sf::Vector2f pos)
 {
     if (isAva == true)
     {
-        body.setPosition(pos.x + 50.0f, pos.y); //position bullet R
+        body.setPosition(pos.x + 20.0f, pos.y); //position bullet R
         isAva = false;
     }
 }
@@ -50,7 +53,7 @@ void Bullet::attackL(sf::Vector2f pos)
 {
     if (isAva == true)
     {
-        body.setPosition(pos.x - 50.0f, pos.y);//position bullet L
+        body.setPosition(pos.x - 20.0f, pos.y);//position bullet L
         isAva = false;
     }
 }

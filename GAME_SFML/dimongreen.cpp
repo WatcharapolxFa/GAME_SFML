@@ -10,6 +10,9 @@ dimongreen::dimongreen(sf::Texture* texture, sf::Vector2u imageCount, float swit
 	body.setPosition(position);
 	body.setOrigin(body.getSize().x / 2.0f, body.getSize().y / 2.0f);
 
+	body.setOutlineThickness(1.f);
+	body.setOutlineColor(sf::Color::Yellow);
+
 	row = 0;
 }
 

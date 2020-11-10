@@ -13,10 +13,20 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	fire = false;
 	canJump = false;
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
-	body.setOrigin({ body.getSize().x / 2.0f,body.getSize().y / 2.0f });
+	body.setOrigin({ body.getSize().x / 2.0f, 2 * body.getSize().y / 3.0f });
+	body.setOutlineThickness(1.f);
+	body.setOutlineColor(sf::Color::Red);
 
 	body.setPosition(91.0f, 1218.0f);
 	body.setTexture(texture);
+
+	hitbox.setSize(sf::Vector2f(30.0f, 52.0f));
+	hitbox.setOrigin(hitbox.getSize() / 2.f);
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineColor(sf::Color::Blue);
+	hitbox.setPosition(body.getPosition());
+
 }
 Player :: ~Player()
 {
@@ -123,13 +133,14 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 	
 	animation.Update(row, deltaTime, faceRight , fire);
 	body.setTextureRect(animation.uvRect);
-	body.move(velocity * deltaTime);
-	
+	hitbox.move(velocity * deltaTime);
+	body.setPosition(hitbox.getPosition());
 }
 void Player::Draw(sf::RenderWindow& window)
 {
 	
 	window.draw(body);
+	window.draw(hitbox);
 }
 
 void Player::OnCollision(sf::Vector2f direction)
@@ -164,15 +175,18 @@ void Player::OnCollision(sf::Vector2f direction)
 }
 void Player::Warped(sf::RenderWindow& window)
 {
-	body.setPosition(237.0f, 2891.0f);
+	hitbox.setPosition(237.0f, 2891.0f);
+	body.setPosition(hitbox.getPosition());
 }
 
 void Player::Warped2(sf::RenderWindow& window)
 {
-	body.setPosition(450.0f, 5000.0f);
+	hitbox.setPosition(450.0f, 5000.0f);
+	body.setPosition(hitbox.getPosition());
 }
 
 void Player::setPosition(float x, float y)
 {
-	body.setPosition(x, y);
+	hitbox.setPosition(x, y);
+	body.setPosition(hitbox.getPosition());
 }

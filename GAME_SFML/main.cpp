@@ -219,7 +219,7 @@ int main()
 
 
 	//Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 700);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
 	//*********************************************************************************************************************************************************
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -256,8 +256,8 @@ int main()
 
 	//Bullet
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.5f, 100.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.5f, 100.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.5f, 300.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.5f, 300.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -269,7 +269,7 @@ int main()
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//hitbox
-	HitboxComponent hitboxPlayer(0, 0, sf::Vector2f(30.0f, 52.0f), player.GetPosition());
+	/*HitboxComponent hitboxPlayer(0, 0, sf::Vector2f(30.0f, 52.0f), player.GetPosition());*/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -604,7 +604,7 @@ int main()
 
 		//==================================================================//
 		//hitbox
-		hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);
+		/*hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);*/
 		//==================================================================//
 		
 
@@ -906,9 +906,9 @@ int main()
 				platfrom.Draw(window);
 
 
-			window.draw(back01);
-			window.draw(back02);
-			window.draw(back03);
+			//window.draw(back01);
+			//window.draw(back02);
+			//window.draw(back03);
 
 			//ด่านไฟ
 			for (int i = 0; i < FireVector.size(); i++)
@@ -989,39 +989,39 @@ int main()
 
 
 			//hitbox
-			hitboxPlayer.Draw(window);
+			/*hitboxPlayer.Draw(window);*/
 			for (int i = 0; i < FireVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}
 			for (int i = 0; i < WaterVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}
 			for (int i = 0; i < DimonVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
 					cout << "Wow";
 				}
 			}
 			for (int i = 0; i < DimonfahVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}
 			for (int i = 0; i < DimongreenVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}
 			for (int i = 0; i < buttonVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}
 			for (int i = 0; i < boxVector.size(); i++) {
-				if (hitboxPlayer.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
+				if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}

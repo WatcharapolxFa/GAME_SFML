@@ -13,11 +13,6 @@ HitboxComponent::~HitboxComponent()
 {
 }
 
-bool HitboxComponent::checkIntersect(const sf::FloatRect& frect)
-{
-	return hitbox.getGlobalBounds().intersects(frect);
-}
-
 void HitboxComponent::Update(sf::Vector2f playerPosition, float offset_x, float offset_y)
 {
 	hitbox.setPosition(playerPosition.x + offset_x, playerPosition.y + offset_y);

@@ -21,6 +21,7 @@ public:
     void SetPosition(sf::Vector2f pos);
     float cooldown(float deltaTime, int check);
 
+
     sf::Vector2f GetPosition() { return body.getPosition(); }
     Collider GetCollider() { return Collider(body); }
 private:
