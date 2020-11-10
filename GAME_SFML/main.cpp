@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include"Menu.h"
 #include"stop.h"
+#include"box.h"
+#include"button.h"
 using namespace std;
 
 
@@ -43,6 +45,8 @@ int main()
 	sf::Texture daimonfah;
 	sf::Texture daimongreen;
 	sf::Texture menustr;
+	sf::Texture boxx;
+	sf::Texture buttonn;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -56,8 +60,11 @@ int main()
 	daimonn.loadFromFile("charecter/dimon.png");
 	daimonfah.loadFromFile("charecter/dimonfah.png");
 	daimongreen.loadFromFile("charecter/dimongr.png");
-
+	boxx.loadFromFile("charecter/box.png");
 	menustr.loadFromFile("charecter/menu.png");
+	buttonn.loadFromFile("charecter/button.png");
+
+
 	sf::Sprite background;
 	background.setTexture(menustr);
 	//=========================================================================================================================================================
@@ -172,7 +179,7 @@ int main()
 
 	//Vector เพชรเทา ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0], positionrand_y[0])));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0])));
 	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 480.0f)));
 	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 50.0f)));
 	//===========================================================================================================================================================
@@ -187,8 +194,24 @@ int main()
 	DimongreenVector.push_back(dimonfah(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
 
 	//=============================================================================================================================================================
+
+	// Vector กล่อง ============================================================================================================================================== =
+		std::vector<box>boxVector;
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(211.0f, 1285.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(876.0f, 1285.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(947.0f, 628.0f)));
+
+	//=============================================================================================================================================================
+	// Vector ปุ่ม ============================================================================================================================================== =
+		std::vector<button>buttonVector;
+		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
+		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
+	//=============================================================================================================================================================
+
+
+
 	//Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 300);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 700);
 	//*********************************************************************************************************************************************************
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,11 +268,11 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
-	waroPoint.setPosition(sf::Vector2f(138, 204));
+	waroPoint.setPosition(sf::Vector2f(130, 204));
 
 	//Warp2
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
-	waroPoint2.setPosition(sf::Vector2f(220, 3284));
+	waroPoint2.setPosition(sf::Vector2f(1693, 3201));
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
@@ -444,7 +467,7 @@ int main()
 
 
 	int u=0;
-	bool cheeckongame = false;
+	int cheeckongame = 0;
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
@@ -470,7 +493,7 @@ int main()
 			switch (evnt.type)
 			{
 			case sf::Event::KeyReleased:
-				switch (evnt.key.code){
+				switch (evnt.key.code) {
 				case sf::Keyboard::Up:
 					menu.MoveUp();
 					break;
@@ -480,38 +503,20 @@ int main()
 				case sf::Keyboard::Return:
 					switch (menu.GetPressedItem())
 					{
-					case 0 :
-						cheeckongame = true;
+					case 0:
+						cheeckongame = 1;
 						break;
-					case 1 :
+					case 1:
 						std::cout << "2" << std::endl;
 						break;
-					case 2 :
+					case 2:
 						window.close();
 						break;
 					}
-				
 
+				
 			}
-			case sf::Keyboard::Up:
-				Stop.MoveUp();
-				break;
-			case sf::Keyboard::Down:
-				Stop.MoveDown();
-				break;
-			case sf::Keyboard::Escape:
-				switch (Stop.GetPressedItem())
-				{
-				case 0:
-					cheeckongame = true;
-					break;
-				case 1:
-					std::cout << "2" << std::endl;
-					break;
-				case 2:
-					window.close();
-					break;
-				}
+			
 
 			break;
 			case sf::Event::Closed: // When you press close.
@@ -560,6 +565,19 @@ int main()
 		for (int i = 0; i < DimongreenVector.size(); i++)
 		{
 			DimongreenVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+		//กล่อง
+		for (int i = 0; i < boxVector.size(); i++)
+		{
+			boxVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+		//ปุ่ม
+		for (int i = 0; i < buttonVector.size(); i++)
+		{
+			buttonVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
@@ -848,7 +866,7 @@ int main()
 		
 
 		window.clear();
-		if (cheeckongame == false)
+		if (cheeckongame == 0)
 		{
 			// Menu
 			window.draw(background);
@@ -856,12 +874,8 @@ int main()
 			//Stop.draw(window);
 			
 		}
-		else if (cheeckongame == true)
+		else if (cheeckongame == 1)
 		{
-
-
-
-
 			//window.draw(back01);
 			//window.draw(back02);
 			//window.draw(back03);
@@ -902,6 +916,21 @@ int main()
 			{
 				DimongreenVector[i].draw(window);
 			}
+
+
+			//กล่อง
+			for (int i = 0; i < boxVector.size(); i++)
+			{
+				boxVector[i].draw(window);
+			}
+
+			//ปุ่ม
+			for (int i = 0; i < buttonVector.size(); i++)
+			{
+				buttonVector[i].draw(window);
+			}
+
+
 			//==================================================================//
 			//wrab
 			if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
@@ -948,6 +977,26 @@ int main()
 			for (int i = 0; i < DimonVector.size(); i++) {
 				if (hitboxPlayer.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
 					cout << "Wow";
+				}
+			}
+			for (int i = 0; i < DimonfahVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < DimongreenVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < buttonVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < boxVector.size(); i++) {
+				if (hitboxPlayer.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
 				}
 			}
 
