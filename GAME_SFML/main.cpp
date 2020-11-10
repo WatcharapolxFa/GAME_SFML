@@ -22,6 +22,7 @@
 #include"stop.h"
 #include"box.h"
 #include"button.h"
+#include"item.h"
 using namespace std;
 
 
@@ -47,6 +48,7 @@ int main()
 	sf::Texture menustr;
 	sf::Texture boxx;
 	sf::Texture buttonn;
+	sf::Texture boxs;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -63,6 +65,7 @@ int main()
 	boxx.loadFromFile("charecter/box.png");
 	menustr.loadFromFile("charecter/menu.png");
 	buttonn.loadFromFile("charecter/button.png");
+	boxs.loadFromFile("charecter/boxs.png");
 
 
 	sf::Sprite background;
@@ -207,7 +210,12 @@ int main()
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
 	//=============================================================================================================================================================
-
+	
+		// Vector กล่องสายฟ้า ============================================================================================================================================== =
+		std::vector<item>itemVector;
+		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1450.0f, 910.0f)));
+		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1200.0f, 203.0f)));
+		//=============================================================================================================================================================
 
 
 	//Player **************************************************************************************************************************************************
@@ -235,6 +243,7 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
+
 	// ตำแหน่ง ตัวละคร
 	sf::Vector2f pos ;
 
@@ -247,8 +256,8 @@ int main()
 
 	//Bullet
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 1000.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.5f, 100.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.5f, 100.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -581,6 +590,14 @@ int main()
 		}
 		//==================================================================//
 
+		//กล่องสายฟ้า
+		for (int i = 0; i < itemVector.size(); i++)
+		{
+			itemVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+
 
 		player.Update(deltaTime,direction);
 
@@ -597,6 +614,10 @@ int main()
 
 		for (Platform& platfrom : platfroms)
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+				player.OnCollision(direction);
+
+		for (box& bx : boxVector)
+			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f))
 				player.OnCollision(direction);
 
 		//set Viw
@@ -929,6 +950,11 @@ int main()
 			{
 				buttonVector[i].draw(window);
 			}
+			// กล่อสายฟ้า
+				for (int i = 0; i < itemVector.size(); i++)
+				{
+					itemVector[i].draw(window);
+				}
 
 
 			//==================================================================//

@@ -3,28 +3,20 @@
 #include "Animation.h"
 #include"Player.h"
 #include"Collider.h"
-#include "Platform.h"
-
-class box
+class item
 {
 public:
-	box(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position);
-	~box();
+	item(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position);
+	~item();
 
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
 
-	Collider GetCollider() {
-		Body = body.getBody();
-		return Collider(Body);
-	}
-
 
 private:
 	Animation animation;
-	sf::RectangleShape Body;
-	Platform body;
+	sf::RectangleShape body;
 
 	float totalTime;
 	float switchTime;

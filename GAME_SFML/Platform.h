@@ -10,6 +10,10 @@ public:
 	void Draw(sf::RenderWindow& window);
 	Collider GetCollider() { return Collider(body); }
 
+	sf::RectangleShape getBody() { return this->body;  };
+
+	void setBody(sf::IntRect animation) { this->body.setTextureRect(animation); };
+
 private :
 	sf::RectangleShape body;
 
