@@ -16,8 +16,8 @@ public:
 	sf::RectangleShape getBody();
 
 	Collider GetCollider() {  return Collider(body);	}
-	
-
+	void OnCollision(sf::Vector2f direction);
+	void OnCollision2(sf::Vector2f direction);
 
 
 private:
@@ -29,4 +29,8 @@ private:
 	float switchTime;
 
 	unsigned int row;
+
+	bool canJump;
+	bool fire;
+	float jumpHeight;
 };

@@ -488,8 +488,8 @@ int main()
 
 	
 
-		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
-		std::cout << Bul << std::endl;
+		/*std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		std::cout << Bul << std::endl;*/
 		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
@@ -616,9 +616,18 @@ int main()
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
 				player.OnCollision(direction);
 
-		for (box& bx : boxVector)
-			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f))
+		for (box& bx : boxVector) {
+			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
 				player.OnCollision(direction);
+				bx.OnCollision(direction);
+			}else
+				bx.OnCollision({ 0,0 });
+
+			for (Platform& platform : platfroms)
+				if (platform.GetCollider().CheckCollision(bx.GetCollider(), direction, 1.0f))
+					bx.OnCollision2(direction);
+			 
+		}
 
 		//set Viw
 		if (player.GetPosition().y <= 2000) {
@@ -897,9 +906,9 @@ int main()
 		}
 		else if (cheeckongame == 1)
 		{
-			//window.draw(back01);
-			//window.draw(back02);
-			//window.draw(back03);
+			window.draw(back01);
+			window.draw(back02);
+			window.draw(back03);
 			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
@@ -990,7 +999,7 @@ int main()
 
 			//hitbox
 			/*hitboxPlayer.Draw(window);*/
-			for (int i = 0; i < FireVector.size(); i++) {
+			/*for (int i = 0; i < FireVector.size(); i++) {
 				if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
@@ -1024,7 +1033,7 @@ int main()
 				if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
-			}
+			}*/
 
 
 			//time

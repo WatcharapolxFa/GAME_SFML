@@ -30,11 +30,11 @@ private :
 	unsigned int row;
 	float speed;
 
-
 	
 	bool faceRight, fire;
 
 	sf::Vector2f velocity;
 	bool canJump;
 	float jumpHeight;
+	bool floorGravity;
 };

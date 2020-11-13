@@ -7,11 +7,14 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 {
 	this->speed = speed;
 	this->jumpHeight = jumpHeight;
+	
+	
 
 	row = 0;
 	faceRight = true;
 	fire = false;
 	canJump = false;
+	floorGravity = false;
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f, 2 * body.getSize().y / 3.0f });
 	body.setOutlineThickness(1.f);
@@ -37,13 +40,8 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 {
 	velocity.x = 0.0f;
 	fire = false;
+	
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))// Input by Keyboard.
-	{
-		canJump = false;
-
-		velocity.y = +sqrtf(2.0f * 500.0f * jumpHeight);
-	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))// Input by Keyboard.
 	{
@@ -60,8 +58,10 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 
 	{
 		canJump = false;
+		floorGravity = false;
 
 		velocity.y = -sqrtf(2.0f * 500.0f * jumpHeight);
+		
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 	{
@@ -101,9 +101,10 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 									{
 										row = 6;
 									}
-									if (direction.y >= 0 )
+									if (direction.y >= 0 && floorGravity==false)
 									{
 										velocity.y += 981.0f * deltaTime;
+							
 
 									}
 									if (direction.y == -1)
@@ -145,6 +146,7 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::OnCollision(sf::Vector2f direction)
 {
+	floorGravity = false;
 	if (direction.x < 0.0f)
 	{
 		//Collision on the left.
@@ -164,15 +166,17 @@ void Player::OnCollision(sf::Vector2f direction)
 		
 		velocity.y = 0.0f;
 		canJump = true;
+		floorGravity = true;
 	}
 	else if (direction.y > 0.0f)
 	{
 		//Collision on the top.
 		velocity.y = 0.0f;
+		
 	}
-	
-
+ 
 }
+
 void Player::Warped(sf::RenderWindow& window)
 {
 	hitbox.setPosition(237.0f, 2891.0f);
