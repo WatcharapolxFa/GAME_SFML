@@ -9,12 +9,13 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->jumpHeight = jumpHeight;
 	
 	
+	floorGravity = false;
 
 	row = 0;
 	faceRight = true;
 	fire = false;
 	canJump = false;
-	floorGravity = false;
+	
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f, 2 * body.getSize().y / 3.0f });
 	body.setOutlineThickness(1.f);
@@ -93,25 +94,25 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 		fire = true;
 	}
 
-									if (velocity.x == 0.0f && velocity.y == 0 && fire == false)
+									if (velocity.x == 0.0f && /*velocity.y == 0  &&*/ fire == false)
 									{
 										row = 0;
 									}
-									if (velocity.x == 0.0f && velocity.y == 0 && fire == true)
+									if (velocity.x == 0.0f && /*velocity.y == 0  &&*/ fire == true)
 									{
 										row = 6;
 									}
-									if (direction.y >= 0 && floorGravity==false)
+									if (direction.y == 0 && floorGravity==false)
 									{
 										velocity.y += 981.0f * deltaTime;
 							
 
 									}
-									if (direction.y == -1)
+									else if (direction.y == -1)
 									{
 										velocity.y = 0;
 									}
-									if (velocity.x != 0.0f)
+									else if (velocity.x != 0.0f)
 									{
 										row = 2;
 										if (velocity.x > 0.0f)
@@ -172,7 +173,7 @@ void Player::OnCollision(sf::Vector2f direction)
 	{
 		//Collision on the top.
 		velocity.y = 0.0f;
-		
+		floorGravity = false;
 	}
  
 }

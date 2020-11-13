@@ -219,7 +219,7 @@ int main()
 
 
 	//Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 700);
 	//*********************************************************************************************************************************************************
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,7 +380,7 @@ int main()
 	//cob03
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(-50.0f, 6679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 6679.25f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 61408.5f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 3980.5f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 5950.0f)));
 	//bg3
 	
@@ -470,6 +470,11 @@ int main()
 	lbltime.setCharacterSize(45);
 	lbltime.setFont(font);
 	lbltime.setFillColor(sf::Color::Yellow);
+	lbltime.setString(showtime.str());
+
+	showtime.str(" ");
+	showtime << "Time : ";
+	lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
 
 	//==================================================================//
 
@@ -482,14 +487,16 @@ int main()
 	{
 		//time
 		pos = player.GetPosition();
-		time = clocks.getElapsedTime();
-		showtime << time.asSeconds();
-		
+		if (cheeckongame == 1) {
+			time = clocks.getElapsedTime();
+			//time = sf::seconds((int)time.asSeconds() % 60);
+			showtime << (int)time.asSeconds() / 60 << " : " << (int)time.asSeconds() % 60;
+		}
 
 	
 
-		/*std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
-		std::cout << Bul << std::endl;*/
+		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		//std::cout << Bul << std::endl;
 		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
@@ -514,6 +521,7 @@ int main()
 					{
 					case 0:
 						cheeckongame = 1;
+						clocks = sf::Clock();
 						break;
 					case 1:
 						std::cout << "2" << std::endl;
@@ -628,12 +636,22 @@ int main()
 					bx.OnCollision2(direction);
 			 
 		}
+		//delete this debug view warp cheat button
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
+			player.Warped(window);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)) {
+			player.Warped2(window);
+		}
 
 		//set Viw
 		if (player.GetPosition().y <= 2000) {
+			u = 0;
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//เช็คค่า x มุมซ้ายสุด ขนาดครึ่งจอ 0.0 ขนาดของรูป ซ้าย
 			{
+				//view.setCenter(540.f, view.getCenter().y);
+
 				if (view.getCenter().y - 360.0f <= 0.0f)
 				{
 					view.setCenter(540.0f, 360.0f);//window
@@ -755,15 +773,15 @@ int main()
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
 				{
-					view.setCenter(540.0f, 360.0f);//window
+					view.setCenter(540.0f, 2015.f + 360.0f);//window
 				}
 				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
 					view.setCenter(540.0f, 2998.5f);//window
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 3358.5f)
+				if (view.getCenter().y - 360.0f > 2015.f && view.getCenter().y + 360.0f < 3358.5f)
 				{
 					view.setCenter(540.0f, player.GetPosition().y);
 				}
@@ -771,24 +789,24 @@ int main()
 			}
 			if (view.getCenter().x + 540.0f >= 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
 				{
-					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+					view.setCenter(1290.5f, 2015.f + 360.0f);//window 1248-540 collision right 
 				}
 				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
 					view.setCenter(1290.5f, 2998.5f);//window 1248-540
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 3358.5f)
+				if (view.getCenter().y - 360.0f > 2015.0f && view.getCenter().y + 360.0f < 3358.5f)
 				{
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
 			}
 			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
 				{
-					view.setCenter(player.GetPosition().x, 360.0f);
+					view.setCenter(player.GetPosition().x, 2015.f + 360.0f);
 				}
 				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
@@ -802,7 +820,7 @@ int main()
 		if (player.GetPosition().y > 4000)
 		{
 			u = 2;
-
+			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
 				faceright = false;
@@ -842,42 +860,42 @@ int main()
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 3980.0f)
 				{
-					view.setCenter(540.0f, 360.0f);//window
+					view.setCenter(540.0f, 3980.0f + 360.0f);//window
 				}
-				if (view.getCenter().y + 360.0f >= 5358.5f)
+				else if (view.getCenter().y + 360.0f >= 5358.5f)
 				{
 					view.setCenter(540.0f, 4998.5f);//window
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+				else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
 				{
 					view.setCenter(540.0f, player.GetPosition().y);
 				}
 
 			}
-			if (view.getCenter().x + 540.0f >= 1830.5f)
+			else if (view.getCenter().x + 540.0f >= 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 3980.0f)
 				{
-					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+					view.setCenter(1290.5f, 3980.0f +360.0f);//window 1248-540 collision right 
 				}
-				if (view.getCenter().y + 360.0f >= 5358.5f)
+				else if (view.getCenter().y + 360.0f >= 5358.5f)
 				{
 					view.setCenter(1290.5f, 4998.5f);//window 1248-540
 				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+				else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
 				{
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
 			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+			else if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
 			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (view.getCenter().y - 360.0f <= 3980.0f)
 				{
-					view.setCenter(player.GetPosition().x, 360.0f);
+					view.setCenter(player.GetPosition().x, 3980.0f+360.0f);
 				}
-				if (view.getCenter().y + 360.0f >= 5358.5f)
+				else if (view.getCenter().y + 360.0f >= 5358.5f)
 				{
 					view.setCenter(player.GetPosition().x, 4998.5f);
 				}
@@ -887,7 +905,7 @@ int main()
 		// Time //==================================================================//
 
 		lbltime.setString(showtime.str());
-		
+
 		showtime.str(" ");
 		showtime << "Time : ";
 		lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
@@ -896,6 +914,7 @@ int main()
 		
 
 		window.clear();
+
 		if (cheeckongame == 0)
 		{
 			// Menu
@@ -904,20 +923,21 @@ int main()
 			//Stop.draw(window);
 			
 		}
-		else if (cheeckongame == 1)
+		if (cheeckongame == 1)
 		{
-			window.draw(back01);
-			window.draw(back02);
-			window.draw(back03);
+			
+			//window.draw(back01);
+			//window.draw(back02);
+			//window.draw(back03);
 			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
 				platfrom.Draw(window);
 
 
-			//window.draw(back01);
-			//window.draw(back02);
-			//window.draw(back03);
+			window.draw(back01);
+			window.draw(back02);
+			window.draw(back03);
 
 			//ด่านไฟ
 			for (int i = 0; i < FireVector.size(); i++)
@@ -1075,6 +1095,7 @@ int main()
 				bullet2.SetPosition(pos);
 			}
 		}
+		
 		window.display();
 	}
 }
