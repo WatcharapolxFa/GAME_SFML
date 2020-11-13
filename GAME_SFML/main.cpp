@@ -23,6 +23,7 @@
 #include"box.h"
 #include"button.h"
 #include"item.h"
+#include"boxsx.h"
 using namespace std;
 
 
@@ -49,6 +50,7 @@ int main()
 	sf::Texture boxx;
 	sf::Texture buttonn;
 	sf::Texture boxs;
+	sf::Texture boxsxs;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -66,6 +68,7 @@ int main()
 	menustr.loadFromFile("charecter/menu.png");
 	buttonn.loadFromFile("charecter/button.png");
 	boxs.loadFromFile("charecter/boxs.png");
+	boxsxs.loadFromFile("charecter/boxsx.png");
 
 
 	sf::Sprite background;
@@ -213,8 +216,14 @@ int main()
 	
 		// Vector กล่องสายฟ้า ============================================================================================================================================== =
 		std::vector<item>itemVector;
-		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1450.0f, 910.0f)));
-		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1200.0f, 203.0f)));
+		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
+		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1760.5f, 360.0f)));
+		//=============================================================================================================================================================
+
+		// Vector กล่องไฟ ============================================================================================================================================== =
+		std::vector<boxsx>boxitemVector;
+		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 755.0f)));
+		
 		//=============================================================================================================================================================
 
 
@@ -495,7 +504,7 @@ int main()
 
 	
 
-		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		bullet1.cooldown(deltaTime, Bul);
 		bullet2.cooldown(deltaTime, Bul2);
@@ -604,6 +613,14 @@ int main()
 		for (int i = 0; i < itemVector.size(); i++)
 		{
 			itemVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+
+		//กล่องไฟ
+		for (int i = 0; i < boxitemVector.size(); i++)
+		{
+			boxitemVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
@@ -985,6 +1002,12 @@ int main()
 				for (int i = 0; i < itemVector.size(); i++)
 				{
 					itemVector[i].draw(window);
+				}
+
+				// กล่องไฟ
+				for (int i = 0; i < boxitemVector.size(); i++)
+				{
+					boxitemVector[i].draw(window);
 				}
 
 
