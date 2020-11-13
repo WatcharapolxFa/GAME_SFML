@@ -495,8 +495,10 @@ int main()
 
 	
 
-		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
+		bullet1.cooldown(deltaTime, Bul);
+		bullet2.cooldown(deltaTime, Bul2);
 		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 		deltaTime = clock.restart().asSeconds();
