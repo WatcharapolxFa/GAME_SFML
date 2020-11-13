@@ -18,8 +18,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f, 2 * body.getSize().y / 3.0f });
-	body.setOutlineThickness(1.f);
-	body.setOutlineColor(sf::Color::Red);
+
 
 	body.setPosition(91.0f, 1218.0f);
 	body.setTexture(texture);
@@ -59,7 +58,7 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 
 	{
 		canJump = false;
-		floorGravity = false;
+		floorGravity = false; //floorGravity = canFall?
 
 		velocity.y = -sqrtf(2.0f * 500.0f * jumpHeight);
 		
@@ -102,17 +101,17 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 									{
 										row = 6;
 									}
-									if (direction.y == 0 && floorGravity==false)
+									/*if (direction.y == 0 && floorGravity==false)
 									{
 										velocity.y += 981.0f * deltaTime;
 							
 
-									}
-									else if (direction.y == -1)
+									}*/
+									else if (direction.y < 0.f)
 									{
 										velocity.y = 0;
 									}
-									else if (velocity.x != 0.0f)
+									if (velocity.x != 0.0f)
 									{
 										row = 2;
 										if (velocity.x > 0.0f)
@@ -130,6 +129,7 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 											faceRight = true;
 										}
 									}
+									velocity.y += 981.0f * deltaTime;
 	
 
 	
@@ -164,7 +164,7 @@ void Player::OnCollision(sf::Vector2f direction)
 	if (direction.y < 0.0f)
 	{
 		//Collision on the bottom.
-		
+
 		velocity.y = 0.0f;
 		canJump = true;
 		floorGravity = true;
@@ -175,6 +175,7 @@ void Player::OnCollision(sf::Vector2f direction)
 		velocity.y = 0.0f;
 		floorGravity = false;
 	}
+	
  
 }
 

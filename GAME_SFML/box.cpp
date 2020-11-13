@@ -12,15 +12,14 @@ box::box(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Ve
 	body.setPosition(position);
 	body.setTexture(texture);
 
-	body.setOutlineThickness(1.f);
-	body.setOutlineColor(sf::Color::Green);
+	
 
 	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
 	hitbox.setOutlineThickness(1.f);
 	hitbox.setOutlineColor(sf::Color::Blue);
-	hitbox.setPosition(body.getPosition());
+	hitbox.setPosition(body.getPosition().x, body.getPosition().y+20);
 
 	row = 0;
 	fire = false;
@@ -35,7 +34,7 @@ void box::Update(float deltaTime, Player player)
 {
  
 	hitbox.move( velocity * deltaTime);
-	body.setPosition(hitbox.getPosition());
+	body.setPosition(hitbox.getPosition() - sf::Vector2f(0, 20.f));
 
 	animation.Updatefrie(row, deltaTime);
 	body.setTextureRect(animation.uvRect);

@@ -9,9 +9,15 @@ waterbg::waterbg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
 	body.setTexture(texture);
 	body.setPosition(position);
 	body.setOrigin(body.getSize().x / 2.0f, body.getSize().y / 2.0f);
-	body.setOutlineThickness(1.f);
-	body.setOutlineColor(sf::Color::Green);
+	
 	row = 0;
+
+	hitbox.setSize(sf::Vector2f(300.0f, 5.0f));
+	hitbox.setOrigin(hitbox.getSize() / 2.f);
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineColor(sf::Color::Red);
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 20));
 }
 
 waterbg::~waterbg()
@@ -27,6 +33,7 @@ void waterbg::Update(float deltaTime, Player player)
 void waterbg::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
+	window.draw(hitbox);
 }
 sf::RectangleShape waterbg::getBody() {
 	return this->body;

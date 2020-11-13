@@ -20,6 +20,7 @@ public:
     void OnCollision(sf::Vector2f direction);
     void SetPosition(sf::Vector2f pos);
     float cooldown(float deltaTime, int check);
+  
 
 
     sf::Vector2f GetPosition() { return body.getPosition(); }
@@ -32,6 +33,7 @@ private:
     sf::Vector2f velocity;
     float cooling;
     float cool;
+    sf::RectangleShape hitbox;
 
     bool isAva = true;
 };

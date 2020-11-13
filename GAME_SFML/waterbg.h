@@ -17,7 +17,7 @@ public:
 private:
 	Animation animation;
 	sf::RectangleShape body;
-
+	sf::RectangleShape hitbox;
 	float totalTime;
 	float switchTime;
 

@@ -47,21 +47,21 @@ bool Collider::CheckCollision(Collider other, sf::Vector2f& direction, float pus
 		{
 			if (deltaY > 0.0f)
 			{
-				Move(0.0f, intersectY * (1.0f - push));
-				other.Move(0.0f, -intersectY * push);
+				Move(0.0f, intersectY * (1.0f - 1.f));
+				other.Move(0.0f, -intersectY * 1.f);
 				direction.x = 0.0f;
 				direction.y = 1.0f;
 			}
 			else
 			{
-				Move(0.0f, -intersectY * (1.0f - push));
-				other.Move(0.0f, intersectY * push);
+				Move(0.0f, -intersectY * (1.0f - 1.f));
+				other.Move(0.0f, intersectY * 1.f);
 				direction.x = 0.0f;
 				direction.y = -1.0f;
 			}
 
 		}
-
+		
 		return true;
 	}
 

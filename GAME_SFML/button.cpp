@@ -11,8 +11,7 @@ button::button(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setOrigin(body.getSize().x / 2.0f, body.getSize().y / 2.0f);
 
 	row = 0;
-	body.setOutlineThickness(1.f);
-	body.setOutlineColor(sf::Color::Red);
+	
 }
 
 button::~button()

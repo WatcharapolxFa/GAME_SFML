@@ -20,6 +20,7 @@ private:
 
 	float totalTime;
 	float switchTime;
+	sf::RectangleShape hitbox;
 
 	unsigned int row;
 };

@@ -13,8 +13,13 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     bool faceleft = false;
     cooling = 10.0f; //time is cooldown
 
-    body.setOutlineThickness(1.f);
-    body.setOutlineColor(sf::Color::Green);
+    hitbox.setSize(size);
+    hitbox.setOrigin(hitbox.getSize() / 2.f);
+    hitbox.setFillColor(sf::Color::Transparent);
+    hitbox.setOutlineThickness(1.f);
+    hitbox.setOutlineColor(sf::Color::Blue);
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y );
+   
 }
 Bullet::~Bullet()
 {
@@ -24,10 +29,12 @@ void Bullet::updateR(float deltaTime)
 {
     velocity.y = 0;
     velocity.x = speed;
-
+       
     body.move(velocity * deltaTime);
     animation.updateBu(row, deltaTime, true);
     body.setTextureRect(animation.uvRect);
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y );
+    
 }
 
 void Bullet::updateL(float deltaTime)
@@ -38,6 +45,7 @@ void Bullet::updateL(float deltaTime)
     body.move(-(velocity * deltaTime));
     animation.updateBu(row, deltaTime, false);
     body.setTextureRect(animation.uvRect);
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y );
 }
 
 void Bullet::attackR(sf::Vector2f pos)
@@ -67,6 +75,7 @@ bool Bullet::isAvaliable() // status bullet
 void Bullet::draw(sf::RenderWindow& window)
 {
     window.draw(body);
+    window.draw(hitbox);
 }
 
 void Bullet::SetPosition(sf::Vector2f pos)

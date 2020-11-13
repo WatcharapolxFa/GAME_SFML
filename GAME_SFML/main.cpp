@@ -51,6 +51,9 @@ int main()
 	sf::Texture buttonn;
 	sf::Texture boxs;
 	sf::Texture boxsxs;
+
+
+	int sc=0;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -186,8 +189,8 @@ int main()
 	//Vector เพชรเทา ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
 	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0])));
-	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 480.0f)));
-	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 50.0f)));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 2000.f+480.0f)));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 4000.f+50.0f)));
 	//===========================================================================================================================================================
 
 	//Vector เพชรฟ้า ===============================================================================================================================================
@@ -206,29 +209,38 @@ int main()
 		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(211.0f, 1285.0f)));
 		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(876.0f, 1285.0f)));
 		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(947.0f, 628.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(963.0f, 2254.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1462, 2800.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(575, 690.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(360.0f, 3263.0f)));
+		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(305.0f, 2480.0f)));
 
 	//=============================================================================================================================================================
 	// Vector ปุ่ม ============================================================================================================================================== =
 		std::vector<button>buttonVector;
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
+		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(453.0f, 3263.0f)));
 	//=============================================================================================================================================================
 	
 		// Vector กล่องสายฟ้า ============================================================================================================================================== =
 		std::vector<item>itemVector;
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1760.5f, 360.0f)));
+		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1765.0f, 2800.0f)));
 		//=============================================================================================================================================================
 
 		// Vector กล่องไฟ ============================================================================================================================================== =
 		std::vector<boxsx>boxitemVector;
 		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 755.0f)));
+		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 3030.0f)));
+		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(910.0f, 2640.0f)));
 		
 		//=============================================================================================================================================================
 
 
 	//Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 700);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
 	//*********************************************************************************************************************************************************
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,6 +393,8 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 200.0f), sf::Vector2f(496.0f, 3000.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(542.0f, 2910.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 45.0f), sf::Vector2f(625.0f, 3145.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 30.0f), sf::Vector2f(767.0f, 2970.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(15.0f, 10.0f), sf::Vector2f(430.0f, 2700.0f)));
 	
 	//bg2
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -503,8 +517,7 @@ int main()
 		}
 
 	
-
-		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		bullet1.cooldown(deltaTime, Bul);
 		bullet2.cooldown(deltaTime, Bul2);
@@ -562,6 +575,41 @@ int main()
 			}
 		}
 		sf::Vector2f direction;
+
+		player.Update(deltaTime, direction);
+
+
+
+		for (Platform& platfrom : platfroms)
+			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+				player.OnCollision(direction);
+
+		for (box& bx : boxVector) {
+
+			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
+				bx.OnCollision(direction);
+				player.OnCollision(direction);
+			}
+			else
+				bx.OnCollision({ 0,0 });
+
+			for (Platform& platform : platfroms)
+				if (platform.GetCollider().CheckCollision(bx.GetCollider(), direction, 1.0f))
+					bx.OnCollision2(direction);
+
+		}
+		for (dimon& d : DimonVector) {
+			if (d.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+				d.pickup();
+				sc += 1;
+				printf("%d", sc);
+
+				
+			}
+		}
+
+
+		
 		// Update ด่านไฟ //==================================================================//
 		for (int i = 0; i < FireVector.size(); i++)
 		{
@@ -626,7 +674,7 @@ int main()
 
 
 
-		player.Update(deltaTime,direction);
+		
 
 
 		//==================================================================//
@@ -638,23 +686,12 @@ int main()
 
 		
 		
+		
 
-		for (Platform& platfrom : platfroms)
-			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
-				player.OnCollision(direction);
 
-		for (box& bx : boxVector) {
-			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
-				player.OnCollision(direction);
-				bx.OnCollision(direction);
-			}else
-				bx.OnCollision({ 0,0 });
-
-			for (Platform& platform : platfroms)
-				if (platform.GetCollider().CheckCollision(bx.GetCollider(), direction, 1.0f))
-					bx.OnCollision2(direction);
-			 
-		}
+		
+		
+		//std::cout << "dir x = " << direction.x << " dir y = " << direction.y << endl;
 		//delete this debug view warp cheat button
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
 			player.Warped(window);
@@ -945,18 +982,18 @@ int main()
 		if (cheeckongame == 1)
 		{
 			
-			//window.draw(back01);
-			//window.draw(back02);
-			//window.draw(back03);
+			window.draw(back01);
+			window.draw(back02);
+			window.draw(back03);
 			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
 				platfrom.Draw(window);
 
 
-			window.draw(back01);
-			window.draw(back02);
-			window.draw(back03);
+			//window.draw(back01);
+			//window.draw(back02);
+			//window.draw(back03);
 
 			//ด่านไฟ
 			for (int i = 0; i < FireVector.size(); i++)

@@ -15,7 +15,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
 
-	Collider GetCollider() {  return Collider(body);	}
+	Collider GetCollider() {  return Collider(hitbox);	}
 	void OnCollision(sf::Vector2f direction);
 	void OnCollision2(sf::Vector2f direction);
 

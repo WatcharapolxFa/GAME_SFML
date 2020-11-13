@@ -12,7 +12,7 @@ public:
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
-
+	Collider GetCollider() { return Collider(hitbox); }
 
 private:
 	Animation animation;
@@ -20,7 +20,7 @@ private:
 
 	float totalTime;
 	float switchTime;
-
+	sf::RectangleShape hitbox;
 	unsigned int row;
 };
 
