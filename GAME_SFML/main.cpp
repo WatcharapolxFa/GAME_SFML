@@ -98,11 +98,11 @@ int main()
 		positionrand_x[0] = 943.0f;
 		positionrand_y[0] = 65.0f;
 
-		positionrand_x[1] = 840.0f;
-		positionrand_y[1] = 1150.0f;
+		positionrand_x[1] = 1270.0f;
+		positionrand_y[1] = 1050.0f;
 
-		positionrand_x[2] = 943.0f;
-		positionrand_y[2] = 480.0f;
+		positionrand_x[2] = 1000.0f;
+		positionrand_y[2] = 415.0f;
 
 	}
 	else if (cheeck == 1)
@@ -110,44 +110,44 @@ int main()
 		positionrand_x[0] = 943.0f;
 		positionrand_y[0] = 65.0f;
 
-		positionrand_x[2] = 840.0f;
-		positionrand_y[2] = 1150.0f;
+		positionrand_x[2] = 1270.0f;
+		positionrand_y[2] = 1050.0f;
 
-		positionrand_x[1] = 943.0f;
-		positionrand_y[1] = 480.0f;
+		positionrand_x[1] = 1273.0f;
+		positionrand_y[1] = 415.0f;
 	}
 	else if(cheeck == 2)
 	{
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 65.0f;
 
-		positionrand_x[1] = 840.0f;
-		positionrand_y[1] = 1150.0f;
+		positionrand_x[1] = 1270.0f;
+		positionrand_y[1] = 1050.0f;
 
-		positionrand_x[0] = 943.0f;
-		positionrand_y[0] = 480.0f;
+		positionrand_x[0] = 1273.0f;
+		positionrand_y[0] = 415.0f;
 	}
 	else if (cheeck == 3)
 	{
 		positionrand_x[1] = 943.0f;
 		positionrand_y[1] = 65.0f;
 
-		positionrand_x[0] = 840.0f;
-		positionrand_y[0] = 1150.0f;
+		positionrand_x[0] = 1270.0f;
+		positionrand_y[0] = 1050.0f;
 
-		positionrand_x[2] = 943.0f;
-		positionrand_y[2] = 480.0f;
+		positionrand_x[2] = 1273.0f;
+		positionrand_y[2] = 415.0f;
 	}
 	else if (cheeck == 4)
 	{
 		positionrand_x[1] = 943.0f;
 		positionrand_y[1] = 65.0f;
 
-		positionrand_x[2] = 840.0f;
-		positionrand_y[2] = 1150.0f;
+		positionrand_x[2] = 850.0f;
+		positionrand_y[2] = 1250.0f;
 
-		positionrand_x[0] = 943.0f;
-		positionrand_y[0] = 480.0f;
+		positionrand_x[0] = 1000.0f;
+		positionrand_y[0] = 415.0f;
 	}
 	else if (cheeck == 5)
 	{
@@ -161,7 +161,79 @@ int main()
 		positionrand_y[2] = 480.0f;
 	}
 	//???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+	int cheeck2 = rand() % 6;
+	float positionrand_x2[3], positionrand_y2[3];
 
+	if (cheeck2 == 0)
+	{
+		positionrand_x2[0] = 430.0f;
+		positionrand_y2[0] = 2640.0f;
+
+		positionrand_x2[1] = 60.5f;
+		positionrand_y2[1] = 2350.0f;
+
+		positionrand_x2[2] = 1585.0f;
+		positionrand_y2[2] = 2585.0f;
+
+	}
+	else if (cheeck2 == 1)
+	{
+		positionrand_x2[0] = 430.0f;
+		positionrand_y2[0] = 2640.0f;
+
+		positionrand_x2[2] = 60.5f;
+		positionrand_y2[2] = 2200.0f;
+
+		positionrand_x2[1] = 1585.0f;
+		positionrand_y2[1] = 2585.0f;
+	}
+	else if (cheeck2 == 2)
+	{
+		positionrand_x2[2] = 430.0f;
+		positionrand_y2[2] = 2640.0f;
+
+		positionrand_x2[1] = 60.5f;
+		positionrand_y2[1] = 2200.0f;
+
+		positionrand_x2[0] = 1585.0f;
+		positionrand_y2[0] = 2585.0f;
+	}
+	else if (cheeck2 == 3)
+	{
+		positionrand_x2[1] = 430.0f;
+		positionrand_y2[1] = 2640.0f;
+
+		positionrand_x2[0] = 60.5f;
+		positionrand_y2[0] = 2200.0f;
+
+		positionrand_x2[2] = 1585.0f;
+		positionrand_y2[2] = 2585.0f;
+
+	}
+	else if (cheeck2 == 4)
+	{
+		positionrand_x2[1] = 430.0f;
+		positionrand_y2[1] = 2640.0f;
+
+
+		positionrand_x2[2] = 60.5f;
+		positionrand_y2[2] = 2200.0f;
+
+		positionrand_x2[0] = 1585.0f;
+		positionrand_y2[0] = 2585.0f;
+	}
+	else if (cheeck2 == 5)
+	{
+		positionrand_x2[2] = 430.0f;
+		positionrand_y2[2] = 2640.0f;
+
+		positionrand_x2[0] = 60.5f;
+		positionrand_y2[0] = 2200.0f;
+
+
+		positionrand_x2[2] = 1585.0f;
+		positionrand_y2[2] = 2585.0f;
+	}
 	
 	//////////////////////////////////////////////////////
 	//Vector ไฟ ===============================================================================================================================================
@@ -188,20 +260,21 @@ int main()
 
 	//Vector เพชรเทา ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0])));
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 2000.f+480.0f)));
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(943.0f, 4000.f+50.0f)));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0]))); 
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[0], positionrand_y2[0]))); 
+	//monVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y[2])));
 	//===========================================================================================================================================================
 
 	//Vector เพชรฟ้า ===============================================================================================================================================
 	std::vector<dimonfah>DimonfahVector;
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[1], positionrand_y[1])));
+	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[1], positionrand_y2[1])));
 	//=============================================================================================================================================================
 
 	//Vector เพชรเขียว ===============================================================================================================================================
 	std::vector<dimongreen>DimongreenVector;
-	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
-
+	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2]))); 
+	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y2[2])));
 	//=============================================================================================================================================================
 
 	// Vector กล่อง ============================================================================================================================================== =
@@ -395,6 +468,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 45.0f), sf::Vector2f(625.0f, 3145.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 30.0f), sf::Vector2f(767.0f, 2970.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(15.0f, 10.0f), sf::Vector2f(430.0f, 2700.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(15.0f, 10.0f), sf::Vector2f(52.5f, 2350.0f)));
 	
 	//bg2
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -452,6 +526,11 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1280.0f), sf::Vector2f(20.0f, 4630.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 80.0f), sf::Vector2f(1730.0f, 41080.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1555.0f, 4730.0f)));
+
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1748.0f, 5112.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1755.0f, 5150.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1780.0f, 5180.0f)));
+
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	
 
@@ -487,17 +566,17 @@ int main()
 
 	std::ostringstream showtime;
 	sf::Font font;
-	font.loadFromFile("charecter/Pifont.ttf");
+	font.loadFromFile("charecter/ka.ttf");
 	sf::Text lbltime;
 	lbltime.setString(showtime.str());
-	lbltime.setCharacterSize(45);
+	lbltime.setCharacterSize(40);
 	lbltime.setFont(font);
 	lbltime.setFillColor(sf::Color::Yellow);
 	lbltime.setString(showtime.str());
 
 	showtime.str(" ");
 	showtime << "Time : ";
-	lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
+	lbltime.setPosition(view.getCenter().x + 240, view.getCenter().y - 360);
 
 	//==================================================================//
 
@@ -517,7 +596,7 @@ int main()
 		}
 
 	
-		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		bullet1.cooldown(deltaTime, Bul);
 		bullet2.cooldown(deltaTime, Bul2);
@@ -984,8 +1063,8 @@ int main()
 		lbltime.setString(showtime.str());
 
 		showtime.str(" ");
-		showtime << "Time : ";
-		lbltime.setPosition(view.getCenter().x + 250, view.getCenter().y - 360);
+		showtime << " Time  :  ";
+		lbltime.setPosition(view.getCenter().x + 200, view.getCenter().y - 360);
 
 		//==================================================================//
 		
@@ -1005,7 +1084,7 @@ int main()
 			
 			//window.draw(back01);
 			window.draw(back02);
-			window.draw(back03);
+			//window.draw(back03);
 			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
@@ -1013,8 +1092,8 @@ int main()
 
 
 			window.draw(back01);
-			//window.draw(back02);
-			//window.draw(back03);
+			/*window.draw(back02);*/
+			window.draw(back03);
 
 			//ด่านไฟ
 			for (int i = 0; i < FireVector.size(); i++)
