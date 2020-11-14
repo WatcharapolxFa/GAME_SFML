@@ -1101,18 +1101,9 @@ int main()
 
 
 			//hitbox
-			/*hitboxPlayer.Draw(window);*/
-			/*for (int i = 0; i < FireVector.size(); i++) {
-				if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < WaterVector.size(); i++) {
-				if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < DimonVector.size(); i++) {
+			//hitboxPlayer.Draw(window);
+			
+			/*for (int i = 0; i < DimonVector.size(); i++) {
 				if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
 					cout << "Wow";
 				}
@@ -1134,6 +1125,19 @@ int main()
 			}
 			for (int i = 0; i < boxVector.size(); i++) {
 				if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}*/
+
+
+
+			/*for (int i = 0; i < FireVector.size(); i++) {
+				if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
+					cout << "Hit!!!!!";
+				}
+			}
+			for (int i = 0; i < WaterVector.size(); i++) {
+				if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
 					cout << "Hit!!!!!";
 				}
 			}*/
