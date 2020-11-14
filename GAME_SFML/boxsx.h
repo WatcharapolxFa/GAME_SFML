@@ -22,6 +22,7 @@ private:
 	float switchTime;
 
 	unsigned int row;
+	sf::RectangleShape hitbox;
 };
 
 

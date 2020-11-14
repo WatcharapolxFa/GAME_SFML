@@ -12,6 +12,12 @@ boxsx::boxsx(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf
 
 
 	row = 0;
+	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
+	hitbox.setOrigin(hitbox.getSize() / 2.f);
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineColor(sf::Color::Red);
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 20));
 }
 
 boxsx::~boxsx()
@@ -27,6 +33,7 @@ void boxsx::Update(float deltaTime, Player player)
 void boxsx::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
+	window.draw(hitbox);
 }
 sf::RectangleShape boxsx::getBody() {
 	return this->body;

@@ -12,12 +12,12 @@ item::item(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::
 
 
 	row = 0;
-	hitbox.setSize(sf::Vector2f(50.0f, 30.0f));
+	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
 	hitbox.setOutlineThickness(1.f);
-	hitbox.setOutlineColor(sf::Color::Blue);
-	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y));
+	hitbox.setOutlineColor(sf::Color::Red);
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y+20));
 }
 
 item::~item()
