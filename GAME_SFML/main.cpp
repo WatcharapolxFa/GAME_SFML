@@ -53,7 +53,7 @@ int main()
 	sf::Texture boxsxs;
 
 
-	int sc=0;
+	int score = 0;
 	//========================================================================================================================================================
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -199,8 +199,8 @@ int main()
 	//=============================================================================================================================================================
 
 	//Vector เพชรเขียว ===============================================================================================================================================
-	std::vector<dimonfah>DimongreenVector;
-	DimongreenVector.push_back(dimonfah(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
+	std::vector<dimongreen>DimongreenVector;
+	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
 
 	//=============================================================================================================================================================
 
@@ -601,12 +601,33 @@ int main()
 		for (dimon& d : DimonVector) {
 			if (d.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 				d.pickup();
-				sc += 1;
-				printf("%d", sc);
+				score += 5;
+				printf("%d", score);
 
 				
 			}
 		}
+
+		for (dimonfah& df : DimonfahVector) {
+			if (df.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+				df.pickup();
+				score += 10;
+				printf("%d", score);
+
+
+			}
+		}
+		for (dimongreen& dg : DimongreenVector) {
+			if (dg.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+				dg.pickup();
+				score += 20;
+				printf("%d", score);
+
+
+			}
+		}
+
+
 
 
 		

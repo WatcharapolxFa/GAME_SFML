@@ -13,6 +13,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	sf::RectangleShape getBody();
 	Collider GetCollider() { return Collider(hitbox); }
+	void pickup();
 
 private:
 	Animation animation;

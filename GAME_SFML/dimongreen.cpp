@@ -13,12 +13,12 @@ dimongreen::dimongreen(sf::Texture* texture, sf::Vector2u imageCount, float swit
 	
 
 	row = 0;
-	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
+	hitbox.setSize(sf::Vector2f(50.0f, 20.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
 	hitbox.setOutlineThickness(1.f);
 	hitbox.setOutlineColor(sf::Color::Yellow);
-	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 20));
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 35));
 }
 
 dimongreen::~dimongreen()
@@ -38,4 +38,9 @@ void dimongreen::draw(sf::RenderWindow& window)
 }
 sf::RectangleShape dimongreen::getBody() {
 	return this->body;
+}
+void dimongreen::pickup()
+{
+	this->body.setPosition(-20.f, this->body.getPosition().y);
+	this->hitbox.setPosition(-20.f, this->body.getPosition().y);
 }

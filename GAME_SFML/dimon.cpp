@@ -12,12 +12,13 @@ dimon::dimon(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf
 	
 
 
-	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
+	row = 0;
+	hitbox.setSize(sf::Vector2f(50.0f, 20.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
 	hitbox.setOutlineThickness(1.f);
 	hitbox.setOutlineColor(sf::Color::Yellow);
-	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y+20));
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 35));
 
 	row = 0;
 }
