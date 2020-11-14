@@ -11,6 +11,13 @@ button::button(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setOrigin(body.getSize().x / 2.0f, body.getSize().y / 2.0f);
 
 	row = 0;
+	row = 0;
+	hitbox.setSize(sf::Vector2f(50.0f, 20.0f));
+	hitbox.setOrigin(hitbox.getSize() / 2.f);
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineColor(sf::Color::Yellow);
+	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 40));
 	
 }
 
@@ -27,6 +34,7 @@ void button::Update(float deltaTime, Player player)
 void button::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
+	window.draw(hitbox);
 }
 
 sf::RectangleShape button::getBody() {

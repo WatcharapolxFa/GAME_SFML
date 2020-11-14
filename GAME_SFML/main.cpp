@@ -1003,7 +1003,7 @@ int main()
 		if (cheeckongame == 1)
 		{
 			
-			window.draw(back01);
+			//window.draw(back01);
 			window.draw(back02);
 			window.draw(back03);
 			window.setView(view);
@@ -1012,7 +1012,7 @@ int main()
 				platfrom.Draw(window);
 
 
-			//window.draw(back01);
+			window.draw(back01);
 			//window.draw(back02);
 			//window.draw(back03);
 
