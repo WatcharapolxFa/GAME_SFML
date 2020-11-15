@@ -166,8 +166,8 @@ int main()
 
 	if (cheeck2 == 0)
 	{
-		positionrand_x2[0] = 430.0f;
-		positionrand_y2[0] = 2640.0f;
+		positionrand_x2[0] = 435.0f;
+		positionrand_y2[0] = 2600.0f;
 
 		positionrand_x2[1] = 60.5f;
 		positionrand_y2[1] = 2350.0f;
@@ -178,8 +178,8 @@ int main()
 	}
 	else if (cheeck2 == 1)
 	{
-		positionrand_x2[0] = 430.0f;
-		positionrand_y2[0] = 2640.0f;
+		positionrand_x2[0] = 435.0f;
+		positionrand_y2[0] = 2600.0f;
 
 		positionrand_x2[2] = 60.5f;
 		positionrand_y2[2] = 2200.0f;
@@ -189,8 +189,8 @@ int main()
 	}
 	else if (cheeck2 == 2)
 	{
-		positionrand_x2[2] = 430.0f;
-		positionrand_y2[2] = 2640.0f;
+		positionrand_x2[2] = 435.0f;
+		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[1] = 60.5f;
 		positionrand_y2[1] = 2200.0f;
@@ -200,8 +200,8 @@ int main()
 	}
 	else if (cheeck2 == 3)
 	{
-		positionrand_x2[1] = 430.0f;
-		positionrand_y2[1] = 2640.0f;
+		positionrand_x2[1] = 435.0f;
+		positionrand_y2[1] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
 		positionrand_y2[0] = 2200.0f;
@@ -212,8 +212,8 @@ int main()
 	}
 	else if (cheeck2 == 4)
 	{
-		positionrand_x2[1] = 430.0f;
-		positionrand_y2[1] = 2640.0f;
+		positionrand_x2[1] = 435.0f;
+		positionrand_y2[1] = 2600.0f;
 
 
 		positionrand_x2[2] = 60.5f;
@@ -224,8 +224,8 @@ int main()
 	}
 	else if (cheeck2 == 5)
 	{
-		positionrand_x2[2] = 430.0f;
-		positionrand_y2[2] = 2640.0f;
+		positionrand_x2[2] = 435.0f;
+		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
 		positionrand_y2[0] = 2200.0f;
@@ -233,6 +233,84 @@ int main()
 
 		positionrand_x2[2] = 1585.0f;
 		positionrand_y2[2] = 2585.0f;
+	}
+
+	//*********************************************************
+
+
+	int cheeck3 = rand() % 6;
+	float positionrand_x3[3], positionrand_y3[3];
+
+	if (cheeck3 == 0)
+	{
+		positionrand_x3[0] = 825.0f;
+		positionrand_y3[0] = 4200.0f;
+
+		positionrand_x3[1] = 60.5f;
+		positionrand_y3[1] = 2350.0f;
+
+		positionrand_x3[2] = 1585.0f;
+		positionrand_y3[2] = 2585.0f;
+
+	}
+	else if (cheeck3 == 1)
+	{
+		positionrand_x3[0] = 435.0f;
+		positionrand_y3[0] = 2600.0f;
+
+		positionrand_x3[2] = 60.5f;
+		positionrand_y3[2] = 2200.0f;
+
+		positionrand_x3[1] = 1585.0f;
+		positionrand_y3[1] = 2585.0f;
+	}
+	else if (cheeck3 == 2)
+	{
+		positionrand_x3[2] = 435.0f;
+		positionrand_y3[2] = 2600.0f;
+
+		positionrand_x3[1] = 60.5f;
+		positionrand_y3[1] = 2200.0f;
+
+		positionrand_x3[0] = 1585.0f;
+		positionrand_y3[0] = 2585.0f;
+	}
+	else if (cheeck3 == 3)
+	{
+		positionrand_x3[1] = 435.0f;
+		positionrand_y3[1] = 2600.0f;
+
+		positionrand_x3[0] = 60.5f;
+		positionrand_y3[0] = 2200.0f;
+
+
+		positionrand_x3[2] = 1585.0f;
+		positionrand_y3[2] = 2585.0f;
+
+	}
+	else if (cheeck3 == 4)
+	{
+		positionrand_x3[1] = 435.0f;
+		positionrand_y3[1] = 2600.0f;
+
+
+		positionrand_x3[2] = 60.5f;
+		positionrand_y3[2] = 2200.0f;
+
+		positionrand_x3[0] = 1585.0f;
+		positionrand_y3[0] = 2585.0f;
+	}
+	else if (cheeck3 == 5)
+	{
+		positionrand_x3[2] = 435.0f;
+		positionrand_y3[2] = 2600.0f;
+
+		positionrand_x3[0] = 60.5f;
+		positionrand_y3[0] = 2200.0f;
+
+
+		positionrand_x3[2] = 1585.0f;
+		positionrand_y3[2] = 2585.0f;
 	}
 	
 	//////////////////////////////////////////////////////
@@ -313,7 +391,7 @@ int main()
 
 
 	//Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 7000);
 	//*********************************************************************************************************************************************************
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
