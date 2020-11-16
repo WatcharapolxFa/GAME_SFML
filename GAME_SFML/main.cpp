@@ -99,7 +99,7 @@ int main()
 	//check การสุ่มเกิดดาว
 	srand(time(NULL));
 	int cheeck=rand()%6;
-	float positionrand_x[3], positionrand_y[3];
+	float positionrand_x[3]{}, positionrand_y[3]{};
 	
 	if (cheeck == 0)
 	{
@@ -170,7 +170,7 @@ int main()
 	}
 	//???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	int cheeck2 = rand() % 6;
-	float positionrand_x2[3], positionrand_y2[3];
+	float positionrand_x2[3]{}, positionrand_y2[3]{};
 
 	if (cheeck2 == 0)
 	{
@@ -247,78 +247,78 @@ int main()
 
 
 	int cheeck3 = rand() % 6;
-	float positionrand_x3[3], positionrand_y3[3];
+	float positionrand_x3[3]{}, positionrand_y3[3]{};
 
 	if (cheeck3 == 0)
 	{
-		positionrand_x3[0] = 825.0f;
-		positionrand_y3[0] = 4200.0f;
+		positionrand_x3[0] = 659.0f;
+		positionrand_y3[0] = 5270.0f;
 
-		positionrand_x3[1] = 60.5f;
-		positionrand_y3[1] = 2350.0f;
+		positionrand_x3[1] = 819.0f;
+		positionrand_y3[1] = 4250.0f;
 
-		positionrand_x3[2] = 1585.0f;
-		positionrand_y3[2] = 2585.0f;
+		positionrand_x3[2] = 1770.0f;
+		positionrand_y3[2] = 4686.0f;
 
 	}
 	else if (cheeck3 == 1)
 	{
-		positionrand_x3[0] = 435.0f;
-		positionrand_y3[0] = 2600.0f;
+		positionrand_x3[0] = 659.0f;
+		positionrand_y3[0] = 5270.0f;
 
-		positionrand_x3[2] = 60.5f;
-		positionrand_y3[2] = 2200.0f;
+		positionrand_x3[2] = 819.0f;
+		positionrand_y3[2] = 4250.0f;
 
-		positionrand_x3[1] = 1585.0f;
-		positionrand_y3[1] = 2585.0f;
+		positionrand_x3[1] = 1770.0f;
+		positionrand_y3[1] = 4686.0f;
 	}
 	else if (cheeck3 == 2)
 	{
-		positionrand_x3[2] = 435.0f;
-		positionrand_y3[2] = 2600.0f;
+		positionrand_x3[2] = 659.0f;
+		positionrand_y3[2] = 5270.0f;
 
-		positionrand_x3[1] = 60.5f;
-		positionrand_y3[1] = 2200.0f;
+		positionrand_x3[1] = 819.0f;
+		positionrand_y3[1] = 4250.0f;
 
-		positionrand_x3[0] = 1585.0f;
-		positionrand_y3[0] = 2585.0f;
+		positionrand_x3[0] = 1770.0f;
+		positionrand_y3[0] = 4686.0f;
 	}
 	else if (cheeck3 == 3)
 	{
-		positionrand_x3[1] = 435.0f;
-		positionrand_y3[1] = 2600.0f;
+		positionrand_x3[1] = 659.0f;
+		positionrand_y3[1] = 5270.0f;
 
-		positionrand_x3[0] = 60.5f;
-		positionrand_y3[0] = 2200.0f;
+		positionrand_x3[0] = 819.0f;
+		positionrand_y3[0] = 4250.0f;
 
 
-		positionrand_x3[2] = 1585.0f;
-		positionrand_y3[2] = 2585.0f;
+		positionrand_x3[2] = 1770.0f;
+		positionrand_y3[2] = 4686.0f;
 
 	}
 	else if (cheeck3 == 4)
 	{
-		positionrand_x3[1] = 435.0f;
-		positionrand_y3[1] = 2600.0f;
+		positionrand_x3[1] = 659.0f;
+		positionrand_y3[1] = 5270.0f;
 
 
-		positionrand_x3[2] = 60.5f;
-		positionrand_y3[2] = 2200.0f;
+		positionrand_x3[2] = 819.0f;
+		positionrand_y3[2] = 4250.0f;
 
-		positionrand_x3[0] = 1585.0f;
-		positionrand_y3[0] = 2585.0f;
+		positionrand_x3[0] = 1770.0f;
+		positionrand_y3[0] = 4686.0f;
 	}
 	else if (cheeck3 == 5)
 	{
-		positionrand_x3[2] = 435.0f;
-		positionrand_y3[2] = 2600.0f;
+		positionrand_x3[2] = 659.0f;
+		positionrand_y3[2] = 5270.0f;
 
-		positionrand_x3[0] = 60.5f;
-		positionrand_y3[0] = 2200.0f;
+		positionrand_x3[0] = 819.0f;
+		positionrand_y3[0] = 4250.0f;
 
 
-		positionrand_x3[2] = 1585.0f;
-		positionrand_y3[2] = 2585.0f;
+		positionrand_x3[2] = 1770.0f;
+		positionrand_y3[2] = 4686.0f;
 	}
 	
 	//////////////////////////////////////////////////////
@@ -346,8 +346,12 @@ int main()
 
 	//Vector เพชรเทา ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0]))); 
-	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[0], positionrand_y2[0]))); 
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0], positionrand_y[0])));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[0], positionrand_y2[0])));
+	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[0], positionrand_y3[0])));
+	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0] , positionrand_y[0])));
+	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[0], positionrand_y2[0]))); 
+	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[0], positionrand_y3[0])));
 	//monVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y[2])));
 	//===========================================================================================================================================================
 
@@ -355,12 +359,14 @@ int main()
 	std::vector<dimonfah>DimonfahVector;
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[1], positionrand_y[1])));
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[1], positionrand_y2[1])));
+	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[1], positionrand_y3[1])));
 	//=============================================================================================================================================================
 
 	//Vector เพชรเขียว ===============================================================================================================================================
 	std::vector<dimongreen>DimongreenVector;
 	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2]))); 
 	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y2[2])));
+	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[2], positionrand_y3[2])));
 	//=============================================================================================================================================================
 
 	// Vector กล่อง ============================================================================================================================================== =
