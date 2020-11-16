@@ -24,6 +24,8 @@
 #include"button.h"
 #include"item.h"
 #include"boxsx.h"
+#include"Barrier.h"
+#include"Barrierred.h"
 using namespace std;
 
 
@@ -51,6 +53,8 @@ int main()
 	sf::Texture buttonn;
 	sf::Texture boxs;
 	sf::Texture boxsxs;
+	sf::Texture barrierr;
+	sf::Texture barrierreds;
 
 
 	int score = 0;
@@ -72,6 +76,8 @@ int main()
 	buttonn.loadFromFile("charecter/button.png");
 	boxs.loadFromFile("charecter/boxs.png");
 	boxsxs.loadFromFile("charecter/boxsx.png");
+	barrierr.loadFromFile("charecter/Barrier.png");
+	barrierreds.loadFromFile("charecter/Barrierred.png");
 
 
 	sf::Sprite background;
@@ -374,14 +380,14 @@ int main()
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(453.0f, 3263.0f)));
 	//=============================================================================================================================================================
 	
-		// Vector กล่องสายฟ้า ============================================================================================================================================== =
+		// Vector กล่องสายฟ้า =============================================================================================================================================
 		std::vector<item>itemVector;
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1760.5f, 360.0f)));
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1765.0f, 2800.0f)));
 		//=============================================================================================================================================================
 
-		// Vector กล่องไฟ ============================================================================================================================================== =
+		// Vector กล่องไฟ ===============================================================================================================================================
 		std::vector<boxsx>boxitemVector;
 		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 755.0f)));
 		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 3030.0f)));
@@ -389,6 +395,16 @@ int main()
 		
 		//=============================================================================================================================================================
 
+		//Vector ที่กั้น แมพ ==============================================================================================================================================
+		std::vector<Barrier>barrierVector;
+		barrierVector.push_back(Barrier(&barrierr, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.f), sf::Vector2f(1300.0f, 903.0f)));
+		//=============================================================================================================================================================
+
+
+		//Vector ที่กั้น แมพแดง ==============================================================================================================================================
+		std::vector<Barrierred>barrieredVector;
+		barrieredVector.push_back(Barrierred(&barrierreds, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.f), sf::Vector2f(1500.0f, 903.0f)));
+		//=============================================================================================================================================================
 
 	//Player **************************************************************************************************************************************************
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 7000);
@@ -850,6 +866,19 @@ int main()
 		}
 		//==================================================================//
 
+		//ที่กั้น
+		for (int i = 0; i < barrierVector.size(); i++) 
+		{
+			barrierVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
+		//ที่กั้น แดง
+		for (int i = 0; i < barrieredVector.size(); i++)
+		{
+			barrieredVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
 
 
 		
@@ -1219,10 +1248,22 @@ int main()
 					itemVector[i].draw(window);
 				}
 
-				// กล่องไฟ
+				// กล่องไฟ barrierVector
 				for (int i = 0; i < boxitemVector.size(); i++)
 				{
 					boxitemVector[i].draw(window);
+				}
+
+				// ที่กั้น 
+				for (int i = 0; i < barrierVector.size(); i++)
+				{
+					barrierVector[i].draw(window);
+				}
+
+				// ที่กั้นแดง
+				for (int i = 0; i < barrieredVector.size(); i++)
+				{
+					barrieredVector[i].draw(window);
 				}
 
 

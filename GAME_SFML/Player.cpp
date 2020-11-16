@@ -187,7 +187,7 @@ void Player::Warped(sf::RenderWindow& window)
 
 void Player::Warped2(sf::RenderWindow& window)
 {
-	hitbox.setPosition(450.0f, 5000.0f);
+	hitbox.setPosition(413.0f, 5280.0f);
 	body.setPosition(hitbox.getPosition());
 }
 
