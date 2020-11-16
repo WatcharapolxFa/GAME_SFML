@@ -26,6 +26,7 @@
 #include"boxsx.h"
 #include"Barrier.h"
 #include"Barrierred.h"
+#include"buttonred.h"
 using namespace std;
 
 
@@ -55,6 +56,7 @@ int main()
 	sf::Texture boxsxs;
 	sf::Texture barrierr;
 	sf::Texture barrierreds;
+	sf::Texture buttonredd;
 
 
 	int score = 0;
@@ -78,7 +80,7 @@ int main()
 	boxsxs.loadFromFile("charecter/boxsx.png");
 	barrierr.loadFromFile("charecter/Barrier.png");
 	barrierreds.loadFromFile("charecter/Barrierred.png");
-
+	buttonredd.loadFromFile("charecter/buttonred.png");
 
 	sf::Sprite background;
 	background.setTexture(menustr);
@@ -376,10 +378,18 @@ int main()
 	// Vector ปุ่ม ============================================================================================================================================== =
 		std::vector<button>buttonVector;
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
-		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
+		//buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
 		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(453.0f, 3263.0f)));
 	//=============================================================================================================================================================
 	
+		// Vector ปุ่มสีแดง ============================================================================================================================================== =
+		std::vector<buttonred>buttonredVector;
+		buttonredVector.push_back(buttonred(&buttonredd, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f, 203.0f)));
+	
+		//=============================================================================================================================================================
+
+			
+
 		// Vector กล่องสายฟ้า =============================================================================================================================================
 		std::vector<item>itemVector;
 		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
@@ -401,7 +411,7 @@ int main()
 		//=============================================================================================================================================================
 
 
-		//Vector ที่กั้น แมพแดง ==============================================================================================================================================
+		//Vector ที่กั้น แมพแดง ===========================================================================================================================================
 		std::vector<Barrierred>barrieredVector;
 		barrieredVector.push_back(Barrierred(&barrierreds, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.f), sf::Vector2f(1500.0f, 903.0f)));
 		//=============================================================================================================================================================
@@ -851,6 +861,13 @@ int main()
 		}
 		//==================================================================//
 
+		//ปุ่มแดง
+		for (int i = 0; i < buttonredVector.size(); i++)
+		{
+			buttonredVector[i].Update(deltaTime, player);
+		}
+		//==================================================================//
+
 		//กล่องสายฟ้า
 		for (int i = 0; i < itemVector.size(); i++)
 		{
@@ -1241,6 +1258,12 @@ int main()
 			for (int i = 0; i < buttonVector.size(); i++)
 			{
 				buttonVector[i].draw(window);
+			}
+
+			//ปุ่มแดง
+			for (int i = 0; i < buttonredVector.size(); i++)
+			{
+				buttonredVector[i].draw(window);
 			}
 			// กล่อสายฟ้า
 				for (int i = 0; i < itemVector.size(); i++)
