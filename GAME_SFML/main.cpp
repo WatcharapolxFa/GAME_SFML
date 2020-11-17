@@ -704,7 +704,7 @@ int main()
 		}
 
 	
-		std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		bullet1.cooldown(deltaTime, Bul);
 		bullet2.cooldown(deltaTime, Bul2);
@@ -757,7 +757,7 @@ int main()
 				if (evnt.text.unicode < 128)
 				{
 					char show = evnt.text.unicode;
-					std::cout << show << std::endl;  // Show input Keyboards
+					//std::cout << show << std::endl;  // Show input Keyboards
 				}
 			}
 		}
@@ -1211,7 +1211,7 @@ int main()
 		{
 			
 			//window.draw(back01);
-			window.draw(back02);
+			//window.draw(back02);
 			//window.draw(back03);
 			window.setView(view);
 
@@ -1220,7 +1220,7 @@ int main()
 
 
 			window.draw(back01);
-			/*window.draw(back02);*/
+			window.draw(back02);
 			window.draw(back03);
 
 			//ด่านไฟ

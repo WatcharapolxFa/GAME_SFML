@@ -60,7 +60,7 @@ void box::OnCollision(sf::Vector2f direction)
 		//Collision on the left.
 		velocity.x = 180.0f;
 		coll_X = true;
-		std::cout << "l";
+		//std::cout << "l";
 
 	}
  
@@ -70,7 +70,7 @@ void box::OnCollision(sf::Vector2f direction)
 		//Collision on the right.
 		velocity.x = -180.0f;
 		coll_X = true;
-		std::cout << "r";
+		//std::cout << "r";
 	}
 
 	if (!coll_X) {
