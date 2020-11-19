@@ -108,7 +108,7 @@ int main()
 		positionrand_x[1] = 1270.0f;
 		positionrand_y[1] = 1050.0f;
 
-		positionrand_x[2] = 1000.0f;
+		positionrand_x[2] = 1273.0f;
 		positionrand_y[2] = 415.0f;
 
 	}
@@ -153,7 +153,7 @@ int main()
 		positionrand_x[2] = 850.0f;
 		positionrand_y[2] = 1250.0f;
 
-		positionrand_x[0] = 1000.0f;
+		positionrand_x[0] = 1273.0f;
 		positionrand_y[0] = 415.0f;
 	}
 	else if (cheeck == 5)
@@ -161,11 +161,11 @@ int main()
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 65.0f;
 
-		positionrand_x[0] = 840.0f;
-		positionrand_y[0] = 1150.0f;
+		positionrand_x[0] = 850.0f;
+		positionrand_y[0] = 1250.0f;
 
-		positionrand_x[2] = 943.0f;
-		positionrand_y[2] = 480.0f;
+		positionrand_x[2] = 1273.0f;
+		positionrand_y[2] = 415.0f;
 	}
 	//???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	int cheeck2 = rand() % 6;
@@ -189,7 +189,7 @@ int main()
 		positionrand_y2[0] = 2600.0f;
 
 		positionrand_x2[2] = 60.5f;
-		positionrand_y2[2] = 2200.0f;
+		positionrand_y2[2] = 2350.0f;
 
 		positionrand_x2[1] = 1585.0f;
 		positionrand_y2[1] = 2585.0f;
@@ -200,7 +200,7 @@ int main()
 		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[1] = 60.5f;
-		positionrand_y2[1] = 2200.0f;
+		positionrand_y2[1] = 2350.0f;
 
 		positionrand_x2[0] = 1585.0f;
 		positionrand_y2[0] = 2585.0f;
@@ -211,7 +211,7 @@ int main()
 		positionrand_y2[1] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
-		positionrand_y2[0] = 2200.0f;
+		positionrand_y2[0] = 2350.0f;
 
 		positionrand_x2[2] = 1585.0f;
 		positionrand_y2[2] = 2585.0f;
@@ -224,7 +224,7 @@ int main()
 
 
 		positionrand_x2[2] = 60.5f;
-		positionrand_y2[2] = 2200.0f;
+		positionrand_y2[2] = 2350.0f;
 
 		positionrand_x2[0] = 1585.0f;
 		positionrand_y2[0] = 2585.0f;
@@ -235,7 +235,7 @@ int main()
 		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
-		positionrand_y2[0] = 2200.0f;
+		positionrand_y2[0] = 2350.0f;
 
 
 		positionrand_x2[2] = 1585.0f;
@@ -352,7 +352,7 @@ int main()
 	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[0], positionrand_y3[0])));
 	//monVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y[2])));
 	//===========================================================================================================================================================
-
+	
 	//Vector เพชรฟ้า ===============================================================================================================================================
 	std::vector<dimonfah>DimonfahVector;
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[1], positionrand_y[1])));
@@ -1210,18 +1210,18 @@ int main()
 		if (cheeckongame == 1)
 		{
 			
-			//window.draw(back01);
-			//window.draw(back02);
-			//window.draw(back03);
+			window.draw(back01);
+			window.draw(back02);
+			window.draw(back03);
 			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
 				platfrom.Draw(window);
 
 
-			window.draw(back01);
+			/*window.draw(back01);
 			window.draw(back02);
-			window.draw(back03);
+			window.draw(back03);*/
 
 			//ด่านไฟ
 			for (int i = 0; i < FireVector.size(); i++)
