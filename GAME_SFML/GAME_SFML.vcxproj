@@ -165,6 +165,7 @@
     </ClCompile>
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="platfrom2.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stop.cpp" />
     <ClCompile Include="waterbg.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="platfrom2.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="stop.h" />
     <ClInclude Include="waterbg.h" />

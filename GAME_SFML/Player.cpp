@@ -15,7 +15,8 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	faceRight = true;
 	fire = false;
 	canJump = false;
-	
+	float cooldown = 300;
+
 	body.setSize(sf::Vector2f(60.0f, 98.0f));
 	body.setOrigin({ body.getSize().x / 2.0f, 2 * body.getSize().y / 3.0f });
 
@@ -36,10 +37,11 @@ Player :: ~Player()
 
 }
 
-void Player::Update(float deltaTime,sf::Vector2f direction)
+void Player::Update(float deltaTime,sf::Vector2f direction,float cooldown)
 {
 	velocity.x = 0.0f;
 	fire = false;
+	cooldowns = cooldown;
 	
 
 
@@ -65,22 +67,26 @@ void Player::Update(float deltaTime,sf::Vector2f direction)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 	{
-		if (faceRight == true)
+		if (cooldowns <= 200)
 		{
-			velocity.x = 2 * speed;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				velocity.x = -2 * speed;
-				faceRight = false;
-			}
-		}
-		if (faceRight == false)
-		{
-			velocity.x = -2 * speed;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			if (faceRight == true)
 			{
 				velocity.x = 2 * speed;
-				faceRight = true;
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+
+					velocity.x = -2 * speed;
+					faceRight = false;
+				}
+			}
+			if (faceRight == false)
+			{
+				velocity.x = -2 * speed;
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					velocity.x = 2 * speed;
+					faceRight = true;
+				}
 			}
 		}
 	}

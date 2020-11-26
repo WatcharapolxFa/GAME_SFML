@@ -1,4 +1,3 @@
-﻿#pragma warning(disable : 26812)
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
@@ -27,6 +26,7 @@
 #include"Barrier.h"
 #include"Barrierred.h"
 #include"buttonred.h"
+#include"platfrom2.h"
 using namespace std;
 
 
@@ -58,7 +58,7 @@ int main()
 	sf::Texture barrierreds;
 	sf::Texture buttonredd;
 	int score = 0;
-	
+	float cooldown = 0;
 
 	//Load File
 	princess.loadFromFile("charecter/princess.png");
@@ -92,14 +92,14 @@ int main()
 	music.setVolume(25.0f);
 	music.play();*/
 	//=========================================================================================================================================================
-	
-	
+
+
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-	//check การสุ่มเกิดดาว
+	//check ??????????????
 	srand(time(NULL));
-	int cheeck=rand()%6;
+	int cheeck = rand() % 6;
 	float positionrand_x[3]{}, positionrand_y[3]{};
-	
+
 	if (cheeck == 0)
 	{
 		positionrand_x[0] = 943.0f;
@@ -123,7 +123,7 @@ int main()
 		positionrand_x[1] = 1273.0f;
 		positionrand_y[1] = 415.0f;
 	}
-	else if(cheeck == 2)
+	else if (cheeck == 2)
 	{
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 65.0f;
@@ -319,11 +319,11 @@ int main()
 		positionrand_x3[2] = 1770.0f;
 		positionrand_y3[2] = 4686.0f;
 	}
-	
-	
-	//Vector ไฟ ===============================================================================================================================================
+
+
+	//Vector ?? ===============================================================================================================================================
 	std::vector<friebg>FireVector;
-	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f),sf::Vector2f(495.0f, 1330.0f)));
+	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f), sf::Vector2f(495.0f, 1330.0f)));
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f), sf::Vector2f(1245.0f, 1330.0f)));
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(400.f, 150.0f), sf::Vector2f(583.0f, 720.0f)));
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(330.f, 170.0f), sf::Vector2f(560.0f, 2280.0f)));
@@ -333,16 +333,16 @@ int main()
 	FireVector.push_back(friebg(&firebgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(220.f, 170.0f), sf::Vector2f(1061.0f, 4286.0f)));
 	//=========================================================================================================================================================
 
-	//Vector น้ำ ===============================================================================================================================================
+	//Vector ??? ===============================================================================================================================================
 	std::vector<waterbg>WaterVector;
-	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(320.f, 140.0f),sf::Vector2f(1250.0f, 723.0f)));
-	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(200.f, 150.0f),sf::Vector2f(155.0f, 2515.0f)));
-	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f,  sf::Vector2f(200.f, 150.0f),sf::Vector2f(1577.3f, 2520.0f)));
-	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(239.f, 150.0f),sf::Vector2f(1365.3f, 3080.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(320.f, 140.0f), sf::Vector2f(1250.0f, 723.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(200.f, 150.0f), sf::Vector2f(155.0f, 2515.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(200.f, 150.0f), sf::Vector2f(1577.3f, 2520.0f)));
+	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(239.f, 150.0f), sf::Vector2f(1365.3f, 3080.0f)));
 	WaterVector.push_back(waterbg(&waterbgg, sf::Vector2u(2, 1), 0.5f, sf::Vector2f(130.f, 150.0f), sf::Vector2f(1136.3f, 5138.0f)));
 	//=========================================================================================================================================================
 
-	//Vector เพชรเทา ===============================================================================================================================================
+	//Vector ??????? ===============================================================================================================================================
 	std::vector<dimon>DimonVector;
 	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[0], positionrand_y[0])));
 	DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[0], positionrand_y2[0])));
@@ -352,75 +352,75 @@ int main()
 	//DimonVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[0], positionrand_y3[0])));
 	//monVector.push_back(dimon(&daimonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y[2])));
 	//===========================================================================================================================================================
-	
-	//Vector เพชรฟ้า ===============================================================================================================================================
+
+	//Vector ??????? ===============================================================================================================================================
 	std::vector<dimonfah>DimonfahVector;
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[1], positionrand_y[1])));
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[1], positionrand_y2[1])));
 	DimonfahVector.push_back(dimonfah(&daimonfah, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[1], positionrand_y3[1])));
 	//=============================================================================================================================================================
 
-	//Vector เพชรเขียว ===============================================================================================================================================
+	//Vector ????????? ===============================================================================================================================================
 	std::vector<dimongreen>DimongreenVector;
-	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2]))); 
+	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x[2], positionrand_y[2])));
 	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x2[2], positionrand_y2[2])));
 	DimongreenVector.push_back(dimongreen(&daimongreen, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(100.f, 100.0f), sf::Vector2f(positionrand_x3[2], positionrand_y3[2])));
 	//=============================================================================================================================================================
 
-	// Vector กล่อง ============================================================================================================================================== =
-		std::vector<box>boxVector;
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(211.0f, 1285.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(876.0f, 1285.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(947.0f, 628.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(963.0f, 2254.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1462, 2800.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(575, 690.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(360.0f, 3263.0f)));
-		boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(305.0f, 2480.0f)));
+	// Vector ????? ============================================================================================================================================== =
+	std::vector<box>boxVector;
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(211.0f, 1285.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(876.0f, 1285.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(947.0f, 628.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(963.0f, 2254.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1462, 2800.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(575, 690.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(360.0f, 3263.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(305.0f, 2480.0f)));
 
 	//=============================================================================================================================================================
-	// Vector ปุ่ม ============================================================================================================================================== =
-		std::vector<button>buttonVector;
-		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
-		//buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
-		buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(453.0f, 3263.0f)));
+	// Vector ???? ============================================================================================================================================== =
+	std::vector<button>buttonVector;
+	buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1516.0f, 910.0f)));
+	//buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f,203.0f)));
+	buttonVector.push_back(button(&buttonn, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(453.0f, 3263.0f)));
 	//=============================================================================================================================================================
-	
-		// Vector ปุ่มสีแดง ============================================================================================================================================== =
-		std::vector<buttonred>buttonredVector;
-		buttonredVector.push_back(buttonred(&buttonredd, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f, 203.0f)));
-	
-		//=============================================================================================================================================================
 
-			
+		// Vector ????????? ============================================================================================================================================== =
+	std::vector<buttonred>buttonredVector;
+	buttonredVector.push_back(buttonred(&buttonredd, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1277.0f, 203.0f)));
 
-		// Vector กล่องสายฟ้า =============================================================================================================================================
-		std::vector<item>itemVector;
-		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
-		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1760.5f, 360.0f)));
-		itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1765.0f, 2800.0f)));
-		//=============================================================================================================================================================
-
-		// Vector กล่องไฟ ===============================================================================================================================================
-		std::vector<boxsx>boxitemVector;
-		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 755.0f)));
-		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 3030.0f)));
-		boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(910.0f, 2640.0f)));
-		
-		//=============================================================================================================================================================
-
-		//Vector ที่กั้น แมพ ==============================================================================================================================================
-		std::vector<Barrier>barrierVector;
-		barrierVector.push_back(Barrier(&barrierr, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.f), sf::Vector2f(1300.0f, 903.0f)));
-		//=============================================================================================================================================================
+	//=============================================================================================================================================================
 
 
-		//Vector ที่กั้น แมพแดง ===========================================================================================================================================
-		std::vector<Barrierred>barrieredVector;
-		barrieredVector.push_back(Barrierred(&barrierreds, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(200.0f, 50.f), sf::Vector2f(775.0f, 226.0f)));
-		//=============================================================================================================================================================
 
-	//Player **************************************************************************************************************************************************
+	// Vector ??????????? =============================================================================================================================================
+	std::vector<item>itemVector;
+	itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 1285.0f)));
+	itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1760.5f, 360.0f)));
+	itemVector.push_back(item(&boxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1765.0f, 2800.0f)));
+	//=============================================================================================================================================================
+
+	// Vector ??????? ===============================================================================================================================================
+	std::vector<boxsx>boxitemVector;
+	boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 755.0f)));
+	boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(75.0f, 3030.0f)));
+	boxitemVector.push_back(boxsx(&boxsxs, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(910.0f, 2640.0f)));
+
+	//=============================================================================================================================================================
+
+	//Vector ??????? ??? ==============================================================================================================================================
+	std::vector<Barrier>barrierVector;
+	barrierVector.push_back(Barrier(&barrierr, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.f), sf::Vector2f(1300.0f, 903.0f)));
+	//=============================================================================================================================================================
+
+
+	//Vector ??????? ?????? ===========================================================================================================================================
+	std::vector<Barrierred>barrieredVector;
+	barrieredVector.push_back(Barrierred(&barrierreds, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(200.0f, 50.f), sf::Vector2f(775.0f, 226.0f)));
+	//=============================================================================================================================================================
+
+//Player **************************************************************************************************************************************************
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
 	//*********************************************************************************************************************************************************
 
@@ -430,7 +430,7 @@ int main()
 	data.top = 300;
 	data.left = 0;
 	data.width = 900;
-	data.height = 300; 
+	data.height = 300;
 	heartt.setTextureRect(data);
 	heartt.setTexture(&heart);
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -443,11 +443,11 @@ int main()
 	manaa.setTextureRect(datamana);
 	manaa.setTexture(&mana);
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 
 
-	// ตำแหน่ง ตัวละคร
-	sf::Vector2f pos ;
+
+	// ??????? ???????
+	sf::Vector2f pos;
 
 	// Menu
 	Menu menu(window.getSize().x, window.getSize().y);
@@ -465,7 +465,7 @@ int main()
 	int Bul2 = 0;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080, 720));
 
 
@@ -473,9 +473,9 @@ int main()
 	//hitbox
 	/*HitboxComponent hitboxPlayer(0, 0, sf::Vector2f(30.0f, 52.0f), player.GetPosition());*/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
+
+
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Warp
 	sf::RectangleShape waroPoint(sf::Vector2f(20, 40));
@@ -485,7 +485,7 @@ int main()
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
 	waroPoint2.setPosition(sf::Vector2f(1693, 3201));
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//cob01
@@ -495,9 +495,9 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1408.5f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, -50.0f)));
 
-	
+
 	//back01
-	
+
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(300.0f, 40.0f), sf::Vector2f(140.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(860.0f, 1350.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(380.0f, 40.0f), sf::Vector2f(1630.0f, 1350.0f)));
@@ -517,11 +517,11 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(170.0f, 95.0f), sf::Vector2f(1400.0f, 300.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(370.0f, 40.0f), sf::Vector2f(1220.0f, 272.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(800.0f, 40.0f), sf::Vector2f(390.0f, 272.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(700.0f, 60.0f), sf::Vector2f(330.0f,20.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(700.0f, 60.0f), sf::Vector2f(330.0f, 20.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(700.0f, 60.0f), sf::Vector2f(1480.0f, 20.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 1500.0f), sf::Vector2f(23.0f, 600.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 1500.0f), sf::Vector2f(1820.0f, 600.0f)));
-	
+
 	//bg01
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -532,7 +532,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 33.5f), sf::Vector2f(915.25f, 3365.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1950.0f)));
 	//bg02
-	
+
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 3225.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1000.0f, 30.0f), sf::Vector2f(600.0f, 3330.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 30.0f), sf::Vector2f(915.0f, 3290.0f)));
@@ -577,7 +577,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(45.0f, 30.0f), sf::Vector2f(767.0f, 2970.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(15.0f, 10.0f), sf::Vector2f(430.0f, 2700.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(15.0f, 10.0f), sf::Vector2f(52.5f, 2350.0f)));
-	
+
 	//bg2
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -588,7 +588,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 3980.5f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 5950.0f)));
 	//bg3
-	
+
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(130.0f, 130.0f), sf::Vector2f(60.0f, 5300.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 30.0f), sf::Vector2f(172.0f, 5340.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(130.0f, 5.0f), sf::Vector2f(283.0f, 5355.0f)));
@@ -610,10 +610,10 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(30.0f, 230.0f), sf::Vector2f(1435.0f, 5150.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(290.0f, 30.0f), sf::Vector2f(1270.0f, 5015.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(120.0f, 60.0f), sf::Vector2f(1470.0f, 4916.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(200.0f, 70.0f), sf::Vector2f(1415.0f,4976.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(200.0f, 70.0f), sf::Vector2f(1415.0f, 4976.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(35.0f, 400.0f), sf::Vector2f(1528.0f, 4785.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(605.0f, 35.0f), sf::Vector2f(1010.0f, 4775.0f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(200.0f, 35.0f), sf::Vector2f(835.0f,4740.0f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(200.0f, 35.0f), sf::Vector2f(835.0f, 4740.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(585.0f, 35.0f), sf::Vector2f(1230.0f, 4580.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(60.0f, 60.0f), sf::Vector2f(809.0f, 4695.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(500.0f, 35.0f), sf::Vector2f(390.0f, 4870.0f)));
@@ -640,7 +640,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1780.0f, 5180.0f)));
 
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
-	
+
 
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	//bg01
@@ -690,7 +690,7 @@ int main()
 
 
 
-	int u=0;
+	int u = 0;
 	int cheeckongame = 0;
 	//OPEN WINDOW
 	while (window.isOpen())
@@ -703,7 +703,7 @@ int main()
 			showtime << (int)time.asSeconds() / 60 << " : " << (int)time.asSeconds() % 60;
 		}
 
-	
+
 		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 		//std::cout << Bul << std::endl;
 		bullet1.cooldown(deltaTime, Bul);
@@ -742,16 +742,16 @@ int main()
 						break;
 					}
 
-				
-			}
-			
 
-			break;
+				}
+
+
+				break;
 			case sf::Event::Closed: // When you press close.
 				window.close();
 				break;
 
-			
+
 
 			case sf::Event::TextEntered:
 				if (evnt.text.unicode < 128)
@@ -762,11 +762,28 @@ int main()
 			}
 		}
 		sf::Vector2f direction;
+		Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x + 50, view.getCenter().y - 360));
 
-		player.Update(deltaTime, direction);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D))))
+		{
+			if (cooldown <= 200)
+			{
+				cooldown += 1.5;
+			}
+		}
+		else
+		{
+			if (cooldown>=0)
+			{
+				cooldown -= 0.2;
+			}
+			
+		}
+
+		player.Update(deltaTime, direction,cooldown);
 
 
-
+	
 		for (Platform& platfrom : platfroms)
 			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
 				player.OnCollision(direction);
@@ -791,7 +808,7 @@ int main()
 				score += 5;
 				printf("%d", score);
 
-				
+
 			}
 		}
 
@@ -817,62 +834,62 @@ int main()
 
 
 
-		
-		// Update ด่านไฟ //==================================================================//
+
+		// Update ?????? //==================================================================//
 		for (int i = 0; i < FireVector.size(); i++)
 		{
 			FireVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		// Update ด่านน้ำ //==================================================================//
+		// Update ??????? //==================================================================//
 		for (int i = 0; i < WaterVector.size(); i++)
 		{
 			WaterVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
-		// Update เพชร //==================================================================//
+		// Update ???? //==================================================================//
 		for (int i = 0; i < DimonVector.size(); i++)
 		{
 			DimonVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		// Update เพชรฟ้า //==================================================================//
+		// Update ??????? //==================================================================//
 		for (int i = 0; i < DimonfahVector.size(); i++)
 		{
 			DimonfahVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		// Update เพชรเขียว //==================================================================//
+		// Update ????????? //==================================================================//
 		for (int i = 0; i < DimongreenVector.size(); i++)
 		{
 			DimongreenVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
-		//กล่อง
+		//?????
 		for (int i = 0; i < boxVector.size(); i++)
 		{
 			boxVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		//ปุ่ม
+		//????
 		for (int i = 0; i < buttonVector.size(); i++)
 		{
 			buttonVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		//ปุ่มแดง
+		//???????
 		for (int i = 0; i < buttonredVector.size(); i++)
 		{
 			buttonredVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		//กล่องสายฟ้า
+		//???????????
 		for (int i = 0; i < itemVector.size(); i++)
 		{
 			itemVector[i].Update(deltaTime, player);
@@ -880,21 +897,21 @@ int main()
 		//==================================================================//
 
 
-		//กล่องไฟ
+		//???????
 		for (int i = 0; i < boxitemVector.size(); i++)
 		{
 			boxitemVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		//ที่กั้น
-		for (int i = 0; i < barrierVector.size(); i++) 
+		//???????
+		for (int i = 0; i < barrierVector.size(); i++)
 		{
 			barrierVector[i].Update(deltaTime, player);
 		}
 		//==================================================================//
 
-		//ที่กั้น แดง
+		//??????? ???
 		for (int i = 0; i < barrieredVector.size(); i++)
 		{
 			barrieredVector[i].Update(deltaTime, player);
@@ -902,23 +919,23 @@ int main()
 		//==================================================================//
 
 
-		
+
 
 
 		//==================================================================//
 		//hitbox
 		/*hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);*/
 		//==================================================================//
-		
 
 
-		
-		
-		
 
 
-		
-		
+
+
+
+
+
+
 		//std::cout << "dir x = " << direction.x << " dir y = " << direction.y << endl;
 		//delete this debug view warp cheat button
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
@@ -932,7 +949,7 @@ int main()
 		if (player.GetPosition().y <= 2000) {
 			u = 0;
 			view.setCenter(sf::Vector2f(player.GetPosition()));
-			if (view.getCenter().x - 540.0f <= 0.0f)//เช็คค่า x มุมซ้ายสุด ขนาดครึ่งจอ 0.0 ขนาดของรูป ซ้าย
+			if (view.getCenter().x - 540.0f <= 0.0f)//??????? x ?????????? ??????????? 0.0 ?????????? ????
 			{
 				//view.setCenter(540.f, view.getCenter().y);
 
@@ -950,7 +967,7 @@ int main()
 				}
 
 			}
-			if (view.getCenter().x + 540.0f >= 1830.5f)//เช็คค่า x 1830.5 ขนาดเต็มของรูปเรา ขวา
+			if (view.getCenter().x + 540.0f >= 1830.5f)//??????? x 1830.5 ????????????????? ???
 			{
 				if (view.getCenter().y - 360.0f <= 0.0f)
 				{
@@ -965,7 +982,7 @@ int main()
 					view.setCenter(1290.5f, player.GetPosition().y);
 				}
 			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)//เช็คค่า x ด้านล่าง
+			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)//??????? x ????????
 			{
 				if (view.getCenter().y - 360.0f <= 0.0f)
 				{
@@ -1014,7 +1031,7 @@ int main()
 
 		}
 		///// viw 02
-		if (player.GetPosition().y >=2000 && player.GetPosition().y< 4000)
+		if (player.GetPosition().y >= 2000 && player.GetPosition().y < 4000)
 		{
 			u = 1;
 
@@ -1094,7 +1111,7 @@ int main()
 				}
 				if (view.getCenter().y + 360.0f >= 3358.5f)
 				{
-					view.setCenter(player.GetPosition().x,2998.5f);
+					view.setCenter(player.GetPosition().x, 2998.5f);
 				}
 			}
 		}
@@ -1104,7 +1121,7 @@ int main()
 		if (player.GetPosition().y > 4000)
 		{
 			u = 2;
-			
+
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
 				faceright = false;
@@ -1139,7 +1156,7 @@ int main()
 					bullet2.attackL(pos);
 				}
 			}
-		}if (u==2)
+		}if (u == 2)
 		{
 			view.setCenter(sf::Vector2f(player.GetPosition()));
 			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
@@ -1162,7 +1179,7 @@ int main()
 			{
 				if (view.getCenter().y - 360.0f <= 3980.0f)
 				{
-					view.setCenter(1290.5f, 3980.0f +360.0f);//window 1248-540 collision right 
+					view.setCenter(1290.5f, 3980.0f + 360.0f);//window 1248-540 collision right 
 				}
 				else if (view.getCenter().y + 360.0f >= 5358.5f)
 				{
@@ -1177,7 +1194,7 @@ int main()
 			{
 				if (view.getCenter().y - 360.0f <= 3980.0f)
 				{
-					view.setCenter(player.GetPosition().x, 3980.0f+360.0f);
+					view.setCenter(player.GetPosition().x, 3980.0f + 360.0f);
 				}
 				else if (view.getCenter().y + 360.0f >= 5358.5f)
 				{
@@ -1185,7 +1202,7 @@ int main()
 				}
 			}
 		}
-		
+
 		// Time //==================================================================//
 
 		lbltime.setString(showtime.str());
@@ -1195,7 +1212,7 @@ int main()
 		lbltime.setPosition(view.getCenter().x + 200, view.getCenter().y - 360);
 
 		//==================================================================//
-		
+
 
 		window.clear();
 
@@ -1205,11 +1222,11 @@ int main()
 			window.draw(background);
 			menu.draw(window);
 			//Stop.draw(window);
-			
+
 		}
 		if (cheeckongame == 1)
 		{
-			
+
 			window.draw(back01);
 			window.draw(back02);
 			window.draw(back03);
@@ -1223,75 +1240,75 @@ int main()
 			window.draw(back02);
 			window.draw(back03);*/
 
-			//ด่านไฟ
+			//??????
 			for (int i = 0; i < FireVector.size(); i++)
 			{
 				FireVector[i].draw(window);
 			}
-			//ด่านน้ำ
+			//???????
 			for (int i = 0; i < WaterVector.size(); i++)
 			{
 				WaterVector[i].draw(window);
 			}
-			//เพชร
+			//????
 			for (int i = 0; i < DimonVector.size(); i++)
 			{
 				DimonVector[i].draw(window);
 			}
 
-			//เพชรฟ้า
+			//???????
 			for (int i = 0; i < DimonfahVector.size(); i++)
 			{
 				DimonfahVector[i].draw(window);
 			}
 
-			//เพชรเขียว
+			//?????????
 			for (int i = 0; i < DimongreenVector.size(); i++)
 			{
 				DimongreenVector[i].draw(window);
 			}
 
 
-			//กล่อง
+			//?????
 			for (int i = 0; i < boxVector.size(); i++)
 			{
 				boxVector[i].draw(window);
 			}
 
-			//ปุ่ม
+			//????
 			for (int i = 0; i < buttonVector.size(); i++)
 			{
 				buttonVector[i].draw(window);
 			}
 
-			//ปุ่มแดง
+			//???????
 			for (int i = 0; i < buttonredVector.size(); i++)
 			{
 				buttonredVector[i].draw(window);
 			}
-			// กล่อสายฟ้า
-				for (int i = 0; i < itemVector.size(); i++)
-				{
-					itemVector[i].draw(window);
-				}
+			// ??????????
+			for (int i = 0; i < itemVector.size(); i++)
+			{
+				itemVector[i].draw(window);
+			}
 
-				// กล่องไฟ barrierVector
-				for (int i = 0; i < boxitemVector.size(); i++)
-				{
-					boxitemVector[i].draw(window);
-				}
+			// ??????? barrierVector
+			for (int i = 0; i < boxitemVector.size(); i++)
+			{
+				boxitemVector[i].draw(window);
+			}
 
-				// ที่กั้น 
-				for (int i = 0; i < barrierVector.size(); i++)
-				{
-					barrierVector[i].draw(window);
-				}
+			// ??????? 
+			for (int i = 0; i < barrierVector.size(); i++)
+			{
+				barrierVector[i].draw(window);
+			}
 
-				// ที่กั้นแดง
-				for (int i = 0; i < barrieredVector.size(); i++)
-				{
-					barrieredVector[i].draw(window);
-				}
+			// ??????????
+			for (int i = 0; i < barrieredVector.size(); i++)
+			{
+				barrieredVector[i].draw(window);
+			}
 
 
 			//==================================================================//
@@ -1310,7 +1327,8 @@ int main()
 			}window.draw(waroPoint2);
 			//==================================================================//
 
-
+			coolspeed.Draw(window);
+			printf("%.2f", cooldown);
 			//player
 			player.Draw(window);
 
@@ -1327,7 +1345,7 @@ int main()
 
 			//hitbox
 			//hitboxPlayer.Draw(window);
-			
+
 			/*for (int i = 0; i < DimonVector.size(); i++) {
 				if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
 					cout << "Wow";
@@ -1407,7 +1425,7 @@ int main()
 				bullet2.SetPosition(pos);
 			}
 		}
-		
+
 		window.display();
 	}
 }

@@ -10,7 +10,7 @@ public :
 	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight);
 	~Player();
 
-	void Update(float deltaTime, sf::Vector2f direction);
+	void Update(float deltaTime, sf::Vector2f direction,float cooldown);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
 	void Warped(sf::RenderWindow& window);
@@ -24,6 +24,7 @@ public :
 	}
 
 private : 
+	float cooldowns;
 	sf::RectangleShape body;
 	sf::RectangleShape hitbox;
 	Animation animation;
