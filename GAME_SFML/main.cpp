@@ -85,12 +85,12 @@ int main()
 	background.setTexture(menustr);
 	//=========================================================================================================================================================
 	//Music
-	/*if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
+	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
 	{
 		std::cout << "ERROR" << std::endl;
 	}
 	music.setVolume(25.0f);
-	music.play();*/
+	music.play();
 	//=========================================================================================================================================================
 
 
@@ -173,11 +173,11 @@ int main()
 
 	if (cheeck2 == 0)
 	{
-		positionrand_x2[0] = 435.0f;
+		positionrand_x2[0] = 438.0f;
 		positionrand_y2[0] = 2600.0f;
 
 		positionrand_x2[1] = 60.5f;
-		positionrand_y2[1] = 2350.0f;
+		positionrand_y2[1] = 2280.0f;
 
 		positionrand_x2[2] = 1585.0f;
 		positionrand_y2[2] = 2585.0f;
@@ -185,33 +185,33 @@ int main()
 	}
 	else if (cheeck2 == 1)
 	{
-		positionrand_x2[0] = 435.0f;
+		positionrand_x2[0] = 438.0f;
 		positionrand_y2[0] = 2600.0f;
 
 		positionrand_x2[2] = 60.5f;
-		positionrand_y2[2] = 2350.0f;
+		positionrand_y2[2] = 2280.0f;
 
 		positionrand_x2[1] = 1585.0f;
 		positionrand_y2[1] = 2585.0f;
 	}
 	else if (cheeck2 == 2)
 	{
-		positionrand_x2[2] = 435.0f;
+		positionrand_x2[2] = 438.0f;
 		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[1] = 60.5f;
-		positionrand_y2[1] = 2350.0f;
+		positionrand_y2[1] = 2280.0f;
 
 		positionrand_x2[0] = 1585.0f;
 		positionrand_y2[0] = 2585.0f;
 	}
 	else if (cheeck2 == 3)
 	{
-		positionrand_x2[1] = 435.0f;
+		positionrand_x2[1] = 438.0f;
 		positionrand_y2[1] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
-		positionrand_y2[0] = 2350.0f;
+		positionrand_y2[0] = 2280.0f;
 
 		positionrand_x2[2] = 1585.0f;
 		positionrand_y2[2] = 2585.0f;
@@ -219,23 +219,23 @@ int main()
 	}
 	else if (cheeck2 == 4)
 	{
-		positionrand_x2[1] = 435.0f;
+		positionrand_x2[1] = 438.0f;
 		positionrand_y2[1] = 2600.0f;
 
 
 		positionrand_x2[2] = 60.5f;
-		positionrand_y2[2] = 2350.0f;
+		positionrand_y2[2] = 2280.0f;
 
 		positionrand_x2[0] = 1585.0f;
 		positionrand_y2[0] = 2585.0f;
 	}
 	else if (cheeck2 == 5)
 	{
-		positionrand_x2[2] = 435.0f;
+		positionrand_x2[2] = 438.0f;
 		positionrand_y2[2] = 2600.0f;
 
 		positionrand_x2[0] = 60.5f;
-		positionrand_y2[0] = 2350.0f;
+		positionrand_y2[0] = 2280.0f;
 
 
 		positionrand_x2[2] = 1585.0f;
@@ -762,7 +762,7 @@ int main()
 			}
 		}
 		sf::Vector2f direction;
-		Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x + 50, view.getCenter().y - 360));
+		Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x-550, view.getCenter().y - 350));
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D))))
 		{
