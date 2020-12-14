@@ -193,6 +193,13 @@
     <ClInclude Include="stop.h" />
     <ClInclude Include="waterbg.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="score1.txt" />
+    <Text Include="score2.txt" />
+    <Text Include="score3.txt" />
+    <Text Include="score4.txt" />
+    <Text Include="score5.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

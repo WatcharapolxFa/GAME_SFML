@@ -11,6 +11,7 @@ public:
 
 	void Update(float deltaTime, Player player);
 	void draw(sf::RenderWindow& window);
+	void re();
 	sf::RectangleShape getBody();
 	Collider GetCollider() { return Collider(hitbox); }
 	void pickup();
@@ -23,5 +24,6 @@ private:
 	float switchTime;
 	sf::RectangleShape hitbox;
 	unsigned int row;
+	sf::Vector2f position;
 };
 

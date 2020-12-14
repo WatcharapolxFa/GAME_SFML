@@ -7,6 +7,7 @@
 box::box(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position) :
 	animation(texture, imageCount, switchTime)
 {
+	this->position = position;
 	body.setSize(size);
 	body.setOrigin(size.x / 2.f, size.y / 2.f);
 	body.setPosition(position);
@@ -46,6 +47,12 @@ void box::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
 	window.draw(hitbox);
+}
+
+void box::re()
+{
+	body.setPosition(position);
+	hitbox.setPosition(position);
 }
 
 sf::RectangleShape box::getBody() {

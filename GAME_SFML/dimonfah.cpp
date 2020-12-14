@@ -5,6 +5,7 @@
 dimonfah::dimonfah(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f size, sf::Vector2f position) :
 	animation(texture, imageCount, switchTime)
 {
+	this->position = position;
 	body.setSize(size);
 	body.setTexture(texture);
 	body.setPosition(position);
@@ -34,6 +35,11 @@ void dimonfah::draw(sf::RenderWindow& window)
 {
 	window.draw(body);
 	window.draw(hitbox);
+}
+void dimonfah::re()
+{
+	body.setPosition(position);
+	hitbox.setPosition(position);
 }
 sf::RectangleShape dimonfah::getBody() {
 	return this->body;

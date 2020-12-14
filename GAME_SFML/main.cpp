@@ -27,6 +27,7 @@
 #include"Barrierred.h"
 #include"buttonred.h"
 #include"platfrom2.h"
+#include"fstream"
 using namespace std;
 
 
@@ -661,6 +662,11 @@ int main()
 	sf::RectangleShape back03(sf::Vector2f(1830.5f, 1358.5f));
 	back03.setPosition(0.0f, 4000.0f);
 	back03.setTexture(&bg03);
+
+	sf::RectangleShape pauses(sf::Vector2f(1080.0f, 720.0f));
+	sf::Texture pau;
+	pau.loadFromFile("charecter/menu.png");
+	pauses.setTexture(&pau);
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//==================================================================//
@@ -689,743 +695,1276 @@ int main()
 	//==================================================================//
 
 
-
+	bool pause = false;
+	int pselect = 0;
+	bool dead = false;
+	int dselect = 0;
+	bool menup = true;
+	int mselect = 0;
+	bool sav;
 	int u = 0;
 	int cheeckongame = 0;
+	std::ostringstream savetime;
 	//OPEN WINDOW
 	while (window.isOpen())
 	{
-		//time
-		pos = player.GetPosition();
-		if (cheeckongame == 1) {
-			time = clocks.getElapsedTime();
-			//time = sf::seconds((int)time.asSeconds() % 60);
-			showtime << (int)time.asSeconds() / 60 << " : " << (int)time.asSeconds() % 60;
-		}
-
-
-		//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
-		//std::cout << Bul << std::endl;
-		bullet1.cooldown(deltaTime, Bul);
-		bullet2.cooldown(deltaTime, Bul2);
-		//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
-		//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
-		deltaTime = clock.restart().asSeconds();
-		if (deltaTime > 1.0f / 20.0f)
-			deltaTime = 1.0f / 20.0f;
-
-		sf::Event evnt;
-		while (window.pollEvent(evnt))
+		while (menup == true)
 		{
-			switch (evnt.type)
+			ifstream hs1;
+			ifstream hs2;
+			ifstream hs3;
+			ifstream hs4;
+			ifstream hs5;
+			hs1.open("score1.txt");
+			hs2.open("score2.txt");
+			hs3.open("score3.txt");
+			hs4.open("score4.txt");
+			hs5.open("score5.txt");
+			string h1;
+			string h2;
+			string h3;
+			string h4;
+			string h5;
+			hs1 >> h1;
+			hs2 >> h2;
+			hs3 >> h3;
+			hs4 >> h4;
+			hs5 >> h5;
+
+			sf::Text play("Play", font, 30);
+			sf::Text exit("Exit", font, 30);
+			sf::Text guide("Press 'Enter' to select.", font, 30);
+			sf::Text name("63010870 Watcharapol Yotadee", font, 30);
+			sf::Text leader("Leaderboard", font, 30);
+			sf::Text gamename("THE FORGOTTEN \nPRINCE", font, 40);
+			sf::Text score1("1. " + h1, font, 20);
+			sf::Text score2("2. " + h2, font, 20);
+			sf::Text score3("3. " + h3, font, 20);
+			sf::Text score4("4. " + h4, font, 20);
+			sf::Text score5("5. " + h5, font, 20);
+			window.clear();
+			window.setView(view);
+
+			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
+			background.setOrigin(pauses.getSize() / 2.0f);
+			background.setPosition(view.getCenter());
+			leader.setPosition(view.getCenter().x + 150, view.getCenter().y - 190.0f);
+			score1.setPosition(view.getCenter().x + 100, view.getCenter().y - 125.0f);
+			score2.setPosition(view.getCenter().x + 100, view.getCenter().y - 75.0f);
+			score3.setPosition(view.getCenter().x + 100, view.getCenter().y - 25.0f);
+			score4.setPosition(view.getCenter().x + 100, view.getCenter().y + 25.0f);
+			score5.setPosition(view.getCenter().x + 100, view.getCenter().y + 75.0f);
+			play.setPosition(view.getCenter().x - 35, view.getCenter().y + 0.0f);
+			exit.setPosition(view.getCenter().x - 35, view.getCenter().y + 100.0f);
+			guide.setPosition(view.getCenter().x - 400, view.getCenter().y + 270.0f);
+			name.setPosition(view.getCenter().x - 400, view.getCenter().y + 320.0f);
+			gamename.setPosition(view.getCenter().x - 500, view.getCenter().y - 220.0f);
+			if (mselect == 0)
 			{
-			case sf::Event::KeyReleased:
-				switch (evnt.key.code) {
-				case sf::Keyboard::Up:
-					menu.MoveUp();
+				play.setFillColor(sf::Color::Red);
+				exit.setFillColor(sf::Color::White);
+			}
+			if (mselect == 1)
+			{
+				exit.setFillColor(sf::Color::Red);
+				play.setFillColor(sf::Color::White);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+			{			
+				mselect = 0;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+			{
+				mselect = 1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) && mselect == 0)
+			{
+				pause = false;
+				menup = false;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) && mselect == 1)
+			{
+				window.close();
+				return 0;
+			}
+			window.draw(background);
+			window.draw(leader);
+			window.draw(name);
+			window.draw(score1);
+			window.draw(score2);
+			window.draw(score3);
+			window.draw(score4);
+			window.draw(score5);
+			window.draw(play);
+			window.draw(exit);
+			window.draw(guide);
+			window.draw(gamename);
+			window.display();
+			sf::Event evnt;
+			while (window.pollEvent(evnt))
+			{
+				switch (evnt.type)
+				{
+				case sf::Event::Closed:
+					window.close();
 					break;
-				case sf::Keyboard::Down:
-					menu.MoveDown();
+				case sf::Event::Resized:
+					std::cout << "Width: " << evnt.size.width << "Height: " << evnt.size.height << std::endl;
 					break;
-				case sf::Keyboard::Return:
-					switch (menu.GetPressedItem())
-					{
-					case 0:
-						cheeckongame = 1;
-						clocks = sf::Clock();
+				}
+			}
+		}
+		while (pause == false && dead == false && menup == false)																																																																	
+		{
+			//time
+			pos = player.GetPosition();
+			if (cheeckongame == 1) {
+				time = clocks.getElapsedTime();
+				//time = sf::seconds((int)time.asSeconds() % 60);
+				showtime << (int)time.asSeconds() / 60 << " : " << (int)time.asSeconds() % 60;
+			}
+
+
+			//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+			//std::cout << Bul << std::endl;
+			bullet1.cooldown(deltaTime, Bul);
+			bullet2.cooldown(deltaTime, Bul2);
+			//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
+			//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
+			deltaTime = clock.restart().asSeconds();
+			if (deltaTime > 1.0f / 20.0f)
+				deltaTime = 1.0f / 20.0f;
+
+			sf::Event evnt;
+			while (window.pollEvent(evnt))
+			{
+				switch (evnt.type)
+				{
+				case sf::Event::KeyReleased:
+					switch (evnt.key.code) {
+					case sf::Keyboard::Up:
+						menu.MoveUp();
 						break;
-					case 1:
-						std::cout << "2" << std::endl;
+					case sf::Keyboard::Down:
+						menu.MoveDown();
 						break;
-					case 2:
-						window.close();
-						break;
+					case sf::Keyboard::Return:
+						switch (menu.GetPressedItem())
+						{
+						case 0:
+							cheeckongame = 1;
+							clocks = sf::Clock();
+							break;
+						case 1:
+							std::cout << "2" << std::endl;
+							break;
+						case 2:
+							window.close();
+							break;
+						}
+
+
 					}
 
 
+					break;
+				case sf::Event::Closed: // When you press close.
+					window.close();
+					break;
+
+
+
+				case sf::Event::TextEntered:
+					if (evnt.text.unicode < 128)
+					{
+						char show = evnt.text.unicode;
+						//std::cout << show << std::endl;  // Show input Keyboards
+					}
 				}
+			}
+			sf::Vector2f direction;
+			Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x - 550, view.getCenter().y - 350));
 
-
-				break;
-			case sf::Event::Closed: // When you press close.
-				window.close();
-				break;
-
-
-
-			case sf::Event::TextEntered:
-				if (evnt.text.unicode < 128)
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D))))
+			{
+				if (cooldown <= 200)
 				{
-					char show = evnt.text.unicode;
-					//std::cout << show << std::endl;  // Show input Keyboards
+					cooldown += 1.5;
 				}
-			}
-		}
-		sf::Vector2f direction;
-		Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x-550, view.getCenter().y - 350));
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D))))
-		{
-			if (cooldown <= 200)
-			{
-				cooldown += 1.5;
-			}
-		}
-		else
-		{
-			if (cooldown>=0)
-			{
-				cooldown -= 0.2;
-			}
-			
-		}
-
-		player.Update(deltaTime, direction,cooldown);
-
-
-	
-		for (Platform& platfrom : platfroms)
-			if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
-				player.OnCollision(direction);
-
-		for (box& bx : boxVector) {
-
-			if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
-				bx.OnCollision(direction);
-				player.OnCollision(direction);
 			}
 			else
-				bx.OnCollision({ 0,0 });
-
-			for (Platform& platform : platfroms)
-				if (platform.GetCollider().CheckCollision(bx.GetCollider(), direction, 1.0f))
-					bx.OnCollision2(direction);
-
-		}
-		for (dimon& d : DimonVector) {
-			if (d.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
-				d.pickup();
-				score += 5;
-				printf("%d", score);
-
-
-			}
-		}
-
-		for (dimonfah& df : DimonfahVector) {
-			if (df.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
-				df.pickup();
-				score += 10;
-				printf("%d", score);
-
-
-			}
-		}
-		for (dimongreen& dg : DimongreenVector) {
-			if (dg.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
-				dg.pickup();
-				score += 20;
-				printf("%d", score);
-
-
-			}
-		}
-
-
-
-
-
-		// Update ?????? //==================================================================//
-		for (int i = 0; i < FireVector.size(); i++)
-		{
-			FireVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		// Update ??????? //==================================================================//
-		for (int i = 0; i < WaterVector.size(); i++)
-		{
-			WaterVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-		// Update ???? //==================================================================//
-		for (int i = 0; i < DimonVector.size(); i++)
-		{
-			DimonVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		// Update ??????? //==================================================================//
-		for (int i = 0; i < DimonfahVector.size(); i++)
-		{
-			DimonfahVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		// Update ????????? //==================================================================//
-		for (int i = 0; i < DimongreenVector.size(); i++)
-		{
-			DimongreenVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-		//?????
-		for (int i = 0; i < boxVector.size(); i++)
-		{
-			boxVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		//????
-		for (int i = 0; i < buttonVector.size(); i++)
-		{
-			buttonVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		//???????
-		for (int i = 0; i < buttonredVector.size(); i++)
-		{
-			buttonredVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		//???????????
-		for (int i = 0; i < itemVector.size(); i++)
-		{
-			itemVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-
-		//???????
-		for (int i = 0; i < boxitemVector.size(); i++)
-		{
-			boxitemVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		//???????
-		for (int i = 0; i < barrierVector.size(); i++)
-		{
-			barrierVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-		//??????? ???
-		for (int i = 0; i < barrieredVector.size(); i++)
-		{
-			barrieredVector[i].Update(deltaTime, player);
-		}
-		//==================================================================//
-
-
-
-
-
-		//==================================================================//
-		//hitbox
-		/*hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);*/
-		//==================================================================//
-
-
-
-
-
-
-
-
-
-
-		//std::cout << "dir x = " << direction.x << " dir y = " << direction.y << endl;
-		//delete this debug view warp cheat button
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
-			player.Warped(window);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)) {
-			player.Warped2(window);
-		}
-
-		//set Viw
-		if (player.GetPosition().y <= 2000) {
-			u = 0;
-			view.setCenter(sf::Vector2f(player.GetPosition()));
-			if (view.getCenter().x - 540.0f <= 0.0f)//??????? x ?????????? ??????????? 0.0 ?????????? ????
 			{
-				//view.setCenter(540.f, view.getCenter().y);
-
-				if (view.getCenter().y - 360.0f <= 0.0f)
+				if (cooldown >= 0)
 				{
-					view.setCenter(540.0f, 360.0f);//window
-				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
-				{
-					view.setCenter(540.0f, 998.5f);//window
-				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
-				{
-					view.setCenter(540.0f, player.GetPosition().y);
+					cooldown -= 0.2;
 				}
 
 			}
-			if (view.getCenter().x + 540.0f >= 1830.5f)//??????? x 1830.5 ????????????????? ???
-			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
-				{
-					view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
-				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
-				{
-					view.setCenter(1290.5f, 998.5f);//window 1248-540
-				}
-				if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
-				{
-					view.setCenter(1290.5f, player.GetPosition().y);
-				}
-			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)//??????? x ????????
-			{
-				if (view.getCenter().y - 360.0f <= 0.0f)
-				{
-					view.setCenter(player.GetPosition().x, 360.0f);
-				}
-				if (view.getCenter().y + 360.0f >= 1358.5f)
-				{
-					view.setCenter(player.GetPosition().x, 998.5f);
-				}
-			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				faceright = false;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			{
-				faceright = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
-			{
-				if (faceright == true)
-				{
-					Bul = 1;
-					bullet1.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul = -1;
-					bullet1.attackL(pos);
-				}
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
-			{
-				if (faceright == true)
-				{
-					Bul2 = 1;
-					bullet2.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul2 = -1;
-					bullet2.attackL(pos);
-				}
-			}
-
-		}
-		///// viw 02
-		if (player.GetPosition().y >= 2000 && player.GetPosition().y < 4000)
-		{
-			u = 1;
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				faceright = false;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			{
-				faceright = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
-			{
-				if (faceright == true)
-				{
-					Bul = 1;
-					bullet1.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul = -1;
-					bullet1.attackL(pos);
-				}
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
-			{
-				if (faceright == true)
-				{
-					Bul2 = 1;
-					bullet2.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul2 = -1;
-					bullet2.attackL(pos);
-				}
-			}
-		}if (u == 1)
-		{
-			view.setCenter(sf::Vector2f(player.GetPosition()));
-			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
-			{
-				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
-				{
-					view.setCenter(540.0f, 2015.f + 360.0f);//window
-				}
-				if (view.getCenter().y + 360.0f >= 3358.5f)
-				{
-					view.setCenter(540.0f, 2998.5f);//window
-				}
-				if (view.getCenter().y - 360.0f > 2015.f && view.getCenter().y + 360.0f < 3358.5f)
-				{
-					view.setCenter(540.0f, player.GetPosition().y);
-				}
-
-			}
-			if (view.getCenter().x + 540.0f >= 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
-				{
-					view.setCenter(1290.5f, 2015.f + 360.0f);//window 1248-540 collision right 
-				}
-				if (view.getCenter().y + 360.0f >= 3358.5f)
-				{
-					view.setCenter(1290.5f, 2998.5f);//window 1248-540
-				}
-				if (view.getCenter().y - 360.0f > 2015.0f && view.getCenter().y + 360.0f < 3358.5f)
-				{
-					view.setCenter(1290.5f, player.GetPosition().y);
-				}
-			}
-			if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
-				{
-					view.setCenter(player.GetPosition().x, 2015.f + 360.0f);
-				}
-				if (view.getCenter().y + 360.0f >= 3358.5f)
-				{
-					view.setCenter(player.GetPosition().x, 2998.5f);
-				}
-			}
-		}
+			player.Update(deltaTime, direction, cooldown);
 
 
-		// viw 03 
-		if (player.GetPosition().y > 4000)
-		{
-			u = 2;
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				faceright = false;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			{
-				faceright = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
-			{
-				if (faceright == true)
-				{
-					Bul = 1;
-					bullet1.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul = -1;
-					bullet1.attackL(pos);
-				}
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
-			{
-				if (faceright == true)
-				{
-					Bul2 = 1;
-					bullet2.attackR(pos);
-				}
-				if (faceright == false)
-				{
-					Bul2 = -1;
-					bullet2.attackL(pos);
-				}
-			}
-		}if (u == 2)
-		{
-			view.setCenter(sf::Vector2f(player.GetPosition()));
-			if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
-			{
-				if (view.getCenter().y - 360.0f <= 3980.0f)
-				{
-					view.setCenter(540.0f, 3980.0f + 360.0f);//window
-				}
-				else if (view.getCenter().y + 360.0f >= 5358.5f)
-				{
-					view.setCenter(540.0f, 4998.5f);//window
-				}
-				else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
-				{
-					view.setCenter(540.0f, player.GetPosition().y);
-				}
-
-			}
-			else if (view.getCenter().x + 540.0f >= 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 3980.0f)
-				{
-					view.setCenter(1290.5f, 3980.0f + 360.0f);//window 1248-540 collision right 
-				}
-				else if (view.getCenter().y + 360.0f >= 5358.5f)
-				{
-					view.setCenter(1290.5f, 4998.5f);//window 1248-540
-				}
-				else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
-				{
-					view.setCenter(1290.5f, player.GetPosition().y);
-				}
-			}
-			else if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
-			{
-				if (view.getCenter().y - 360.0f <= 3980.0f)
-				{
-					view.setCenter(player.GetPosition().x, 3980.0f + 360.0f);
-				}
-				else if (view.getCenter().y + 360.0f >= 5358.5f)
-				{
-					view.setCenter(player.GetPosition().x, 4998.5f);
-				}
-			}
-		}
-
-		// Time //==================================================================//
-
-		lbltime.setString(showtime.str());
-
-		showtime.str(" ");
-		showtime << " Time  :  ";
-		lbltime.setPosition(view.getCenter().x + 200, view.getCenter().y - 360);
-
-		//==================================================================//
-
-
-		window.clear();
-
-		if (cheeckongame == 0)
-		{
-			// Menu
-			window.draw(background);
-			menu.draw(window);
-			//Stop.draw(window);
-
-		}
-		if (cheeckongame == 1)
-		{
-
-			window.draw(back01);
-			window.draw(back02);
-			window.draw(back03);
-			window.setView(view);
 
 			for (Platform& platfrom : platfroms)
-				platfrom.Draw(window);
+				if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+					player.OnCollision(direction);
+
+			for (box& bx : boxVector) {
+
+				if (bx.GetCollider().CheckCollision(player.GetCollider(), direction, 0.0f)) {
+					bx.OnCollision(direction);
+					player.OnCollision(direction);
+				}
+				else
+					bx.OnCollision({ 0,0 });
+
+				for (Platform& platform : platfroms)
+					if (platform.GetCollider().CheckCollision(bx.GetCollider(), direction, 1.0f))
+						bx.OnCollision2(direction);
+
+			}
+			for (dimon& d : DimonVector) {
+				if (d.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					d.pickup();
+					score += 5;
+					printf("%d", score);
 
 
-			/*window.draw(back01);
-			window.draw(back02);
-			window.draw(back03);*/
+				}
+			}
 
-			//??????
+			for (dimonfah& df : DimonfahVector) {
+				if (df.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					df.pickup();
+					score += 10;
+					printf("%d", score);
+
+
+				}
+			}
+			for (dimongreen& dg : DimongreenVector) {
+				if (dg.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					dg.pickup();
+					score += 20;
+					printf("%d", score);
+
+
+				}
+
+			}
+			for (friebg& fires : FireVector) {
+				if (fires.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					sav = true;
+					dead = true;
+				}
+
+			}
+
+
+
+
+			// Update ?????? //==================================================================//
 			for (int i = 0; i < FireVector.size(); i++)
 			{
-				FireVector[i].draw(window);
+				FireVector[i].Update(deltaTime, player);
 			}
-			//???????
+			//==================================================================//
+
+			// Update ??????? //==================================================================//
 			for (int i = 0; i < WaterVector.size(); i++)
 			{
-				WaterVector[i].draw(window);
+				WaterVector[i].Update(deltaTime, player);
 			}
-			//????
+			//==================================================================//
+			// Update ???? //==================================================================//
 			for (int i = 0; i < DimonVector.size(); i++)
 			{
-				DimonVector[i].draw(window);
+				DimonVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
-			//???????
+			// Update ??????? //==================================================================//
 			for (int i = 0; i < DimonfahVector.size(); i++)
 			{
-				DimonfahVector[i].draw(window);
+				DimonfahVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
-			//?????????
+			// Update ????????? //==================================================================//
 			for (int i = 0; i < DimongreenVector.size(); i++)
 			{
-				DimongreenVector[i].draw(window);
+				DimongreenVector[i].Update(deltaTime, player);
 			}
-
-
+			//==================================================================//
 			//?????
 			for (int i = 0; i < boxVector.size(); i++)
 			{
-				boxVector[i].draw(window);
+				boxVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
 			//????
 			for (int i = 0; i < buttonVector.size(); i++)
 			{
-				buttonVector[i].draw(window);
+				buttonVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
 			//???????
 			for (int i = 0; i < buttonredVector.size(); i++)
 			{
-				buttonredVector[i].draw(window);
+				buttonredVector[i].Update(deltaTime, player);
 			}
-			// ??????????
+			//==================================================================//
+
+			//???????????
 			for (int i = 0; i < itemVector.size(); i++)
 			{
-				itemVector[i].draw(window);
+				itemVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
-			// ??????? barrierVector
+
+			//???????
 			for (int i = 0; i < boxitemVector.size(); i++)
 			{
-				boxitemVector[i].draw(window);
+				boxitemVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
-			// ??????? 
+			//???????
 			for (int i = 0; i < barrierVector.size(); i++)
 			{
-				barrierVector[i].draw(window);
+				barrierVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
 
-			// ??????????
+			//??????? ???
 			for (int i = 0; i < barrieredVector.size(); i++)
 			{
-				barrieredVector[i].draw(window);
+				barrieredVector[i].Update(deltaTime, player);
 			}
+			//==================================================================//
+
+
+
 
 
 			//==================================================================//
-			//wrab
-			if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
-			{
+			//hitbox
+			/*hitboxPlayer.Update(player.GetPosition(), -12.5f, -3.0f);*/
+			//==================================================================//
+
+
+
+
+
+
+
+
+
+
+			//std::cout << "dir x = " << direction.x << " dir y = " << direction.y << endl;
+			//delete this debug view warp cheat button
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) {
 				player.Warped(window);
 			}
-			window.draw(waroPoint);
-
-			//warp2
-			if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
-			{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)) {
 				player.Warped2(window);
+			}
 
-			}window.draw(waroPoint2);
+			//set Viw
+			if (player.GetPosition().y <= 2000) {
+				u = 0;
+				view.setCenter(sf::Vector2f(player.GetPosition()));
+				if (view.getCenter().x - 540.0f <= 0.0f)//??????? x ?????????? ??????????? 0.0 ?????????? ????
+				{
+					//view.setCenter(540.f, view.getCenter().y);
+
+					if (view.getCenter().y - 360.0f <= 0.0f)
+					{
+						view.setCenter(540.0f, 360.0f);//window
+					}
+					if (view.getCenter().y + 360.0f >= 1358.5f)
+					{
+						view.setCenter(540.0f, 998.5f);//window
+					}
+					if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+					{
+						view.setCenter(540.0f, player.GetPosition().y);
+					}
+
+				}
+				if (view.getCenter().x + 540.0f >= 1830.5f)//??????? x 1830.5 ????????????????? ???
+				{
+					if (view.getCenter().y - 360.0f <= 0.0f)
+					{
+						view.setCenter(1290.5f, 360.0f);//window 1248-540 collision right 
+					}
+					if (view.getCenter().y + 360.0f >= 1358.5f)
+					{
+						view.setCenter(1290.5f, 998.5f);//window 1248-540
+					}
+					if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 1358.5f)
+					{
+						view.setCenter(1290.5f, player.GetPosition().y);
+					}
+				}
+				if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)//??????? x ????????
+				{
+					if (view.getCenter().y - 360.0f <= 0.0f)
+					{
+						view.setCenter(player.GetPosition().x, 360.0f);
+					}
+					if (view.getCenter().y + 360.0f >= 1358.5f)
+					{
+						view.setCenter(player.GetPosition().x, 998.5f);
+					}
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					faceright = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					faceright = true;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
+				{
+					if (faceright == true)
+					{
+						Bul = 1;
+						bullet1.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul = -1;
+						bullet1.attackL(pos);
+					}
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
+				{
+					if (faceright == true)
+					{
+						Bul2 = 1;
+						bullet2.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul2 = -1;
+						bullet2.attackL(pos);
+					}
+				}
+
+			}
+			///// viw 02
+			if (player.GetPosition().y >= 2000 && player.GetPosition().y < 4000)
+			{
+				u = 1;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					faceright = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					faceright = true;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
+				{
+					if (faceright == true)
+					{
+						Bul = 1;
+						bullet1.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul = -1;
+						bullet1.attackL(pos);
+					}
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
+				{
+					if (faceright == true)
+					{
+						Bul2 = 1;
+						bullet2.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul2 = -1;
+						bullet2.attackL(pos);
+					}
+				}
+			}if (u == 1)
+			{
+				view.setCenter(sf::Vector2f(player.GetPosition()));
+				if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
+				{
+					if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
+					{
+						view.setCenter(540.0f, 2015.f + 360.0f);//window
+					}
+					if (view.getCenter().y + 360.0f >= 3358.5f)
+					{
+						view.setCenter(540.0f, 2998.5f);//window
+					}
+					if (view.getCenter().y - 360.0f > 2015.f && view.getCenter().y + 360.0f < 3358.5f)
+					{
+						view.setCenter(540.0f, player.GetPosition().y);
+					}
+
+				}
+				if (view.getCenter().x + 540.0f >= 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
+					{
+						view.setCenter(1290.5f, 2015.f + 360.0f);//window 1248-540 collision right 
+					}
+					if (view.getCenter().y + 360.0f >= 3358.5f)
+					{
+						view.setCenter(1290.5f, 2998.5f);//window 1248-540
+					}
+					if (view.getCenter().y - 360.0f > 2015.0f && view.getCenter().y + 360.0f < 3358.5f)
+					{
+						view.setCenter(1290.5f, player.GetPosition().y);
+					}
+				}
+				if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 2015.f + 0.0f)
+					{
+						view.setCenter(player.GetPosition().x, 2015.f + 360.0f);
+					}
+					if (view.getCenter().y + 360.0f >= 3358.5f)
+					{
+						view.setCenter(player.GetPosition().x, 2998.5f);
+					}
+				}
+			}
+
+
+			// viw 03 
+			if (player.GetPosition().y > 4000)
+			{
+				u = 2;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					faceright = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					faceright = true;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
+				{
+					if (faceright == true)
+					{
+						Bul = 1;
+						bullet1.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul = -1;
+						bullet1.attackL(pos);
+					}
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
+				{
+					if (faceright == true)
+					{
+						Bul2 = 1;
+						bullet2.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul2 = -1;
+						bullet2.attackL(pos);
+					}
+				}
+			}if (u == 2)
+			{
+				view.setCenter(sf::Vector2f(player.GetPosition()));
+				if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
+				{
+					if (view.getCenter().y - 360.0f <= 3980.0f)
+					{
+						view.setCenter(540.0f, 3980.0f + 360.0f);//window
+					}
+					else if (view.getCenter().y + 360.0f >= 5358.5f)
+					{
+						view.setCenter(540.0f, 4998.5f);//window
+					}
+					else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+					{
+						view.setCenter(540.0f, player.GetPosition().y);
+					}
+
+				}
+				else if (view.getCenter().x + 540.0f >= 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 3980.0f)
+					{
+						view.setCenter(1290.5f, 3980.0f + 360.0f);//window 1248-540 collision right 
+					}
+					else if (view.getCenter().y + 360.0f >= 5358.5f)
+					{
+						view.setCenter(1290.5f, 4998.5f);//window 1248-540
+					}
+					else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 5358.5f)
+					{
+						view.setCenter(1290.5f, player.GetPosition().y);
+					}
+				}
+				else if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 3980.0f)
+					{
+						view.setCenter(player.GetPosition().x, 3980.0f + 360.0f);
+					}
+					else if (view.getCenter().y + 360.0f >= 5358.5f)
+					{
+						view.setCenter(player.GetPosition().x, 4998.5f);
+					}
+				}
+			}
+
+			// Time //==================================================================//
+
+			lbltime.setString(showtime.str());
+
+			showtime.str(" ");
+			showtime << " Time  :  ";
+			lbltime.setPosition(view.getCenter().x + 200, view.getCenter().y - 360);
+
 			//==================================================================//
 
-			coolspeed.Draw(window);
-			printf("%.2f", cooldown);
-			//player
-			player.Draw(window);
 
-			//heartt
-			heartt.setPosition(player.GetPosition().x - 50, player.GetPosition().y - 60);
-			//window.draw(heartt);
+			window.clear();
 
-			//manaa
-			manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
-			//window.draw(manaa);
-
-
-
-
-			//hitbox
-			//hitboxPlayer.Draw(window);
-
-			/*for (int i = 0; i < DimonVector.size(); i++) {
-				if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
-					cout << "Wow";
-				}
-			}
-			for (int i = 0; i < DimonfahVector.size(); i++) {
-				if (player.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < DimongreenVector.size(); i++) {
-				if (player.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < buttonVector.size(); i++) {
-				if (player.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < boxVector.size(); i++) {
-				if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}*/
-
-
-
-			/*for (int i = 0; i < FireVector.size(); i++) {
-				if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}
-			for (int i = 0; i < WaterVector.size(); i++) {
-				if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
-					cout << "Hit!!!!!";
-				}
-			}*/
-
-
-			//time
-			window.draw(lbltime);
-
-
-			//Draw bullet
-			if (Bul == 1)
+			if (cheeckongame == 0)
 			{
-				bullet1.updateR(deltaTime);
-				bullet1.draw(window);
+				// Menu		
+				window.draw(background);
+				view.setCenter(background.getPosition());
+				menu.draw(window);
+				//Stop.draw(window);
+
 			}
-			if (Bul == -1)
+			if (cheeckongame == 1)
 			{
-				bullet1.updateL(deltaTime);
-				bullet1.draw(window);
-			}
-			if (abs(bullet1.GetPosition().x - player.GetPosition().x) >= 1000.0f)
-			{
-				Bul = 0;
-				bullet1.isAvaliable();
-				bullet1.SetPosition(pos);
+
+				//window.draw(back01);
+				//window.draw(back02);
+				//window.draw(back03);
+				window.setView(view);
+
+				for (Platform& platfrom : platfroms)
+					platfrom.Draw(window);
+
+
+				window.draw(back01);
+				/*window.draw(back02);
+				window.draw(back03);*/
+
+				//??????
+				for (int i = 0; i < FireVector.size(); i++)
+				{
+					FireVector[i].draw(window);
+				}
+				//???????
+				for (int i = 0; i < WaterVector.size(); i++)
+				{
+					WaterVector[i].draw(window);
+				}
+				//????
+				for (int i = 0; i < DimonVector.size(); i++)
+				{
+					DimonVector[i].draw(window);
+				}
+
+				//???????
+				for (int i = 0; i < DimonfahVector.size(); i++)
+				{
+					DimonfahVector[i].draw(window);
+				}
+
+				//?????????
+				for (int i = 0; i < DimongreenVector.size(); i++)
+				{
+					DimongreenVector[i].draw(window);
+				}
+
+
+				//?????
+				for (int i = 0; i < boxVector.size(); i++)
+				{
+					boxVector[i].draw(window);
+				}
+
+				//????
+				for (int i = 0; i < buttonVector.size(); i++)
+				{
+					buttonVector[i].draw(window);
+				}
+
+				//???????
+				for (int i = 0; i < buttonredVector.size(); i++)
+				{
+					buttonredVector[i].draw(window);
+				}
+				// ??????????
+				for (int i = 0; i < itemVector.size(); i++)
+				{
+					itemVector[i].draw(window);
+				}
+
+				// ??????? barrierVector
+				for (int i = 0; i < boxitemVector.size(); i++)
+				{
+					boxitemVector[i].draw(window);
+				}
+
+				// ??????? 
+				for (int i = 0; i < barrierVector.size(); i++)
+				{
+					barrierVector[i].draw(window);
+				}
+
+				// ??????????
+				for (int i = 0; i < barrieredVector.size(); i++)
+				{
+					barrieredVector[i].draw(window);
+				}
+
+
+				//==================================================================//
+				//wrab
+				if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
+				{
+					player.Warped(window);
+				}
+				window.draw(waroPoint);
+
+				//warp2
+				if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
+				{
+					player.Warped2(window);
+
+				}window.draw(waroPoint2);
+				//==================================================================//
+
+				coolspeed.Draw(window);
+				//printf("%.2f", cooldown);
+				//player
+				player.Draw(window);
+
+				//heartt
+				heartt.setPosition(player.GetPosition().x - 50, player.GetPosition().y - 60);
+				//window.draw(heartt);
+
+				//manaa
+				manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
+				//window.draw(manaa);
+
+
+
+
+				//hitbox
+				//hitboxPlayer.Draw(window);
+
+				/*for (int i = 0; i < DimonVector.size(); i++) {
+					if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
+						cout << "Wow";
+					}
+				}
+				for (int i = 0; i < DimonfahVector.size(); i++) {
+					if (player.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}
+				for (int i = 0; i < DimongreenVector.size(); i++) {
+					if (player.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}
+				for (int i = 0; i < buttonVector.size(); i++) {
+					if (player.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}
+				for (int i = 0; i < boxVector.size(); i++) {
+					if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}*/
+
+
+
+				/*for (int i = 0; i < FireVector.size(); i++) {
+					if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}
+				for (int i = 0; i < WaterVector.size(); i++) {
+					if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
+						cout << "Hit!!!!!";
+					}
+				}*/
+
+
+				//time
+				window.draw(lbltime);
+
+
+				//Draw bullet
+				if (Bul == 1)
+				{
+					bullet1.updateR(deltaTime);
+					bullet1.draw(window);
+				}
+				if (Bul == -1)
+				{
+					bullet1.updateL(deltaTime);
+					bullet1.draw(window);
+				}
+				if (abs(bullet1.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+				{
+					Bul = 0;
+					bullet1.isAvaliable();
+					bullet1.SetPosition(pos);
+				}
+
+				if (Bul2 == 1)
+				{
+					bullet2.updateR(deltaTime);
+					bullet2.draw(window);
+				}
+				if (Bul2 == -1)
+				{
+					bullet2.updateL(deltaTime);
+					bullet2.draw(window);
+				}
+				if (abs(bullet2.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+				{
+					Bul2 = 0;
+					bullet2.isAvaliable();
+					bullet2.SetPosition(pos);
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+				{
+					sav = true;
+					pause = true;
+				}
 			}
 
-			if (Bul2 == 1)
+			window.display();
+		}
+		while (pause == true && dead == false)
+		{
+			
+			sf::Text paused("Paused", font, 30);
+			sf::Text resume("Resume", font, 30);
+			sf::Text exit("Exit", font, 30);			
+
+			window.clear();
+			window.setView(view);
+
+			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
+			pauses.setOrigin(pauses.getSize() / 2.0f);
+			pauses.setPosition(view.getCenter());
+			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
+			resume.setPosition(view.getCenter().x - 50, view.getCenter().y + 200.0f);
+			exit.setPosition(view.getCenter().x - 50, view.getCenter().y + 250.0f);
+
+			if (pselect == 0)
 			{
-				bullet2.updateR(deltaTime);
-				bullet2.draw(window);
+				resume.setFillColor(sf::Color::Red);
+				exit.setFillColor(sf::Color::White);
 			}
-			if (Bul2 == -1)
+			if (pselect == 1)
 			{
-				bullet2.updateL(deltaTime);
-				bullet2.draw(window);
+				exit.setFillColor(sf::Color::Red);
+				resume.setFillColor(sf::Color::White);
 			}
-			if (abs(bullet2.GetPosition().x - player.GetPosition().x) >= 1000.0f)
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 			{
-				Bul2 = 0;
-				bullet2.isAvaliable();
-				bullet2.SetPosition(pos);
+				pselect = 0;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+			{
+				pselect = 1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && pselect == 0)
+			{
+				pause = false;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && pselect == 1)
+			{				
+				int x1, x2, x3, x4, x5;
+				//---------1------------
+				ifstream i1;
+				i1.open("score1.txt");
+				i1 >> x1;
+				//---------2------------
+				ifstream i2;
+				i2.open("score2.txt");
+				i2 >> x2;
+				//---------3------------
+				ifstream i3;
+				i3.open("score3.txt");
+				i3 >> x3;
+				//---------4------------
+				ifstream i4;
+				i4.open("score4.txt");
+				i4 >> x4;
+				//---------5------------
+				ifstream i5;
+				i5.open("score5.txt");
+				i5 >> x5;
+
+				if (sav == true)
+				{
+					if (score > x1)
+					{
+						//---------5--------------
+						ofstream s5;
+						s5.open("score5.txt");
+						s5 << x4 << endl;
+						s5.close();
+						//---------4--------------
+						ofstream s4;
+						s4.open("score4.txt");
+						s4 << x3 << endl;
+						s4.close();
+						//---------3--------------
+						ofstream s3;
+						s3.open("score3.txt");
+						s3 << x2 << endl;
+						s3.close();
+						//---------2--------------
+						ofstream s2;
+						s2.open("score2.txt");
+						s2 << x1 << endl;
+						s2.close();
+						//---------1--------------
+						ofstream s1;
+						s1.open("score1.txt");
+						s1 << score << endl;
+						s1.close();
+						goto SAVED2;
+					}
+					if (score > x2 && score <= x1)
+					{
+						//---------5--------------
+						ofstream s5;
+						s5.open("score5.txt");
+						s5 << x4 << endl;
+						s5.close();
+						//---------4--------------
+						ofstream s4;
+						s4.open("score4.txt");
+						s4 << x3 << endl;
+						s4.close();
+						//---------3--------------
+						ofstream s3;
+						s3.open("score3.txt");
+						s3 << x2 << endl;
+						s3.close();
+						//---------2--------------
+						ofstream s2;
+						s2.open("score2.txt");
+						s2 << score << endl;
+						s2.close();
+						goto SAVED2;
+					}
+					if (score > x3 && score <= x2)
+					{
+						//---------5-------------- 
+						ofstream s5;
+						s5.open("score5.txt");
+						s5 << x4 << endl;
+						s5.close();
+						//---------4--------------
+						ofstream s4;
+						s4.open("score4.txt");
+						s4 << x3 << endl;
+						s4.close();
+						//---------3--------------
+						ofstream s3;
+						s3.open("score3.txt");
+						s3 << score << endl;
+						s3.close();
+						goto SAVED2;
+					}
+					if (score > x4 && score <= x3)
+					{
+						//---------5--------------
+						ofstream s5;
+						s5.open("score5.txt");
+						s5 << x4 << endl;
+						s5.close();
+						//---------4--------------
+						ofstream s4;
+						s4.open("score4.txt");
+						s4 << score << endl;
+						s4.close();
+						goto SAVED2;
+					}
+					if (score > x5 && score <= x4)
+					{
+						//---------5--------------
+						ofstream s5;
+						s5.open("score5.txt");
+						s5 << score << endl;
+						s5.close();
+						goto SAVED2;
+					}
+				}
+			SAVED2:
+				sav = false;
+				std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
+				score = 0;
+				for (box& bx : boxVector) {
+					bx.re();
+				}
+				for (dimon& d : DimonVector) {
+					d.re();
+				}
+				for (dimonfah& df : DimonfahVector) {
+					df.re();
+				}
+				for (dimongreen& dg : DimongreenVector) {
+					dg.re();
+				}
+				player.setPosition(91.0f, 1218.0f);
+				cheeckongame = 0;
+				pause = false;
+				menup = true;
+			}
+			window.draw(pauses);
+			window.draw(resume);
+			window.draw(exit);
+			window.draw(paused);
+			window.display();
+			sf::Event evnt;
+			while (window.pollEvent(evnt))
+			{
+				switch (evnt.type)
+				{
+				case sf::Event::Closed:
+					window.close();
+					break;
+				case sf::Event::Resized:
+					std::cout << "Width: " << evnt.size.width << "Height: " << evnt.size.height << std::endl;
+					break;
+				}
 			}
 		}
+		while (dead == true)
+		{
+			sf::Text paused("You Dead", font, 30);
+			sf::Text resume("Continue", font, 30);
+			sf::Text exit("Exit", font, 30);
 
-		window.display();
+			window.clear();
+			window.setView(view);
+
+			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
+			pauses.setOrigin(pauses.getSize() / 2.0f);
+			pauses.setPosition(view.getCenter());
+			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
+			resume.setPosition(view.getCenter().x - 50, view.getCenter().y + 200.0f);
+			exit.setPosition(view.getCenter().x - 50, view.getCenter().y + 250.0f);
+
+			int x1, x2, x3, x4, x5;
+			//---------1------------
+			ifstream i1;
+			i1.open("score1.txt");
+			i1 >> x1;
+			//---------2------------
+			ifstream i2;
+			i2.open("score2.txt");
+			i2 >> x2;
+			//---------3------------
+			ifstream i3;
+			i3.open("score3.txt");
+			i3 >> x3;
+			//---------4------------
+			ifstream i4;
+			i4.open("score4.txt");
+			i4 >> x4;
+			//---------5------------
+			ifstream i5;
+			i5.open("score5.txt");
+			i5 >> x5;
+
+			if (sav == true)
+			{
+				if (score > x1)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << x2 << endl;
+					s3.close();
+					//---------2--------------
+					ofstream s2;
+					s2.open("score2.txt");
+					s2 << x1 << endl;
+					s2.close();
+					//---------1--------------
+					ofstream s1;
+					s1.open("score1.txt");
+					s1 << score << endl;
+					s1.close();
+					goto SAVED;
+				}
+				if (score > x2 && score <= x1)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << x2 << endl;
+					s3.close();
+					//---------2--------------
+					ofstream s2;
+					s2.open("score2.txt");
+					s2 << score << endl;
+					s2.close();
+					goto SAVED;
+				}
+				if (score > x3 && score <= x2)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << score << endl;
+					s3.close();
+					goto SAVED;
+				}
+				if (score > x4 && score <= x3)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << score << endl;
+					s4.close();
+					goto SAVED;
+				}
+				if (score > x5 && score <= x4)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << score << endl;
+					s5.close();
+					goto SAVED;
+				}
+			}
+		SAVED:
+			sav = false;
+			std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
+			player.setPosition(91.0f, 1218.0f);
+			if (dselect == 0)
+			{
+				resume.setFillColor(sf::Color::Red);
+				exit.setFillColor(sf::Color::White);
+			}
+			if (dselect == 1)
+			{
+				exit.setFillColor(sf::Color::Red);
+				resume.setFillColor(sf::Color::White);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+			{
+				dselect = 0;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+			{
+				dselect = 1;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && dselect == 0)
+			{
+				pause = false;
+				dead = false;
+				menup = false;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && dselect == 1)
+			{
+				pause = false;				
+				score = 0;
+				for (box& bx : boxVector) {
+					bx.re();
+				}
+				for (dimon& d : DimonVector) {
+					d.re();
+				}
+				for (dimonfah& df : DimonfahVector) {
+					df.re();
+				}
+				for (dimongreen& dg : DimongreenVector) {
+					dg.re();
+				}
+				dead = false;
+				menup = true;
+			}
+			window.draw(pauses);
+			window.draw(resume);
+			window.draw(exit);
+			window.draw(paused);
+			window.display();
+			sf::Event evnt;
+			while (window.pollEvent(evnt))
+			{
+				switch (evnt.type)
+				{
+				case sf::Event::Closed:
+					window.close();
+					break;
+				case sf::Event::Resized:
+					std::cout << "Width: " << evnt.size.width << "Height: " << evnt.size.height << std::endl;
+					break;
+				}
+			}
+		}
+		std::cout << score << std::endl;
 	}
 }
