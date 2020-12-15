@@ -14,10 +14,13 @@ public:
 	void draw(sf::RenderWindow &window);
 	void dead();
 	void damaged(int dmg);
+	void re();
 
 	int GetHp() { return hp; }
 	sf::Vector2f GetPosition() { return body.getPosition(); }
+	Collider GetCollider() { return Collider(hitbox); }
 private:
+	sf::RectangleShape hitbox;
 	Animation animation;
 	sf::Vector2f velocity;
 	sf::RectangleShape body;

@@ -110,6 +110,12 @@ int main()
 	sf::Sound coinss;
 	coinss.setVolume(80);
 	coinss.setBuffer(coins);
+
+	sf::SoundBuffer tunders;
+	tunders.loadFromFile("charecter/spark.wav");
+	sf::Sound tunderse;
+	tunderse.setVolume(80);
+	tunderse.setBuffer(tunders);
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	//check 
 	srand(time(NULL));
@@ -751,8 +757,12 @@ int main()
 	sf::Text showScore("Score", font, 20);
 	showScore.setFillColor(sf::Color::Green);
 
-	
-
+	sf::Texture endgame;
+	endgame.loadFromFile("charecter/End.png");
+	sf::RectangleShape endgames;
+	endgames.setSize(sf::Vector2f(1080.0f, 720.0f));
+	endgames.setOrigin(endgames.getSize()/2.0f);
+	endgames.setTexture(&endgame);
 	//=====================================================================//
 	Boss boss(&bo, sf::Vector2u(4, 1), 0.1f);
 	float bos = 0.0f;
@@ -765,6 +775,7 @@ int main()
 	bool sav;
 	int u = 0;
 	int cheeckongame = 0;
+	bool end = false;
 	std::ostringstream savetime;
 	//OPEN WINDOW
 	while (window.isOpen())
@@ -875,7 +886,7 @@ int main()
 				}
 			}
 		}
-		while (pause == false && dead == false && menup == false)																																																																	
+		while (pause == false && dead == false && menup == false && end == false)																																																																	
 		{
 			//time
 			pos = player.GetPosition();
@@ -992,9 +1003,26 @@ int main()
 					{
 						bulletboss.attackL(sf::Vector2f(boss.GetPosition().x, boss.GetPosition().y + 120));
 					}
-					if (bos > 12 && bos <= 15)
+					if (bos > 12 && bos <= 15) 
 					{
 						bulletboss.updateL(deltaTime);
+					}
+					if (boss.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+					{
+						sav = true;
+						dead = true;
+					}
+					if (boss.GetCollider().CheckCollision(bullet1.GetCollider(), direction, 1.0f))
+					{
+						bullet1.SetPosition();
+						boss.damaged(1);
+						Bul = 0;
+					}
+					if (boss.GetCollider().CheckCollision(bullet2.GetCollider(), direction, 1.0f))
+					{
+						bullet2.SetPosition();
+						boss.damaged(2);
+						Bul2 = 0;
 					}
 				}
 				if (abs(bulletboss.GetPosition().x - boss.GetPosition().x) >= 1400.0f)
@@ -1009,10 +1037,16 @@ int main()
 				if (boss.GetHp() <= 0)
 				{
 					bos = 0.0f;
+					boss.dead();
+					sav = true;
+					end = true;
 				}
-				std::cout << bos << std::endl;
 			}
-
+			if (bulletboss.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
+			{
+				sav = true;
+				dead = true;
+			}
 			for (Platform& platfrom : platfroms)
 				if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
 					player.OnCollision(direction);
@@ -1313,6 +1347,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
 				{
+					tunderse.play();
 					if (faceright == true)
 					{
 						Bul2 = 1;
@@ -1449,6 +1484,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
 				{
+					tunderse.play();
 					if (faceright == true)
 					{
 						Bul2 = 1;
@@ -1539,6 +1575,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
 				{
+					tunderse.play();
 					if (faceright == true)
 					{
 						Bul2 = 1;
@@ -1986,6 +2023,9 @@ int main()
 				sav = false;
 				std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
 				score = 0;
+				boss.re();
+				bos = 0.0f;
+				bulletboss.SetPosition();
 				for (Enemy& enemy : enemyes)
 				{
 					enemy.re();
@@ -2201,40 +2241,238 @@ int main()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && dselect == 1)
 			{
 				pause = false;				
-				score = 0;
-				for (enemys& enemyxr : Enemyss)
-				{
-					enemyxr.re();
-				}
-			
-				for (Enemy& enemy : enemyes)
-				{
-					enemy.re();
-				}
-				for (box& bx : boxVector) {
-					bx.re();
-				}
-				for (dimon& d : DimonVector) {
-					d.re();
-				}
-				for (dimonfah& df : DimonfahVector) {
-					df.re();
-				}
-				for (dimongreen& dg : DimongreenVector) {
-					dg.re();
-				}
-				bullet1.SetPosition();
-				bullet2.SetPosition();
-				Bul = 0;
-				Bul2 = 0;
 				dead = false;
 				menup = true;
 			}
+			score = 0;
+			boss.re();
+			bos = 0.0f;
+			bulletboss.SetPosition();
+			for (enemys& enemyxr : Enemyss)
+			{
+				enemyxr.re();
+			}
+
+			for (Enemy& enemy : enemyes)
+			{
+				enemy.re();
+			}
+			for (box& bx : boxVector) {
+				bx.re();
+			}
+			for (dimon& d : DimonVector) {
+				d.re();
+			}
+			for (dimonfah& df : DimonfahVector) {
+				df.re();
+			}
+			for (dimongreen& dg : DimongreenVector) {
+				dg.re();
+			}
+			bullet1.SetPosition();
+			bullet2.SetPosition();
+			Bul = 0;
+			Bul2 = 0;
+
 			window.draw(pauses);
 			window.draw(resume);
 			window.draw(exit);
 			window.draw(paused);
 		
+			window.display();
+			sf::Event evnt;
+			while (window.pollEvent(evnt))
+			{
+				switch (evnt.type)
+				{
+				case sf::Event::Closed:
+					window.close();
+					break;
+				case sf::Event::Resized:
+					std::cout << "Width: " << evnt.size.width << "Height: " << evnt.size.height << std::endl;
+					break;
+				}
+			}
+		}
+		while (end == true)
+		{
+			sf::Text paused("Game Cleared!", font, 30);
+			sf::Text resume("Press 'Space' to proceed", font, 30);
+
+			window.clear();
+			window.setView(view);
+
+			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
+			endgames.setPosition(view.getCenter());
+			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
+			resume.setPosition(view.getCenter().x - 50, view.getCenter().y + 200.0f);
+
+			int x1, x2, x3, x4, x5;
+			//---------1------------
+			ifstream i1;
+			i1.open("score1.txt");
+			i1 >> x1;
+			//---------2------------
+			ifstream i2;
+			i2.open("score2.txt");
+			i2 >> x2;
+			//---------3------------
+			ifstream i3;
+			i3.open("score3.txt");
+			i3 >> x3;
+			//---------4------------
+			ifstream i4;
+			i4.open("score4.txt");
+			i4 >> x4;
+			//---------5------------
+			ifstream i5;
+			i5.open("score5.txt");
+			i5 >> x5;
+
+			if (sav == true)
+			{
+				if (score > x1)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << x2 << endl;
+					s3.close();
+					//---------2--------------
+					ofstream s2;
+					s2.open("score2.txt");
+					s2 << x1 << endl;
+					s2.close();
+					//---------1--------------
+					ofstream s1;
+					s1.open("score1.txt");
+					s1 << score << endl;
+					s1.close();
+					goto SAVED1;
+				}
+				if (score > x2 && score <= x1)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << x2 << endl;
+					s3.close();
+					//---------2--------------
+					ofstream s2;
+					s2.open("score2.txt");
+					s2 << score << endl;
+					s2.close();
+					goto SAVED1;
+				}
+				if (score > x3 && score <= x2)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << x3 << endl;
+					s4.close();
+					//---------3--------------
+					ofstream s3;
+					s3.open("score3.txt");
+					s3 << score << endl;
+					s3.close();
+					goto SAVED1;
+				}
+				if (score > x4 && score <= x3)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << x4 << endl;
+					s5.close();
+					//---------4--------------
+					ofstream s4;
+					s4.open("score4.txt");
+					s4 << score << endl;
+					s4.close();
+					goto SAVED1;
+				}
+				if (score > x5 && score <= x4)
+				{
+					//---------5--------------
+					ofstream s5;
+					s5.open("score5.txt");
+					s5 << score << endl;
+					s5.close();
+					goto SAVED1;
+				}
+			}
+		SAVED1:
+			sav = false;
+			std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
+			player.setPosition(91.0f, 1218.0f);
+			
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+			{
+				pause = false;
+				dead = false;
+				end = false;
+				menup = true;
+			}
+			score = 0;
+			boss.re();
+			bos = 0.0f;
+			bulletboss.SetPosition();
+			for (enemys& enemyxr : Enemyss)
+			{
+				enemyxr.re();
+			}
+
+			for (Enemy& enemy : enemyes)
+			{
+				enemy.re();
+			}
+			for (box& bx : boxVector) {
+				bx.re();
+			}
+			for (dimon& d : DimonVector) {
+				d.re();
+			}
+			for (dimonfah& df : DimonfahVector) {
+				df.re();
+			}
+			for (dimongreen& dg : DimongreenVector) {
+				dg.re();
+			}
+			bullet1.SetPosition();
+			bullet2.SetPosition();
+			Bul = 0;
+			Bul2 = 0;
+
+			window.draw(endgames);
+			window.draw(resume);
+			window.draw(paused);
+
 			window.display();
 			sf::Event evnt;
 			while (window.pollEvent(evnt))

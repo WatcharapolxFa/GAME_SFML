@@ -1,4 +1,5 @@
 #include "Boss.h"
+#include"HitboxComponent.h"
 
 Boss::Boss(sf::Texture* texture, sf::Vector2u imageCount, float switchTime):
     animation(texture, imageCount, switchTime)
@@ -11,6 +12,14 @@ Boss::Boss(sf::Texture* texture, sf::Vector2u imageCount, float switchTime):
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(200.0f, 7100.0f);//200 - 1600
     body.setTexture(texture);
+
+    hitbox.setSize(sf::Vector2f(160.0f, 200.0f));
+    hitbox.setOrigin(hitbox.getSize() / 2.f);
+    hitbox.setFillColor(sf::Color::Transparent);
+    hitbox.setOutlineThickness(1.f);
+    hitbox.setOutlineColor(sf::Color::Blue);
+    hitbox.setPosition(body.getPosition());
+
 }
 
 Boss::~Boss()
@@ -32,7 +41,7 @@ void Boss::Update(float deltaTime,float px)
         {
             faceRight = true;
             velocity.y = 0.0;
-            velocity.x = 300.0;
+            velocity.x = 200.0;
         }
         if (main > 3.0f && main < 3.1f)
         {
@@ -42,7 +51,7 @@ void Boss::Update(float deltaTime,float px)
         {
             faceRight = false;
             velocity.y = 0.0;
-            velocity.x = -300.0;
+            velocity.x = -200.0;
         }  
         if (main > 6.0f && main < 6.1f)
         {
@@ -75,11 +84,13 @@ void Boss::Update(float deltaTime,float px)
     body.move(velocity * deltaTime);
     animation.updateBu(0, deltaTime, faceRight);
     body.setTextureRect(animation.uvRect);
+    hitbox.setPosition(body.getPosition().x,body.getPosition().y + 50);
 }
 
 void Boss::draw(sf::RenderWindow& window)
 {
     window.draw(body);
+    window.draw(hitbox);
 }
 
 void Boss::dead()
@@ -97,6 +108,12 @@ void Boss::damaged(int dmg)
             hp = hp - 1;
         }
     }
+}
+
+void Boss::re()
+{
+    hp = 10;
+    mainn = 0.0f;
 }
 
 
