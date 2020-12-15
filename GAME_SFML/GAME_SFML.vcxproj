@@ -148,6 +148,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Barrierred.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="boxsx.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Barrierred.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="boxsx.h" />
     <ClInclude Include="Bullet.h" />

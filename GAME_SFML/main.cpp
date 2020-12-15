@@ -31,6 +31,7 @@
 #include"Enemy.h"
 #include "enemys.h"
 #include"enemys.h"
+#include"Boss.h"
 using namespace std;
 
 
@@ -64,6 +65,7 @@ int main()
 	sf::Texture penois;
 	sf::Texture cobe;
 	sf::Texture bulletboss1;
+	sf::Texture bo;
 	float cooldown = 0;
 
 	//Load File
@@ -89,6 +91,7 @@ int main()
 	penois.loadFromFile("charecter/penoi.png");
 	cobe.loadFromFile("charecter/cobe.png");
 	bulletboss1.loadFromFile("charecter/pebos.png");
+	bo.loadFromFile("charecter/boss.png");
 
 	sf::Sprite background;
 	background.setTexture(menustr);
@@ -487,7 +490,7 @@ int main()
 
 	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 5.0f);
 	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 10.0f);
-	Bullet bulletboss(&bulletboss1, sf::Vector2u(4, 1), 0.1f, 800.0f, pos, sf::Vector2f(35.0f, 35.0f), 2.0f);
+	Bullet bulletboss(&bulletboss1, sf::Vector2u(4, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 2.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -751,7 +754,8 @@ int main()
 	
 
 	//=====================================================================//
-
+	Boss boss(&bo, sf::Vector2u(4, 1), 0.1f);
+	float bos = 0.0f;
 	bool pause = false;
 	int pselect = 0;
 	bool dead = false;
@@ -970,7 +974,44 @@ int main()
 
 			player.Update(deltaTime, direction, cooldown);
 
-
+			if (player.GetPosition().y > 6500)
+			{
+				if (boss.GetHp() > 0)
+				{
+					boss.Update(deltaTime,player.GetPosition().x);
+					bos += deltaTime;
+					if (bos > 9 && bos < 9.1)
+					{						
+						bulletboss.attackR(sf::Vector2f(boss.GetPosition().x, boss.GetPosition().y + 120));
+					}
+					if (bos > 9 && bos <= 12)
+					{
+						bulletboss.updateR(deltaTime);
+					}
+					if (bos > 12 && bos < 12.1)
+					{
+						bulletboss.attackL(sf::Vector2f(boss.GetPosition().x, boss.GetPosition().y + 120));
+					}
+					if (bos > 12 && bos <= 15)
+					{
+						bulletboss.updateL(deltaTime);
+					}
+				}
+				if (abs(bulletboss.GetPosition().x - boss.GetPosition().x) >= 1400.0f)
+				{
+					bulletboss.SetPosition();
+					bulletboss.isAvaliable();
+				}
+				if (bos > 15.0f)
+				{
+					bos = 0.0f;
+				}
+				if (boss.GetHp() <= 0)
+				{
+					bos = 0.0f;
+				}
+				std::cout << bos << std::endl;
+			}
 
 			for (Platform& platfrom : platfroms)
 				if (platfrom.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f))
@@ -1728,7 +1769,8 @@ int main()
 				manaa.setPosition(player.GetPosition().x - 50, player.GetPosition().y + 40);
 				//window.draw(manaa);
 
-
+				boss.draw(window);
+				bulletboss.draw(window);
 				//time
 				showScore.setString("score : " + std::to_string(score));
 				showScore.setPosition(view.getCenter().x + 300, view.getCenter().y - 300);
