@@ -39,7 +39,7 @@ int main()
 	//Declare variablees.
 	sf::Texture princess;
 	sf::Texture prince;
-	sf::Texture firee;
+	sf::Texture firee; 
 	sf::Texture heart;
 	sf::IntRect data;
 	sf::Texture mana;
@@ -431,7 +431,7 @@ int main()
 	//=============================================================================================================================================================
 
 //Player **************************************************************************************************************************************************
-	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
+	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350, &firee,&thunderbolt);
 	//*********************************************************************************************************************************************************
 
 
@@ -849,8 +849,14 @@ int main()
 
 			//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 			//std::cout << Bul << std::endl;
-			bullet1.cooldown(deltaTime, Bul);
-			bullet2.cooldown(deltaTime, Bul2);
+			//bullet1.cooldown(deltaTime, Bul);
+			sf::RectangleShape cooldownfire;
+			cooldownfire.setSize(sf::Vector2f(bullet1.cooldown(deltaTime, Bul)*40, 35.0f));
+			cooldownfire.setPosition(sf::Vector2f(view.getCenter().x - 345, view.getCenter().y - 250));
+			//bullet2.cooldown(deltaTime, Bul2);
+			sf::RectangleShape cooldownspark;
+			cooldownspark.setSize(sf::Vector2f(bullet2.cooldown(deltaTime, Bul2)*20, 35.0f));
+			cooldownspark.setPosition(sf::Vector2f(view.getCenter().x - 345, view.getCenter().y - 200));
 			//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 			//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 			deltaTime = clock.restart().asSeconds();
@@ -977,6 +983,7 @@ int main()
 				}
 
 			}
+
 			for (friebg& fires : FireVector) {
 				if (fires.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					sav = true;
@@ -984,6 +991,15 @@ int main()
 				}
 
 			}
+			for (Enemy& enemy : enemys) {
+				if (enemy.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					sav = true;
+					dead = true;
+				}
+
+			}
+
+
 
 			
 
@@ -1504,6 +1520,8 @@ int main()
 				
 				window.draw(bar);
 				coolspeed.Draw(window);
+				window.draw(cooldownfire);
+				window.draw(cooldownspark);
 				player.backe(window, sf::Vector2f(view.getCenter().x - 375, view.getCenter().y - 300));
 				//printf("%.2f", cooldown);
 				//player

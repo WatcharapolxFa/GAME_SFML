@@ -7,7 +7,7 @@
 class Player
 {
 public : 
-	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight);
+	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight, sf::Texture* frie, sf::Texture* Tunder);
 	~Player();
 
 	void Update(float deltaTime, sf::Vector2f direction,float cooldown);
@@ -25,10 +25,14 @@ public :
 	}
 
 private : 
+	sf::RectangleShape firee;
+	sf::RectangleShape spark;
 	float cooldowns;
 	sf::RectangleShape body;
 	sf::RectangleShape hitbox;
 	Animation animation;
+	Animation loop;
+	Animation loop2;
 	unsigned int row;
 	float speed;
 

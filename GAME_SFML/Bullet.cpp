@@ -11,7 +11,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     body.setPosition(pos);
     body.setTexture(texture);
     bool faceleft = false;
-    cooling = 10.0f; //time is cooldown
+    cooling = cool; //time is cooldown
 
     hitbox.setSize(size);
     hitbox.setOrigin(hitbox.getSize() / 2.f);
@@ -86,6 +86,11 @@ void Bullet::SetPosition()
     hitbox.setPosition(body.getPosition().x, body.getPosition().y);
 }
 
+void Bullet::fries(sf::RenderWindow& window, sf::Vector2f poses)
+{
+
+}
+
 void Bullet::OnCollision(sf::Vector2f direction)
 {
     if (direction.x < 0.0f)
@@ -110,6 +115,11 @@ void Bullet::OnCollision(sf::Vector2f direction)
         //top
         velocity.y = 0.0f;
     }
+}
+
+void Bullet::tunder(sf::RenderWindow& window, sf::Vector2f poses)
+{
+
 }
 
 float Bullet::cooldown(float deltaTime, int check)

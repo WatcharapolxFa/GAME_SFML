@@ -2,8 +2,8 @@
 #include<iostream>
 using namespace std;
 
-Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight) :
-	animation(texture, imageCount, switchTime)
+Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight ,sf::Texture* frie, sf::Texture* Tunder) :
+	animation(texture, imageCount, switchTime),loop(frie,sf::Vector2u(5,1),0.1f), loop2(Tunder, sf::Vector2u(5, 1), 0.1f)
 {
 	this->speed = speed;
 	this->jumpHeight = jumpHeight;
@@ -37,7 +37,8 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 
 	body2.setPosition(91.0f, 1218.0f);
 	body2.setTexture(texture);
-
+	firee.setTexture(frie);
+	spark.setTexture(Tunder);
 }
 Player :: ~Player()
 {
@@ -147,16 +148,27 @@ void Player::Update(float deltaTime,sf::Vector2f direction,float cooldown)
 
 	
 	animation.Update(row, deltaTime, faceRight , fire);
+	loop.Updatefrie(0,deltaTime);
+	loop2.Updatefrie(0, deltaTime);
 	body.setTextureRect(animation.uvRect);
 	hitbox.move(velocity * deltaTime);
 	body.setPosition(hitbox.getPosition());
 	body2.setTextureRect(animation.uvRect);
-
+	firee.setTextureRect(loop.uvRect);
+	spark.setTextureRect(loop2.uvRect);
 }
 void Player::backe(sf::RenderWindow& window, sf::Vector2f poses)
 {
+	firee.setSize(sf::Vector2f(50,50));
+	spark.setSize(sf::Vector2f(50, 50));
+	firee.setOrigin(firee.getSize()/2.0f);
+	spark.setOrigin(spark.getSize() / 2.0f);
+	firee.setPosition(poses.x,poses.y + 50);
+	spark.setPosition(poses.x, poses.y + 100);
 	body2.setPosition(poses);
 	window.draw(body2);
+	window.draw(firee);
+	window.draw(spark);
 
 }
 void Player::Draw(sf::RenderWindow& window)

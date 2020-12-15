@@ -20,6 +20,10 @@ public:
     void attackL(sf::Vector2f pos);
     void OnCollision(sf::Vector2f direction);
     void SetPosition();
+
+    void fries(sf::RenderWindow& window, sf::Vector2f poses);
+    void tunder(sf::RenderWindow& window, sf::Vector2f poses);
+
     float cooldown(float deltaTime, int check);
     Collider GetCollider() { return Collider(hitbox); }
   
