@@ -44,11 +44,11 @@ void Enemy::update(float deltaTime)
     }
     if (faceRight == true)
     {
-        velocity.x = 150;
+        velocity.x = 250;
     }
     if (faceRight == false)
     {
-        velocity.x = -150;
+        velocity.x = -250;
     }
 
     body.move(velocity * deltaTime);

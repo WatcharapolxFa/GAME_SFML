@@ -116,6 +116,12 @@ int main()
 	sf::Sound tunderse;
 	tunderse.setVolume(80);
 	tunderse.setBuffer(tunders);
+
+	sf::SoundBuffer sounfire;
+	sounfire.loadFromFile("charecter/firebu.wav");
+	sf::Sound sounfires;
+	sounfires.setVolume(80);
+	sounfires.setBuffer(sounfire);
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	//check 
 	srand(time(NULL));
@@ -1034,10 +1040,11 @@ int main()
 				{
 					bos = 0.0f;
 				}
-				if (boss.GetHp() <= 0)
+				if (boss.GetHp() == 0)
 				{
 					bos = 0.0f;
 					boss.dead();
+					score += 500;
 					sav = true;
 					end = true;
 				}
@@ -1334,6 +1341,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
 				{
+					sounfires.play();
 					if (faceright == true)
 					{
 						Bul = 1;
@@ -1381,6 +1389,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
 				{
+					sounfires.play();
 					if (faceright == true)
 					{
 						Bul = 1;
@@ -1394,6 +1403,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
 				{
+					tunderse.play();
 					if (faceright == true)
 					{
 						Bul2 = 1;
@@ -1471,6 +1481,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
 				{
+					sounfires.play();
 					if (faceright == true)
 					{
 						Bul = 1;
@@ -1562,6 +1573,7 @@ int main()
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
 				{
+					sounfires.play();
 					if (faceright == true)
 					{
 						Bul = 1;

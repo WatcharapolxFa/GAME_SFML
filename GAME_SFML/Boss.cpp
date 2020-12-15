@@ -95,6 +95,7 @@ void Boss::draw(sf::RenderWindow& window)
 
 void Boss::dead()
 {
+    hp = -1;
     body.setPosition(-5000,-5000);
     main = 0.0f;
 }
