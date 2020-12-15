@@ -163,8 +163,8 @@ void Player::backe(sf::RenderWindow& window, sf::Vector2f poses)
 	spark.setSize(sf::Vector2f(50, 50));
 	firee.setOrigin(firee.getSize()/2.0f);
 	spark.setOrigin(spark.getSize() / 2.0f);
-	firee.setPosition(poses.x,poses.y + 50);
-	spark.setPosition(poses.x, poses.y + 100);
+	firee.setPosition(poses.x,poses.y + 70);
+	spark.setPosition(poses.x, poses.y + 120);
 	body2.setPosition(poses);
 	window.draw(body2);
 	window.draw(firee);

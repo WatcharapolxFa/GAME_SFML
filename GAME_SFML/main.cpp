@@ -29,6 +29,8 @@
 #include"platfrom2.h"
 #include"fstream"
 #include"Enemy.h"
+#include "enemys.h"
+#include"enemys.h"
 using namespace std;
 
 
@@ -160,8 +162,8 @@ int main()
 		positionrand_x[1] = 943.0f;
 		positionrand_y[1] = 65.0f;
 
-		positionrand_x[2] = 850.0f;
-		positionrand_y[2] = 1250.0f;
+		positionrand_x[2] = 943.0f;
+		positionrand_y[2] = 1050.0f;
 
 		positionrand_x[0] = 1273.0f;
 		positionrand_y[0] = 415.0f;
@@ -171,8 +173,8 @@ int main()
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 65.0f;
 
-		positionrand_x[0] = 850.0f;
-		positionrand_y[0] = 1250.0f;
+		positionrand_x[0] = 943.0f;
+		positionrand_y[0] = 1050.0f;
 
 		positionrand_x[2] = 1273.0f;
 		positionrand_y[2] = 415.0f;
@@ -435,10 +437,17 @@ int main()
 	//*********************************************************************************************************************************************************
 
 
+	//mon1
+	std::vector<Enemy>enemyes;
+	enemyes.push_back(Enemy(sf::Vector2f(850.0f, 1218.0f),&penois));
+	enemyes.push_back(Enemy(sf::Vector2f(850.0f, 218.0f), &penois));
+	
+	//mon2
+	std::vector<enemys>Enemyss;
+	Enemyss.push_back(enemys(sf::Vector2f(950.0f, 1218.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(1050.0f, 218.0f), &penois));
 
-	std::vector<Enemy>enemys;
-	enemys.push_back(Enemy(sf::Vector2f(850.0f, 1218.0f),&penois));
-	enemys.push_back(Enemy(sf::Vector2f(850.0f, 218.0f), &penois));
+
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -475,8 +484,8 @@ int main()
 
 	//Bullet
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.5f, 300.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.5f, 300.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -991,8 +1000,16 @@ int main()
 				}
 
 			}
-			for (Enemy& enemy : enemys) {
+			for (Enemy& enemy : enemyes) {
 				if (enemy.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					sav = true;
+					dead = true;
+				}
+
+			}
+
+			for (enemys& enemyxr : Enemyss) {
+				if (enemyxr.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					sav = true;
 					dead = true;
 				}
@@ -1099,8 +1116,8 @@ int main()
 
 
 
-
-			for (Enemy& enemy : enemys)
+			
+			for (Enemy& enemy : enemyes)
 			{
 				enemy.update(deltaTime);
 				if (bullet1.GetCollider().CheckCollisionItem(enemy.GetCollider(), direction))
@@ -1120,7 +1137,27 @@ int main()
 					bullet2.isAvaliable();
 				}
 			}
-
+			for (enemys& enemyxr : Enemyss)
+			{
+				enemyxr.update(deltaTime);
+				if (bullet1.GetCollider().CheckCollisionItem(enemyxr.GetCollider(), direction))
+				{
+					enemyxr.dead();
+					score += 20;
+					Bul = 0;
+					bullet1.SetPosition();
+					bullet1.isAvaliable();
+				}
+				if (bullet2.GetCollider().CheckCollisionItem(enemyxr.GetCollider(), direction))
+				{
+					enemyxr.dead();
+					score += 20;
+					Bul2 = 0;
+					bullet2.SetPosition();
+					bullet2.isAvaliable();
+				}
+			}
+			
 
 
 			//std::cout << "dir x = " << direction.x << " dir y = " << direction.y << endl;
@@ -1462,18 +1499,18 @@ int main()
 				{
 					boxVector[i].draw(window);
 				}
-
+				/*
 				//????
 				for (int i = 0; i < buttonVector.size(); i++)
 				{
 					buttonVector[i].draw(window);
 				}
-
+				
 				//???????
 				for (int i = 0; i < buttonredVector.size(); i++)
 				{
 					buttonredVector[i].draw(window);
-				}
+				}/*
 				// ??????????
 				/*for (int i = 0; i < itemVector.size(); i++)
 				{
@@ -1485,7 +1522,7 @@ int main()
 				{
 					boxitemVector[i].draw(window);
 				}
-				*/
+				
 				// ??????? 
 				for (int i = 0; i < barrierVector.size(); i++)
 				{
@@ -1497,7 +1534,7 @@ int main()
 				{
 					barrieredVector[i].draw(window);
 				}
-
+				*/
 
 				//==================================================================//
 				//wrab
@@ -1526,9 +1563,13 @@ int main()
 				//printf("%.2f", cooldown);
 				//player
 				player.Draw(window);
-				for (Enemy& enemy : enemys)
+				for (Enemy& enemy : enemyes)
 				{
 					enemy.draw(window);
+				}
+				for (enemys& enemyxr : Enemyss)
+				{
+					enemyxr.draw(window);
 				}
 				//heartt
 				heartt.setPosition(player.GetPosition().x - 50, player.GetPosition().y - 60);
@@ -1754,10 +1795,14 @@ int main()
 				sav = false;
 				std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
 				score = 0;
-				for (Enemy& enemy : enemys)
+				for (Enemy& enemy : enemyes)
 				{
 					enemy.re();
 				}
+					for (enemys& enemyxr : Enemyss)
+					{
+						enemyxr.re();
+					}
 				for (box& bx : boxVector) {
 					bx.re();
 				}
@@ -1966,7 +2011,12 @@ int main()
 			{
 				pause = false;				
 				score = 0;
-				for (Enemy& enemy : enemys)
+				for (enemys& enemyxr : Enemyss)
+				{
+					enemyxr.re();
+				}
+			
+				for (Enemy& enemy : enemyes)
 				{
 					enemy.re();
 				}

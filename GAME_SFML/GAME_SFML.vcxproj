@@ -158,6 +158,7 @@
     <ClCompile Include="dimonfah.cpp" />
     <ClCompile Include="dimongreen.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="enemys.cpp" />
     <ClCompile Include="friebg.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="item.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="dimonfah.h" />
     <ClInclude Include="dimongreen.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="enemys.h" />
     <ClInclude Include="friebg.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="item.h" />
