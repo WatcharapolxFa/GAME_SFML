@@ -11,6 +11,7 @@ public :
 	~Player();
 
 	void Update(float deltaTime, sf::Vector2f direction,float cooldown);
+	void backe(sf::RenderWindow& window, sf::Vector2f poses);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
 	void Warped(sf::RenderWindow& window);
@@ -38,4 +39,5 @@ private :
 	bool canJump;
 	float jumpHeight;
 	bool floorGravity;
+	sf::RectangleShape body2;
 };

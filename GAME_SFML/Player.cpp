@@ -31,6 +31,13 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	hitbox.setOutlineColor(sf::Color::Blue);
 	hitbox.setPosition(body.getPosition());
 
+	body2.setSize(sf::Vector2f(60.0f, 98.0f));
+	body2.setOrigin({ body.getSize().x / 2.0f, 2 * body2.getSize().y / 3.0f });
+
+
+	body2.setPosition(91.0f, 1218.0f);
+	body2.setTexture(texture);
+
 }
 Player :: ~Player()
 {
@@ -143,6 +150,14 @@ void Player::Update(float deltaTime,sf::Vector2f direction,float cooldown)
 	body.setTextureRect(animation.uvRect);
 	hitbox.move(velocity * deltaTime);
 	body.setPosition(hitbox.getPosition());
+	body2.setTextureRect(animation.uvRect);
+
+}
+void Player::backe(sf::RenderWindow& window, sf::Vector2f poses)
+{
+	body2.setPosition(poses);
+	window.draw(body2);
+
 }
 void Player::Draw(sf::RenderWindow& window)
 {

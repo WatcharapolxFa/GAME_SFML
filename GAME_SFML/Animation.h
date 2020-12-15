@@ -10,6 +10,7 @@ public:
 	void updateBu(int row, float deltaTime, bool faceleft);
 	void Updatefrie(int row, float deltaTime);
 	void Updatewater(int row, float deltaTime);
+	void Updatepenois(int row, float deltaTime, bool faceRight);
 
 public:
 	sf::IntRect uvRect;

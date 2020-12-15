@@ -28,6 +28,7 @@
 #include"buttonred.h"
 #include"platfrom2.h"
 #include"fstream"
+#include"Enemy.h"
 using namespace std;
 
 
@@ -58,7 +59,8 @@ int main()
 	sf::Texture barrierr;
 	sf::Texture barrierreds;
 	sf::Texture buttonredd;
-	int score = 0;
+	sf::Texture penois;
+	sf::Texture cobe;
 	float cooldown = 0;
 
 	//Load File
@@ -81,6 +83,9 @@ int main()
 	barrierr.loadFromFile("charecter/Barrier.png");
 	barrierreds.loadFromFile("charecter/Barrierred.png");
 	buttonredd.loadFromFile("charecter/buttonred.png");
+	penois.loadFromFile("charecter/penoi.png");
+	cobe.loadFromFile("charecter/cobe.png");
+	
 
 	sf::Sprite background;
 	background.setTexture(menustr);
@@ -90,13 +95,17 @@ int main()
 	{
 		std::cout << "ERROR" << std::endl;
 	}
-	music.setVolume(25.0f);
+	music.setVolume(5.0f);
 	music.play();
 	//=========================================================================================================================================================
 
-
+	sf::SoundBuffer coins;
+	coins.loadFromFile("charecter/coin.wav");
+	sf::Sound coinss;
+	coinss.setVolume(80);
+	coinss.setBuffer(coins);
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-	//check ??????????????
+	//check 
 	srand(time(NULL));
 	int cheeck = rand() % 6;
 	float positionrand_x[3]{}, positionrand_y[3]{};
@@ -425,6 +434,13 @@ int main()
 	Player player(&prince, sf::Vector2u(5, 8), 0.5f, 180.0f, 350);
 	//*********************************************************************************************************************************************************
 
+
+
+	std::vector<Enemy>enemys;
+	enemys.push_back(Enemy(sf::Vector2f(850.0f, 1218.0f),&penois));
+	enemys.push_back(Enemy(sf::Vector2f(850.0f, 218.0f), &penois));
+
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//heart
 	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
@@ -693,7 +709,13 @@ int main()
 	lbltime.setPosition(view.getCenter().x + 240, view.getCenter().y - 360);
 
 	//==================================================================//
+	int score = 0;
+	sf::Text showScore("Score", font, 20);
+	showScore.setFillColor(sf::Color::Green);
 
+	
+
+	//=====================================================================//
 
 	bool pause = false;
 	int pselect = 0;
@@ -734,9 +756,9 @@ int main()
 			sf::Text play("Play", font, 30);
 			sf::Text exit("Exit", font, 30);
 			sf::Text guide("Press 'Enter' to select.", font, 30);
-			sf::Text name("63010870 Watcharapol Yotadee", font, 30);
+			sf::Text name(" Watcharapol Yotadee", font, 30);
 			sf::Text leader("Leaderboard", font, 30);
-			sf::Text gamename("THE FORGOTTEN \nPRINCE", font, 40);
+			sf::Text gamename("THE FORGOTTEN \n\tPRINCE", font, 40);
 			sf::Text score1("1. " + h1, font, 20);
 			sf::Text score2("2. " + h2, font, 20);
 			sf::Text score3("3. " + h3, font, 20);
@@ -748,17 +770,17 @@ int main()
 			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
 			background.setOrigin(pauses.getSize() / 2.0f);
 			background.setPosition(view.getCenter());
-			leader.setPosition(view.getCenter().x + 150, view.getCenter().y - 190.0f);
-			score1.setPosition(view.getCenter().x + 100, view.getCenter().y - 125.0f);
-			score2.setPosition(view.getCenter().x + 100, view.getCenter().y - 75.0f);
-			score3.setPosition(view.getCenter().x + 100, view.getCenter().y - 25.0f);
-			score4.setPosition(view.getCenter().x + 100, view.getCenter().y + 25.0f);
-			score5.setPosition(view.getCenter().x + 100, view.getCenter().y + 75.0f);
+			leader.setPosition(view.getCenter().x - 450, view.getCenter().y - 190.0f);
+			score1.setPosition(view.getCenter().x - 450, view.getCenter().y - 125.0f);
+			score2.setPosition(view.getCenter().x - 450, view.getCenter().y - 75.0f);
+			score3.setPosition(view.getCenter().x - 450, view.getCenter().y - 25.0f);
+			score4.setPosition(view.getCenter().x - 450, view.getCenter().y + 25.0f);
+			score5.setPosition(view.getCenter().x - 450, view.getCenter().y + 75.0f);
 			play.setPosition(view.getCenter().x - 35, view.getCenter().y + 0.0f);
 			exit.setPosition(view.getCenter().x - 35, view.getCenter().y + 100.0f);
-			guide.setPosition(view.getCenter().x - 400, view.getCenter().y + 270.0f);
-			name.setPosition(view.getCenter().x - 400, view.getCenter().y + 320.0f);
-			gamename.setPosition(view.getCenter().x - 500, view.getCenter().y - 220.0f);
+			guide.setPosition(view.getCenter().x - 540, view.getCenter().y + 260.0f);
+			name.setPosition(view.getCenter().x +55, view.getCenter().y + 320.0f);
+			gamename.setPosition(view.getCenter().x - 400, view.getCenter().y - 360.0f);
 			if (mselect == 0)
 			{
 				play.setFillColor(sf::Color::Red);
@@ -883,9 +905,11 @@ int main()
 				}
 			}
 			sf::Vector2f direction;
-			Platform2 coolspeed(nullptr, sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x - 550, view.getCenter().y - 350));
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D))))
+			
+			Platform2 coolspeed(nullptr , sf::Vector2f(200.0 - cooldown, 35.0f), sf::Vector2f(view.getCenter().x - 345, view.getCenter().y - 300));
+			coolspeed.col();
+			sf::RectangleShape bar(sf::Vector2f(300.0f,150.0f));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 			{
 				if (cooldown <= 200)
 				{
@@ -928,6 +952,7 @@ int main()
 					d.pickup();
 					score += 5;
 					printf("%d", score);
+					coinss.play();
 
 
 				}
@@ -938,7 +963,7 @@ int main()
 					df.pickup();
 					score += 10;
 					printf("%d", score);
-
+					coinss.play();
 
 				}
 			}
@@ -947,7 +972,7 @@ int main()
 					dg.pickup();
 					score += 20;
 					printf("%d", score);
-
+					coinss.play();
 
 				}
 
@@ -960,6 +985,7 @@ int main()
 
 			}
 
+			
 
 
 
@@ -1058,9 +1084,26 @@ int main()
 
 
 
-
-
-
+			for (Enemy& enemy : enemys)
+			{
+				enemy.update(deltaTime);
+				if (bullet1.GetCollider().CheckCollisionItem(enemy.GetCollider(), direction))
+				{
+					enemy.dead();
+					score += 20;
+					Bul = 0;
+					bullet1.SetPosition();
+					bullet1.isAvaliable();
+				}
+				if (bullet2.GetCollider().CheckCollisionItem(enemy.GetCollider(), direction))
+				{
+					enemy.dead();
+					score += 20;
+					Bul2 = 0;
+					bullet2.SetPosition();
+					bullet2.isAvaliable();
+				}
+			}
 
 
 
@@ -1366,8 +1409,8 @@ int main()
 
 
 				window.draw(back01);
-				/*window.draw(back02);
-				window.draw(back03);*/
+				window.draw(back02);
+				window.draw(back03);
 
 				//??????
 				for (int i = 0; i < FireVector.size(); i++)
@@ -1416,7 +1459,7 @@ int main()
 					buttonredVector[i].draw(window);
 				}
 				// ??????????
-				for (int i = 0; i < itemVector.size(); i++)
+				/*for (int i = 0; i < itemVector.size(); i++)
 				{
 					itemVector[i].draw(window);
 				}
@@ -1426,7 +1469,7 @@ int main()
 				{
 					boxitemVector[i].draw(window);
 				}
-
+				*/
 				// ??????? 
 				for (int i = 0; i < barrierVector.size(); i++)
 				{
@@ -1455,12 +1498,20 @@ int main()
 
 				}window.draw(waroPoint2);
 				//==================================================================//
-
+				//player.backe
+				bar.setPosition(sf::Vector2f(view.getCenter().x - 430, view.getCenter().y - 380));
+				bar.setTexture(&cobe);
+				
+				window.draw(bar);
 				coolspeed.Draw(window);
+				player.backe(window, sf::Vector2f(view.getCenter().x - 375, view.getCenter().y - 300));
 				//printf("%.2f", cooldown);
 				//player
 				player.Draw(window);
-
+				for (Enemy& enemy : enemys)
+				{
+					enemy.draw(window);
+				}
 				//heartt
 				heartt.setPosition(player.GetPosition().x - 50, player.GetPosition().y - 60);
 				//window.draw(heartt);
@@ -1470,54 +1521,12 @@ int main()
 				//window.draw(manaa);
 
 
-
-
-				//hitbox
-				//hitboxPlayer.Draw(window);
-
-				/*for (int i = 0; i < DimonVector.size(); i++) {
-					if (player.checkIntersect(DimonVector[i].getBody().getGlobalBounds())) {
-						cout << "Wow";
-					}
-				}
-				for (int i = 0; i < DimonfahVector.size(); i++) {
-					if (player.checkIntersect(DimonfahVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}
-				for (int i = 0; i < DimongreenVector.size(); i++) {
-					if (player.checkIntersect(DimongreenVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}
-				for (int i = 0; i < buttonVector.size(); i++) {
-					if (player.checkIntersect(buttonVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}
-				for (int i = 0; i < boxVector.size(); i++) {
-					if (player.checkIntersect(boxVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}*/
-
-
-
-				/*for (int i = 0; i < FireVector.size(); i++) {
-					if (player.checkIntersect(FireVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}
-				for (int i = 0; i < WaterVector.size(); i++) {
-					if (player.checkIntersect(WaterVector[i].getBody().getGlobalBounds())) {
-						cout << "Hit!!!!!";
-					}
-				}*/
-
-
 				//time
+				showScore.setString("score : " + std::to_string(score));
+				showScore.setPosition(view.getCenter().x + 300, view.getCenter().y - 300);
+				
 				window.draw(lbltime);
-
+				window.draw(showScore);
 
 				//Draw bullet
 				if (Bul == 1)
@@ -1534,7 +1543,7 @@ int main()
 				{
 					Bul = 0;
 					bullet1.isAvaliable();
-					bullet1.SetPosition(pos);
+					bullet1.SetPosition();
 				}
 
 				if (Bul2 == 1)
@@ -1551,7 +1560,7 @@ int main()
 				{
 					Bul2 = 0;
 					bullet2.isAvaliable();
-					bullet2.SetPosition(pos);
+					bullet2.SetPosition();
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 				{
@@ -1727,6 +1736,10 @@ int main()
 				sav = false;
 				std::cout << score << " " << x1 << " " << x2 << " " << x3 << " " << x4 << " " << x5 << std::endl;
 				score = 0;
+				for (Enemy& enemy : enemys)
+				{
+					enemy.re();
+				}
 				for (box& bx : boxVector) {
 					bx.re();
 				}
@@ -1739,6 +1752,10 @@ int main()
 				for (dimongreen& dg : DimongreenVector) {
 					dg.re();
 				}
+				bullet1.SetPosition();
+				bullet2.SetPosition();
+				Bul = 0;
+				Bul2 = 0;
 				player.setPosition(91.0f, 1218.0f);
 				cheeckongame = 0;
 				pause = false;
@@ -1931,6 +1948,10 @@ int main()
 			{
 				pause = false;				
 				score = 0;
+				for (Enemy& enemy : enemys)
+				{
+					enemy.re();
+				}
 				for (box& bx : boxVector) {
 					bx.re();
 				}
@@ -1943,6 +1964,10 @@ int main()
 				for (dimongreen& dg : DimongreenVector) {
 					dg.re();
 				}
+				bullet1.SetPosition();
+				bullet2.SetPosition();
+				Bul = 0;
+				Bul2 = 0;
 				dead = false;
 				menup = true;
 			}
@@ -1950,6 +1975,7 @@ int main()
 			window.draw(resume);
 			window.draw(exit);
 			window.draw(paused);
+		
 			window.display();
 			sf::Event evnt;
 			while (window.pollEvent(evnt))

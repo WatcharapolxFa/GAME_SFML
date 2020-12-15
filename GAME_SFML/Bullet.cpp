@@ -27,6 +27,7 @@ Bullet::~Bullet()
 
 void Bullet::updateR(float deltaTime)
 {
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y);
     velocity.y = 0;
     velocity.x = speed;
        
@@ -39,6 +40,7 @@ void Bullet::updateR(float deltaTime)
 
 void Bullet::updateL(float deltaTime)
 {
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y);
     velocity.y = 0;
     velocity.x = speed;
 
@@ -78,9 +80,10 @@ void Bullet::draw(sf::RenderWindow& window)
     window.draw(hitbox);
 }
 
-void Bullet::SetPosition(sf::Vector2f pos)
+void Bullet::SetPosition()
 {
-    body.setPosition(pos.x, pos.y + 720.0f);
+    body.setPosition(-5000,-5000);
+    hitbox.setPosition(body.getPosition().x, body.getPosition().y);
 }
 
 void Bullet::OnCollision(sf::Vector2f direction)

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <iostream>
 #include "Collider.h"
+#include"HitboxComponent.h"
 using namespace std;
 
 class Bullet
@@ -18,13 +19,14 @@ public:
     void attackR(sf::Vector2f pos);
     void attackL(sf::Vector2f pos);
     void OnCollision(sf::Vector2f direction);
-    void SetPosition(sf::Vector2f pos);
+    void SetPosition();
     float cooldown(float deltaTime, int check);
+    Collider GetCollider() { return Collider(hitbox); }
   
 
 
     sf::Vector2f GetPosition() { return body.getPosition(); }
-    Collider GetCollider() { return Collider(body); }
+    
 private:
     Animation animation;
     float speed;

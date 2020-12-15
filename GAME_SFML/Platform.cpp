@@ -11,6 +11,10 @@ Platform::~Platform()
 {
 
 }
+void Platform::col()
+{
+	body.setFillColor(sf::Color::Magenta);
+}
 void Platform::Draw(sf::RenderWindow& window)
 {
 	window.draw(body);
