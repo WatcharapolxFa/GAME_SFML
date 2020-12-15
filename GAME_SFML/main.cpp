@@ -63,6 +63,7 @@ int main()
 	sf::Texture buttonredd;
 	sf::Texture penois;
 	sf::Texture cobe;
+	sf::Texture bulletboss1;
 	float cooldown = 0;
 
 	//Load File
@@ -87,7 +88,7 @@ int main()
 	buttonredd.loadFromFile("charecter/buttonred.png");
 	penois.loadFromFile("charecter/penoi.png");
 	cobe.loadFromFile("charecter/cobe.png");
-	
+	bulletboss1.loadFromFile("charecter/pebos.png");
 
 	sf::Sprite background;
 	background.setTexture(menustr);
@@ -484,8 +485,9 @@ int main()
 
 	//Bullet
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(70.0f, 70.0f), 5.0f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 10.0f);
+	Bullet bulletboss(&bulletboss1, sf::Vector2u(4, 1), 0.1f, 800.0f, pos, sf::Vector2f(35.0f, 35.0f), 2.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
@@ -510,6 +512,12 @@ int main()
 	//Warp2
 	sf::RectangleShape waroPoint2(sf::Vector2f(20, 40));
 	waroPoint2.setPosition(sf::Vector2f(1693, 3201));
+
+	//Warp3
+	sf::RectangleShape waroPoint3(sf::Vector2f(20, 40));
+	waroPoint3.setPosition(sf::Vector2f(1730.0f, 5280.0f));
+
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -557,6 +565,7 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 2679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 33.5f), sf::Vector2f(915.25f, 3365.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 1950.0f)));
+
 	//bg02
 
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(220.0f, 278.0f), sf::Vector2f(118.0f, 3225.0f)));
@@ -667,6 +676,16 @@ int main()
 
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+	//cob04
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(30.0f, 7679.25f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 7679.25f)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 4595)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 7335.0f)));
+
+
+
+
+
 
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 	//bg01
@@ -687,6 +706,13 @@ int main()
 	sf::RectangleShape back03(sf::Vector2f(1830.5f, 1358.5f));
 	back03.setPosition(0.0f, 4000.0f);
 	back03.setTexture(&bg03);
+
+	sf::Texture bg04;
+	bg04.loadFromFile("charecter/black04.png");
+	sf::RectangleShape back04(sf::Vector2f(1830.5f, 1358.5f));
+	back04.setPosition(0.0f, 6000.0f);
+	back04.setTexture(&bg04);
+
 
 	sf::RectangleShape pauses(sf::Vector2f(1080.0f, 720.0f));
 	sf::Texture pau;
@@ -856,16 +882,18 @@ int main()
 			}
 
 
-			//std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
+			std::cout << "x = " << player.GetPosition().x << " y = " << player.GetPosition().y << std::endl;
 			//std::cout << Bul << std::endl;
 			//bullet1.cooldown(deltaTime, Bul);
 			sf::RectangleShape cooldownfire;
 			cooldownfire.setSize(sf::Vector2f(bullet1.cooldown(deltaTime, Bul)*40, 35.0f));
 			cooldownfire.setPosition(sf::Vector2f(view.getCenter().x - 345, view.getCenter().y - 250));
+			cooldownfire.setFillColor(sf::Color::Red);
 			//bullet2.cooldown(deltaTime, Bul2);
 			sf::RectangleShape cooldownspark;
 			cooldownspark.setSize(sf::Vector2f(bullet2.cooldown(deltaTime, Bul2)*20, 35.0f));
 			cooldownspark.setPosition(sf::Vector2f(view.getCenter().x - 345, view.getCenter().y - 200));
+			cooldownspark.setFillColor(sf::Color::Magenta);
 			//std::cout << bullet1.cooldown(deltaTime, Bul) << "   ";
 			//std::cout << bullet2.cooldown(deltaTime, Bul2) << std::endl;
 			deltaTime = clock.restart().asSeconds();
@@ -1168,6 +1196,9 @@ int main()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)) {
 				player.Warped2(window);
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) {
+				player.Warped3(window);
+			}
 
 			//set Viw
 			if (player.GetPosition().y <= 2000) {
@@ -1254,8 +1285,13 @@ int main()
 				}
 
 			}
+
+
+
+
+
 			///// viw 02
-			if (player.GetPosition().y >= 2000 && player.GetPosition().y < 4000)
+			if (player.GetPosition().y >= 2005 && player.GetPosition().y < 4000)
 			{
 				u = 1;
 
@@ -1341,8 +1377,11 @@ int main()
 			}
 
 
+
+
+
 			// viw 03 
-			if (player.GetPosition().y > 4000)
+			if (player.GetPosition().y >= 4005 && player.GetPosition().y < 6000)
 			{
 				u = 2;
 
@@ -1380,7 +1419,8 @@ int main()
 						bullet2.attackL(pos);
 					}
 				}
-			}if (u == 2)
+			}
+			if (u == 2)
 			{
 				view.setCenter(sf::Vector2f(player.GetPosition()));
 				if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
@@ -1427,6 +1467,100 @@ int main()
 				}
 			}
 
+
+
+			
+			// viw 04 
+			if (player.GetPosition().y > 6005)
+			{
+				u = 3;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					faceright = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					faceright = true;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && Bul == 0 && bullet1.cooldown(deltaTime, Bul) >= 5.0f)
+				{
+					if (faceright == true)
+					{
+						Bul = 1;
+						bullet1.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul = -1;
+						bullet1.attackL(pos);
+					}
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::K) && Bul2 == 0 && bullet2.cooldown(deltaTime, Bul2) >= 10.0f)
+				{
+					if (faceright == true)
+					{
+						Bul2 = 1;
+						bullet2.attackR(pos);
+					}
+					if (faceright == false)
+					{
+						Bul2 = -1;
+						bullet2.attackL(pos);
+					}
+				}
+			}
+			if (u == 3)
+			{
+				view.setCenter(sf::Vector2f(player.GetPosition()));
+				if (view.getCenter().x - 540.0f <= 0.0f)//front center window behide pic
+				{
+					if (view.getCenter().y - 360.0f <= 5945.0f)
+					{
+						view.setCenter(540.0f, 5945.0f + 360.0f);//window
+					}
+					else if (view.getCenter().y + 360.0f >= 7358.5f)
+					{
+						view.setCenter(540.0f, 6998.5f);//window
+					}
+					else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 7358.5f)
+					{
+						view.setCenter(540.0f, player.GetPosition().y);
+					}
+
+				}
+				else if (view.getCenter().x + 540.0f >= 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 5945.0f)
+					{
+						view.setCenter(1290.5f, 5945.0f + 360.0f);//window 1248-540 collision right 
+					}
+					else if (view.getCenter().y + 360.0f >= 7358.5f)
+					{
+						view.setCenter(1290.5f, 6998.5f);//window 1248-540
+					}
+					else if (view.getCenter().y - 360.0f > 0.0f && view.getCenter().y + 360.0f < 7358.5f)
+					{
+						view.setCenter(1290.5f, player.GetPosition().y);
+					}
+				}
+				else if (view.getCenter().x - 540.0f > 0.0f && view.getCenter().x + 540.0f < 1830.5f)
+				{
+					if (view.getCenter().y - 360.0f <= 5945.0f)
+					{
+						view.setCenter(player.GetPosition().x, 5945.0f + 360.0f);
+					}
+					else if (view.getCenter().y + 360.0f >= 7358.5f)
+					{
+						view.setCenter(player.GetPosition().x, 6998.5f);
+					}
+				}
+			}
+
+
+
+
+
 			// Time //==================================================================//
 
 			lbltime.setString(showtime.str());
@@ -1455,6 +1589,7 @@ int main()
 				//window.draw(back01);
 				//window.draw(back02);
 				//window.draw(back03);
+				//window.draw(back04);
 				window.setView(view);
 
 				for (Platform& platfrom : platfroms)
@@ -1464,6 +1599,9 @@ int main()
 				window.draw(back01);
 				window.draw(back02);
 				window.draw(back03);
+				window.draw(back04);
+
+				
 
 				//??????
 				for (int i = 0; i < FireVector.size(); i++)
@@ -1550,6 +1688,17 @@ int main()
 					player.Warped2(window);
 
 				}window.draw(waroPoint2);
+
+				//warp3
+				if (player.GetCollider().CheckCollision(Collider(waroPoint3), direction, 1.0f))
+				{
+					player.Warped3(window);
+
+				}window.draw(waroPoint3);
+
+
+
+
 				//==================================================================//
 				//player.backe
 				bar.setPosition(sf::Vector2f(view.getCenter().x - 430, view.getCenter().y - 380));

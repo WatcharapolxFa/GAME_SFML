@@ -16,5 +16,5 @@ void Platform2::Draw(sf::RenderWindow& window)
 }
 void Platform2::col()
 {
-	body.setFillColor(sf::Color::Cyan);
+	body.setFillColor(sf::Color::Yellow);
 }
