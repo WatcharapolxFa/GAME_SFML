@@ -16,7 +16,7 @@ Boss::Boss(sf::Texture* texture, sf::Vector2u imageCount, float switchTime):
     hitbox.setSize(sf::Vector2f(160.0f, 200.0f));
     hitbox.setOrigin(hitbox.getSize() / 2.f);
     hitbox.setFillColor(sf::Color::Transparent);
-    hitbox.setOutlineThickness(1.f);
+    hitbox.setOutlineThickness(0.f);
     hitbox.setOutlineColor(sf::Color::Blue);
     hitbox.setPosition(body.getPosition());
 

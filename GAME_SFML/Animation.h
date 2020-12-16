@@ -11,6 +11,8 @@ public:
 	void Updatefrie(int row, float deltaTime);
 	void Updatewater(int row, float deltaTime);
 	void Updatepenois(int row, float deltaTime, bool faceRight);
+	void Updateprinces(int row, float deltaTime, bool faceRight);
+	
 
 public:
 	sf::IntRect uvRect;

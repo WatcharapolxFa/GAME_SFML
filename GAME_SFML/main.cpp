@@ -32,6 +32,7 @@
 #include "enemys.h"
 #include"enemys.h"
 #include"Boss.h"
+#include"princess.h"
 using namespace std;
 
 
@@ -40,7 +41,7 @@ int main()
 	//Set screen and Set title name. ========================================================================================================================
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Watcharapol Yotade 63010870", sf::Style::Close | sf::Style::Resize);//Resize Size as you like.
 	//Declare variablees.
-	sf::Texture princess;
+	sf::Texture princessx;
 	sf::Texture prince;
 	sf::Texture firee; 
 	sf::Texture heart;
@@ -69,7 +70,7 @@ int main()
 	float cooldown = 0;
 
 	//Load File
-	princess.loadFromFile("charecter/princess.png");
+	princessx.loadFromFile("charecter/princess.png");
 	prince.loadFromFile("charecter/prince.png");
 	firee.loadFromFile("charecter/frie.png");
 	heart.loadFromFile("charecter/heart.png");
@@ -101,7 +102,7 @@ int main()
 	{
 		std::cout << "ERROR" << std::endl;
 	}
-	music.setVolume(30.0f);
+	music.setVolume(50.0f);
 	music.setLoop(true);
 	music.play();
 	//=========================================================================================================================================================
@@ -125,13 +126,13 @@ int main()
 	sounfires.setBuffer(sounfire);
 
 	sf::SoundBuffer worldclear;
-	sounfire.loadFromFile("charecter/world_clear.wav");
+	worldclear.loadFromFile("charecter/worldclear.ogg");
 	sf::Sound worldclears;
 	worldclears.setVolume(60);
 	worldclears.setBuffer(worldclear);
 
 	sf::SoundBuffer gameover;
-	sounfire.loadFromFile("charecter/game_over.wav");
+	gameover.loadFromFile("charecter/gameover.ogg");
 	sf::Sound gameovers;
 	gameovers.setVolume(60);
 	gameovers.setBuffer(gameover);
@@ -502,6 +503,12 @@ int main()
 	Enemyss.push_back(enemys(sf::Vector2f(1120.0f, 4160.0f), &penois));
 	Enemyss.push_back(enemys(sf::Vector2f(820.0f, 4120.0f), &penois));
 
+
+	/*
+	std::vector<princess>princesox;
+	princesox.push_back(princess(sf::Vector2f(1800.0f, 7200.0f),&princessx));
+	*/
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//heart
 	sf::RectangleShape heartt(sf::Vector2f(120.0f, 40.0f));
@@ -811,6 +818,8 @@ int main()
 	bool pause = false;
 	int pselect = 0;
 	bool dead = false;
+	bool checksound = false;
+	bool checksound1 = false;
 	int dselect = 0;
 	bool menup = true;
 	int mselect = 0;
@@ -2125,7 +2134,11 @@ int main()
 		}
 		while (dead == true)
 		{
-			gameovers.play();
+			if (checksound == false)
+			{
+				gameovers.play();
+				checksound = true;
+			}
 			sf::Text paused("You Dead", font, 30);
 			sf::Text resume("Continue", font, 30);
 			sf::Text exit("Exit", font, 30);
@@ -2346,7 +2359,12 @@ int main()
 		}
 		while (end == true)
 		{
-			worldclears.play();
+			if (checksound1 == false)
+			{
+				worldclears.play();
+				checksound1 = true;
+			}
+			
 			sf::Text paused("Game Cleared!", font, 30);
 			sf::Text resume("Press 'Space' to proceed", font, 30);
 
