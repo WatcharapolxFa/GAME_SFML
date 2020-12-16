@@ -543,9 +543,9 @@ int main()
 
 	//Bullet
 
-	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 5.0f);
-	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 10.0f);
-	Bullet bulletboss(&bulletboss1, sf::Vector2u(4, 1), 0.1f, 800.0f, pos, sf::Vector2f(50.0f, 50.0f), 2.0f);
+	Bullet bullet1(&firee, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(60.0f, 60.0f), 5.0f);
+	Bullet bullet2(&thunderbolt, sf::Vector2u(5, 1), 0.1f, 800.0f, pos, sf::Vector2f(70.0f, 70.0f), 10.0f);
+	Bullet bulletboss(&bulletboss1, sf::Vector2u(4, 1), 0.1f, 800.0f, pos, sf::Vector2f(80.0f, 80.0f), 2.0f);
 
 	int Bul = 0;
 	int Bul2 = 0;
