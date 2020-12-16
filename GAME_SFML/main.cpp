@@ -101,7 +101,7 @@ int main()
 	{
 		std::cout << "ERROR" << std::endl;
 	}
-	music.setVolume(50.0f);
+	music.setVolume(30.0f);
 	music.setLoop(true);
 	music.play();
 	//=========================================================================================================================================================
@@ -123,6 +123,18 @@ int main()
 	sf::Sound sounfires;
 	sounfires.setVolume(60);
 	sounfires.setBuffer(sounfire);
+
+	sf::SoundBuffer worldclear;
+	sounfire.loadFromFile("charecter/world_clear.wav");
+	sf::Sound worldclears;
+	worldclears.setVolume(60);
+	worldclears.setBuffer(worldclear);
+
+	sf::SoundBuffer gameover;
+	sounfire.loadFromFile("charecter/game_over.wav");
+	sf::Sound gameovers;
+	gameovers.setVolume(60);
+	gameovers.setBuffer(gameover);
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	//check 
 	srand(time(NULL));
@@ -2113,13 +2125,14 @@ int main()
 		}
 		while (dead == true)
 		{
+			gameovers.play();
 			sf::Text paused("You Dead", font, 30);
 			sf::Text resume("Continue", font, 30);
 			sf::Text exit("Exit", font, 30);
 
 			window.clear();
 			window.setView(view);
-
+			
 			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
 			pauses.setOrigin(pauses.getSize() / 2.0f);
 			pauses.setPosition(view.getCenter());
@@ -2333,12 +2346,13 @@ int main()
 		}
 		while (end == true)
 		{
+			worldclears.play();
 			sf::Text paused("Game Cleared!", font, 30);
 			sf::Text resume("Press 'Space' to proceed", font, 30);
 
 			window.clear();
 			window.setView(view);
-
+			
 			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
 			endgames.setPosition(view.getCenter());
 			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
