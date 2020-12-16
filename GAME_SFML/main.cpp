@@ -472,6 +472,12 @@ int main()
 	//ถึงตรงนี้
 	enemyes.push_back(Enemy(sf::Vector2f(500.0f, 7230.0f), &penois));
 	enemyes.push_back(Enemy(sf::Vector2f(800.0f, 7200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1000.0f, 7230.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1200.0f, 7200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(944.0f, 900.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1200.0f, 850.0f), &penois));
+
+
 	//mon2
 	std::vector<enemys>Enemyss;
 	Enemyss.push_back(enemys(sf::Vector2f(970.0f, 1218.0f), &penois));
