@@ -97,30 +97,31 @@ int main()
 	background.setTexture(menustr);
 	//=========================================================================================================================================================
 	//Music
-	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/music.ogg"))
+	if (!music.openFromFile("C:/Users/007xfa/source/repos/WatcharapolxFa/GAME_SFML/GAME_SFML/charecter/bleach.wav"))
 	{
 		std::cout << "ERROR" << std::endl;
 	}
-	music.setVolume(5.0f);
+	music.setVolume(50.0f);
+	music.setLoop(true);
 	music.play();
 	//=========================================================================================================================================================
 
 	sf::SoundBuffer coins;
 	coins.loadFromFile("charecter/coin.wav");
 	sf::Sound coinss;
-	coinss.setVolume(80);
+	coinss.setVolume(60);
 	coinss.setBuffer(coins);
 
 	sf::SoundBuffer tunders;
 	tunders.loadFromFile("charecter/spark.wav");
 	sf::Sound tunderse;
-	tunderse.setVolume(80);
+	tunderse.setVolume(60);
 	tunderse.setBuffer(tunders);
 
 	sf::SoundBuffer sounfire;
 	sounfire.loadFromFile("charecter/firebu.wav");
 	sf::Sound sounfires;
-	sounfires.setVolume(80);
+	sounfires.setVolume(60);
 	sounfires.setBuffer(sounfire);
 	//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 	//check 
@@ -178,7 +179,7 @@ int main()
 		positionrand_x[1] = 943.0f;
 		positionrand_y[1] = 65.0f;
 
-		positionrand_x[2] = 943.0f;
+		positionrand_x[2] = 1270.0f;
 		positionrand_y[2] = 1050.0f;
 
 		positionrand_x[0] = 1273.0f;
@@ -189,7 +190,7 @@ int main()
 		positionrand_x[2] = 943.0f;
 		positionrand_y[2] = 65.0f;
 
-		positionrand_x[0] = 943.0f;
+		positionrand_x[0] = 1270.0f;
 		positionrand_y[0] = 1050.0f;
 
 		positionrand_x[2] = 1273.0f;
@@ -397,15 +398,16 @@ int main()
 
 	// Vector ????? ============================================================================================================================================== =
 	std::vector<box>boxVector;
-	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(211.0f, 1285.0f)));
-	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(876.0f, 1285.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(500.0f, 1285.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1220.0f, 1285.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(947.0f, 628.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(963.0f, 2254.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(1462, 2800.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(575, 690.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(360.0f, 3263.0f)));
 	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(305.0f, 2480.0f)));
-
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(525.0f, 2200.0f)));
+	boxVector.push_back(box(&boxx, sf::Vector2u(4, 1), 1.0f, sf::Vector2f(90.f, 100.0f), sf::Vector2f(480.0f, 5056.0f)));
 	//=============================================================================================================================================================
 	// Vector ???? ============================================================================================================================================== =
 	std::vector<button>buttonVector;
@@ -455,14 +457,29 @@ int main()
 
 	//mon1
 	std::vector<Enemy>enemyes;
-	enemyes.push_back(Enemy(sf::Vector2f(850.0f, 1218.0f),&penois));
-	enemyes.push_back(Enemy(sf::Vector2f(850.0f, 218.0f), &penois));
-	
+	enemyes.push_back(Enemy(sf::Vector2f(800.0f, 3250.0f),&penois));
+	enemyes.push_back(Enemy(sf::Vector2f(870.0f, 2500.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(940.0f, 2200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1500.0f, 2730.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1100.0f, 4600.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(950.0f, 4600.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4600.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(9000.0f, 4600.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4160.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4120.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4160.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4120.0f), &penois));
 	//mon2
 	std::vector<enemys>Enemyss;
-	Enemyss.push_back(enemys(sf::Vector2f(950.0f, 1218.0f), &penois));
-	Enemyss.push_back(enemys(sf::Vector2f(1050.0f, 218.0f), &penois));
-
+	Enemyss.push_back(enemys(sf::Vector2f(970.0f, 1218.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(500.0f, 659.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(950.0f, 200.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(740.0f, 2770.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(1600.0f, 2450.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(870.0f, 5250.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(400.0f, 4230.0f), &penois));
 
 
 
@@ -688,13 +705,13 @@ int main()
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1748.0f, 5112.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1755.0f, 5150.0f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(1780.0f, 5180.0f)));
-
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(150.0f, 35.0f), sf::Vector2f(100, 4734.0f)));
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 	//cob04
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(30.0f, 7679.25f)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 1358.5f), sf::Vector2f(1880.5f, 7679.25f)));
-	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 4595)));
+	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 6300)));
 	platfroms.push_back(Platform(nullptr, sf::Vector2f(1830.5f, 100.0f), sf::Vector2f(915.25f, 7335.0f)));
 
 
@@ -1674,11 +1691,31 @@ int main()
 
 			}
 			if (cheeckongame == 1)
-			{
+			{				
+				//wrab
+				if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
+				{
+					player.Warped(window);
+				}
+				window.draw(waroPoint);
+
+				//warp2
+				if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
+				{
+					player.Warped2(window);
+
+				}window.draw(waroPoint2);
+
+				//warp3
+				if (player.GetCollider().CheckCollision(Collider(waroPoint3), direction, 1.0f))
+				{
+					player.Warped3(window);
+
+				}window.draw(waroPoint3);
 
 				//window.draw(back01);
-				//window.draw(back02);
-				//window.draw(back03);
+				window.draw(back02);
+				window.draw(back03);
 				//window.draw(back04);
 				window.setView(view);
 
@@ -1687,8 +1724,8 @@ int main()
 
 
 				window.draw(back01);
-				window.draw(back02);
-				window.draw(back03);
+				//window.draw(back02);
+				//window.draw(back03);
 				window.draw(back04);
 
 				
@@ -1765,26 +1802,7 @@ int main()
 				*/
 
 				//==================================================================//
-				//wrab
-				if (player.GetCollider().CheckCollision(Collider(waroPoint), direction, 1.0f))
-				{
-					player.Warped(window);
-				}
-				window.draw(waroPoint);
 
-				//warp2
-				if (player.GetCollider().CheckCollision(Collider(waroPoint2), direction, 1.0f))
-				{
-					player.Warped2(window);
-
-				}window.draw(waroPoint2);
-
-				//warp3
-				if (player.GetCollider().CheckCollision(Collider(waroPoint3), direction, 1.0f))
-				{
-					player.Warped3(window);
-
-				}window.draw(waroPoint3);
 
 
 

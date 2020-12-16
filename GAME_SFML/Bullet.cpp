@@ -16,7 +16,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     hitbox.setSize(size);
     hitbox.setOrigin(hitbox.getSize() / 2.f);
     hitbox.setFillColor(sf::Color::Transparent);
-    hitbox.setOutlineThickness(1.f);
+    hitbox.setOutlineThickness(0.f);
     hitbox.setOutlineColor(sf::Color::Blue);
     hitbox.setPosition(body.getPosition().x, body.getPosition().y );
    

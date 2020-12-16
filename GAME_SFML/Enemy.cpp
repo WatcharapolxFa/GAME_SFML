@@ -14,7 +14,7 @@ Enemy::Enemy(sf::Vector2f position, sf::Texture* penois) :
     hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
     hitbox.setOrigin(hitbox.getSize() / 2.f);
     hitbox.setFillColor(sf::Color::Transparent);
-    hitbox.setOutlineThickness(1.f);
+    hitbox.setOutlineThickness(0.f);
     hitbox.setOutlineColor(sf::Color::Blue);
     
 

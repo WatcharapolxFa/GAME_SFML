@@ -47,6 +47,6 @@ sf::RectangleShape dimonfah::getBody() {
 
 void dimonfah::pickup()
 {
-	this->body.setPosition(-20.f, this->body.getPosition().y);
-	this->hitbox.setPosition(-20.f, this->body.getPosition().y);
+	this->body.setPosition(-50.f, this->body.getPosition().y);
+	this->hitbox.setPosition(-50.f, this->body.getPosition().y);
 }
