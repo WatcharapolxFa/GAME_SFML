@@ -1714,8 +1714,8 @@ int main()
 				}window.draw(waroPoint3);
 
 				//window.draw(back01);
-				window.draw(back02);
-				window.draw(back03);
+				//window.draw(back02);
+				//window.draw(back03);
 				//window.draw(back04);
 				window.setView(view);
 
@@ -1724,8 +1724,8 @@ int main()
 
 
 				window.draw(back01);
-				//window.draw(back02);
-				//window.draw(back03);
+				window.draw(back02);
+				window.draw(back03);
 				window.draw(back04);
 
 				
