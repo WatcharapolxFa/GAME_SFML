@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+﻿#include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdio.h>
 #include<vector>
@@ -465,12 +465,13 @@ int main()
 	enemyes.push_back(Enemy(sf::Vector2f(950.0f, 4600.0f), &penois));
 	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4600.0f), &penois));
 	enemyes.push_back(Enemy(sf::Vector2f(9000.0f, 4600.0f), &penois));
-	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4200.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(840.0f, 4200.0f), &penois));
 	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4160.0f), &penois));
-	enemyes.push_back(Enemy(sf::Vector2f(820.0f, 4120.0f), &penois));
-	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4200.0f), &penois));
-	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4160.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(1150.0f, 4200.0f), &penois));
 	enemyes.push_back(Enemy(sf::Vector2f(1120.0f, 4120.0f), &penois));
+	//ถึงตรงนี้
+	enemyes.push_back(Enemy(sf::Vector2f(500.0f, 7230.0f), &penois));
+	enemyes.push_back(Enemy(sf::Vector2f(800.0f, 7200.0f), &penois));
 	//mon2
 	std::vector<enemys>Enemyss;
 	Enemyss.push_back(enemys(sf::Vector2f(970.0f, 1218.0f), &penois));
@@ -480,8 +481,8 @@ int main()
 	Enemyss.push_back(enemys(sf::Vector2f(1600.0f, 2450.0f), &penois));
 	Enemyss.push_back(enemys(sf::Vector2f(870.0f, 5250.0f), &penois));
 	Enemyss.push_back(enemys(sf::Vector2f(400.0f, 4230.0f), &penois));
-
-
+	Enemyss.push_back(enemys(sf::Vector2f(1120.0f, 4160.0f), &penois));
+	Enemyss.push_back(enemys(sf::Vector2f(820.0f, 4120.0f), &penois));
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//heart
