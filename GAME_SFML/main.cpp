@@ -1089,7 +1089,7 @@ int main()
 				{
 					bos = 0.0f;
 					boss.dead();
-					score += 500;
+					score += 1500;
 					sav = true;
 					end = true;
 				}
@@ -1120,7 +1120,7 @@ int main()
 			for (dimon& d : DimonVector) {
 				if (d.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					d.pickup();
-					score += 5;
+					score += 50;
 					printf("%d", score);
 					coinss.play();
 
@@ -1131,7 +1131,7 @@ int main()
 			for (dimonfah& df : DimonfahVector) {
 				if (df.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					df.pickup();
-					score += 10;
+					score += 100;
 					printf("%d", score);
 					coinss.play();
 
@@ -1140,7 +1140,7 @@ int main()
 			for (dimongreen& dg : DimongreenVector) {
 				if (dg.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					dg.pickup();
-					score += 20;
+					score += 150;
 					printf("%d", score);
 					coinss.play();
 
@@ -1286,7 +1286,7 @@ int main()
 				if (bullet1.GetCollider().CheckCollisionItem(enemy.GetCollider(), direction))
 				{
 					enemy.dead();
-					score += 20;
+					score += 60;
 					Bul = 0;
 					bullet1.SetPosition();
 					bullet1.isAvaliable();
@@ -1294,7 +1294,7 @@ int main()
 				if (bullet2.GetCollider().CheckCollisionItem(enemy.GetCollider(), direction))
 				{
 					enemy.dead();
-					score += 20;
+					score += 60;
 					Bul2 = 0;
 					bullet2.SetPosition();
 					bullet2.isAvaliable();
@@ -1306,7 +1306,7 @@ int main()
 				if (bullet1.GetCollider().CheckCollisionItem(enemyxr.GetCollider(), direction))
 				{
 					enemyxr.dead();
-					score += 20;
+					score += 100;
 					Bul = 0;
 					bullet1.SetPosition();
 					bullet1.isAvaliable();
@@ -1314,7 +1314,7 @@ int main()
 				if (bullet2.GetCollider().CheckCollisionItem(enemyxr.GetCollider(), direction))
 				{
 					enemyxr.dead();
-					score += 20;
+					score += 100;
 					Bul2 = 0;
 					bullet2.SetPosition();
 					bullet2.isAvaliable();
