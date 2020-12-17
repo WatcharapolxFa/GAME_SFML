@@ -1765,7 +1765,7 @@ int main()
 				window.draw(back04);
 
 				
-
+				
 				//??????
 				for (int i = 0; i < FireVector.size(); i++)
 				{
@@ -1793,13 +1793,13 @@ int main()
 				{
 					DimongreenVector[i].draw(window);
 				}
-
-
-				//?????
 				for (int i = 0; i < boxVector.size(); i++)
 				{
 					boxVector[i].draw(window);
 				}
+
+				//?????
+				
 				/*
 				//????
 				for (int i = 0; i < buttonVector.size(); i++)
