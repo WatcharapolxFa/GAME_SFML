@@ -15,7 +15,7 @@ waterbg::waterbg(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
 	hitbox.setSize(sf::Vector2f(150.0f, 5.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
-	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineThickness(0.f);
 	hitbox.setOutlineColor(sf::Color::White);
 	hitbox.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 8));
 }

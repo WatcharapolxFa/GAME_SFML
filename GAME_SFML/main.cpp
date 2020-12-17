@@ -774,7 +774,7 @@ int main()
 
 	sf::RectangleShape pauses(sf::Vector2f(1080.0f, 720.0f));
 	sf::Texture pau;
-	pau.loadFromFile("charecter/menu.png");
+	pau.loadFromFile("charecter/stop.png");
 	pauses.setTexture(&pau);
 	//-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -872,24 +872,24 @@ int main()
 			background.setOrigin(pauses.getSize() / 2.0f);
 			background.setPosition(view.getCenter());
 			leader.setPosition(view.getCenter().x - 450, view.getCenter().y - 190.0f);
-			score1.setPosition(view.getCenter().x - 450, view.getCenter().y - 125.0f);
-			score2.setPosition(view.getCenter().x - 450, view.getCenter().y - 75.0f);
-			score3.setPosition(view.getCenter().x - 450, view.getCenter().y - 25.0f);
-			score4.setPosition(view.getCenter().x - 450, view.getCenter().y + 25.0f);
-			score5.setPosition(view.getCenter().x - 450, view.getCenter().y + 75.0f);
-			play.setPosition(view.getCenter().x - 35, view.getCenter().y + 0.0f);
-			exit.setPosition(view.getCenter().x - 35, view.getCenter().y + 100.0f);
-			guide.setPosition(view.getCenter().x - 540, view.getCenter().y + 260.0f);
-			name.setPosition(view.getCenter().x +55, view.getCenter().y + 320.0f);
-			gamename.setPosition(view.getCenter().x - 400, view.getCenter().y - 360.0f);
+			score1.setPosition(view.getCenter().x - 350, view.getCenter().y - 125.0f);
+			score2.setPosition(view.getCenter().x - 350, view.getCenter().y - 75.0f);
+			score3.setPosition(view.getCenter().x - 350, view.getCenter().y - 25.0f);
+			score4.setPosition(view.getCenter().x - 350, view.getCenter().y + 25.0f);
+			score5.setPosition(view.getCenter().x - 350, view.getCenter().y + 75.0f);
+			play.setPosition(view.getCenter().x - 35, view.getCenter().y + 70.0f);
+			exit.setPosition(view.getCenter().x - 35, view.getCenter().y + 195.0f);
+			//guide.setPosition(view.getCenter().x - 540, view.getCenter().y + 260.0f);
+			//name.setPosition(view.getCenter().x +55, view.getCenter().y + 320.0f);
+			//gamename.setPosition(view.getCenter().x - 400, view.getCenter().y - 360.0f);
 			if (mselect == 0)
 			{
-				play.setFillColor(sf::Color::Red);
+				play.setFillColor(sf::Color::Black);
 				exit.setFillColor(sf::Color::White);
 			}
 			if (mselect == 1)
 			{
-				exit.setFillColor(sf::Color::Red);
+				exit.setFillColor(sf::Color::Black);
 				play.setFillColor(sf::Color::White);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -1155,6 +1155,14 @@ int main()
 				}
 
 			}
+			for (waterbg& water : WaterVector) {
+				if (water.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
+					sav = true;
+					dead = true;
+				}
+
+			}
+
 			for (Enemy& enemy : enemyes) {
 				if (enemy.GetCollider().CheckCollisionItem(player.GetCollider(), direction)) {
 					sav = true;
@@ -1929,9 +1937,9 @@ int main()
 			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
 			pauses.setOrigin(pauses.getSize() / 2.0f);
 			pauses.setPosition(view.getCenter());
-			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
-			resume.setPosition(view.getCenter().x - 50, view.getCenter().y + 200.0f);
-			exit.setPosition(view.getCenter().x - 50, view.getCenter().y + 250.0f);
+			paused.setPosition(view.getCenter().x - 380, view.getCenter().y - 200.0f);
+			resume.setPosition(view.getCenter().x - 380, view.getCenter().y + 10.0f);
+			exit.setPosition(view.getCenter().x - 380, view.getCenter().y +100.0f);
 
 			if (pselect == 0)
 			{
@@ -2149,9 +2157,9 @@ int main()
 			view.setCenter(sf::Vector2f(-1000.0f, 1800.0f));
 			pauses.setOrigin(pauses.getSize() / 2.0f);
 			pauses.setPosition(view.getCenter());
-			paused.setPosition(view.getCenter().x - 50, view.getCenter().y - 300.0f);
-			resume.setPosition(view.getCenter().x - 50, view.getCenter().y + 200.0f);
-			exit.setPosition(view.getCenter().x - 50, view.getCenter().y + 250.0f);
+			paused.setPosition(view.getCenter().x - 380, view.getCenter().y - 200.0f);
+			resume.setPosition(view.getCenter().x - 380, view.getCenter().y + 10.0f);
+			exit.setPosition(view.getCenter().x - 380, view.getCenter().y + 100.0f);
 
 			int x1, x2, x3, x4, x5;
 			//---------1------------

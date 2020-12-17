@@ -18,7 +18,7 @@ box::box(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Ve
 	hitbox.setSize(sf::Vector2f(50.0f, 50.0f));
 	hitbox.setOrigin(hitbox.getSize() / 2.f);
 	hitbox.setFillColor(sf::Color::Transparent);
-	hitbox.setOutlineThickness(1.f);
+	hitbox.setOutlineThickness(0.f);
 	hitbox.setOutlineColor(sf::Color::Blue);
 	hitbox.setPosition(body.getPosition().x, body.getPosition().y+20);
 
