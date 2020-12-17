@@ -2373,8 +2373,8 @@ int main()
 				checksound1 = true;
 			}
 			
-			sf::Text paused("Game Cleared!", font, 30);
-			sf::Text resume("Press 'Space' to proceed", font, 30);
+			sf::Text paused("", font, 30);
+			sf::Text resume("", font, 30);
 
 			window.clear();
 			window.setView(view);
