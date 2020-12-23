@@ -38,6 +38,6 @@
 
 ## 🎥 Game Tailer
 
-[![alt text](https://github.com/WatcharapolxFa/GAME_SFML/blob/master/GAME_SFML/charecter/End.png.jpg?raw=true)](https://www.youtube.com/watch?v=FXd6wB5ObRw)
+[![alt text](https://github.com/WatcharapolxFa/GAME_SFML/blob/master/GAME_SFML/charecter/End.png?raw=true)](https://www.youtube.com/watch?v=FXd6wB5ObRw)
 
 <br> 
