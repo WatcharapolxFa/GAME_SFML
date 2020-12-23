@@ -1,6 +1,6 @@
 # The forgotten prince | 63010870 (P.1)
 
-<br><br> ![QON](https://github.com/radsadorn/Quest_of_Ninja/blob/master/QuestOfNinja/sprite/LOGO.png) <br><br>
+<br><br> ![QON](https://github.com/GAME_SFML/GAME_SFML/charecter/menu.png) <br><br>
 
 `  Desktop Game Development | C++  `   พัฒนาขึ้นโดยใช้   `  Library- SFML X Visual Studio 2019  ` 👾 <br><br>
 
