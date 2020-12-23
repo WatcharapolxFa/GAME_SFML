@@ -1,22 +1,22 @@
-# The forgotten prince | 63010870 (P.1)
+# The forgotten prince ❤ 
 
 <br><br> ![QON](https://github.com/WatcharapolxFa/GAME_SFML/blob/master/GAME_SFML/charecter/menu.png) <br><br>
 
 `  Desktop Game Development | C++  `   พัฒนาขึ้นโดยใช้   `  Library- SFML X Visual Studio 2019  ` 👾 <br><br>
 
-## 👾 Developer 
+## 🦩 Developer 🦩
 
-* Watcharapol Yotadee
+* Watcharapol Yotadee 🦩
 
-## 📚 Library
+## 💻 Tool 
 
-* SFML
+* Visual Studio 2019 💻 
 
-## 🔧 Tool 
+## 🗂 Library
 
-* Visual Studio 2019
+* SFML 🗂
 
-## 📄 Feature
+## 👾 Feature
 
 * เกมผู้เล่นคนเดียว 
 * ตัวละคร 
@@ -36,7 +36,7 @@
     >> จบเกมแบบไม่ปกติ
     - จบเกมโดยการกดออกจากเกม จะไม่ได้รับกาารบันทึกคะแนน
 
-## 🎥 Game Tailer
+## 🎥 Game Tailer >> Please click on the picture. <<
 
 [![alt text](https://github.com/WatcharapolxFa/GAME_SFML/blob/master/GAME_SFML/charecter/End.png?raw=true)](https://www.youtube.com/watch?v=FXd6wB5ObRw)
 
